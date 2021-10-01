@@ -15,7 +15,6 @@ class CustomHeader extends StatelessWidget {
                   clipper: BlueShade(),
                   child: Container(
                     color: const Color(0xff39a6f0),
-                    // height: 270,
                   ),
                 ),
                 Column(
@@ -65,7 +64,6 @@ class BlueShade extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
-
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
 
