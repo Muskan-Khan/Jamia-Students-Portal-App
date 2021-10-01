@@ -12,17 +12,10 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Center(
-          child: Column(
-        children: [
-          const Background(),
-          Container(
-            color: const Color(0Xff0171c5),
-          ),
-        ],
-      )),
-      debugShowCheckedModeBanner: false,
+    return Center(
+      child: Container(
+        color: const Color(0Xff0171c5),
+      ),
     );
   }
 }

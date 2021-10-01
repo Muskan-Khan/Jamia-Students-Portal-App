@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/internal_screens/login.dart';
 
 void main() {
-  runApp(const Login());
+  runApp(MaterialApp(
+    home: Stack(
+      children: [Login(), Background()],
+    ),
+    debugShowCheckedModeBanner: false,
+  ));
 }
 
 
