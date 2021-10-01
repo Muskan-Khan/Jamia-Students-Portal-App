@@ -6,43 +6,47 @@ class CustomHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: const Color(0xff39a6f0),
-      child: Stack(
-        children: [
-          ClipPath(
-            clipper: BlueShade(),
-            child: Container(
-              color: const Color(0xff39a6f0),
-              // height: 270,
+        color: const Color(0xff39a6f0),
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                ClipPath(
+                  clipper: BlueShade(),
+                  child: Container(
+                    color: const Color(0xff39a6f0),
+                    // height: 270,
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Center(
+                        child: Padding(
+                      padding: const EdgeInsets.only(top: 27.0),
+                      child: Image.asset(
+                        'assets/images/jamialogo.jpg',
+                      ),
+                    )),
+                    const Center(
+                        child: Padding(
+                      padding: EdgeInsets.only(top: 15.0, bottom: 5),
+                      child: Text(
+                        "CONTROLLER OF EXAMINATION",
+                        style: TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 18.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal),
+                      ),
+                    ))
+                  ],
+                ),
+              ],
             ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Center(
-                  child: Padding(
-                padding: const EdgeInsets.only(top: 27.0),
-                child: Image.asset(
-                  'assets/images/jamialogo.jpg',
-                ),
-              )),
-              const Center(
-                  child: Padding(
-                padding: EdgeInsets.only(top: 15.0, bottom: 5),
-                child: Text(
-                  "CONTROLLER OF EXAMINATION",
-                  style: TextStyle(
-                      decoration: TextDecoration.none,
-                      fontSize: 18.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.normal),
-                ),
-              ))
-            ],
-          ),
-        ],
-      ),
-    );
+            const Login(),
+          ],
+        ));
   }
 }
 
@@ -60,4 +64,18 @@ class BlueShade extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
+
+class Login extends StatelessWidget {
+  const Login({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        color: const Color(0Xff0171c5),
+        height: 50.0,
+      ),
+    );
+  }
 }
