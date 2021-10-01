@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:students_portal/internal_screens/header.dart';
 //import 'package:hexcolor:hexcolor/hexcolor.dart';
 
 class Login extends StatefulWidget {
