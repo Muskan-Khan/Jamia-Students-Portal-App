@@ -1,41 +1,47 @@
 import 'package:flutter/material.dart';
 
-class Background extends StatelessWidget {
-  const Background({Key? key}) : super(key: key);
+class CustomHeader extends StatelessWidget {
+  const CustomHeader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ClipPath(
-          clipper: BlueShade(),
-          child: Container(color: const Color(0xff39a6f0)),
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Center(
-                child: Padding(
-              padding: const EdgeInsets.only(top: 27.0),
-              child: Image.asset(
-                'assets/images/jamialogo.jpg',
-              ),
-            )),
-            const Center(
-                child: Padding(
-              padding: EdgeInsets.only(top: 15.0),
-              child: Text(
-                "CONTROLLER OF EXAMINATION",
-                style: TextStyle(
-                    decoration: TextDecoration.none,
-                    fontSize: 18.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal),
-              ),
-            ))
-          ],
-        )
-      ],
+    return Material(
+      color: const Color(0xff39a6f0),
+      child: Stack(
+        children: [
+          ClipPath(
+            clipper: BlueShade(),
+            child: Container(
+              color: const Color(0xff39a6f0),
+              // height: 270,
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Center(
+                  child: Padding(
+                padding: const EdgeInsets.only(top: 27.0),
+                child: Image.asset(
+                  'assets/images/jamialogo.jpg',
+                ),
+              )),
+              const Center(
+                  child: Padding(
+                padding: EdgeInsets.only(top: 15.0, bottom: 5),
+                child: Text(
+                  "CONTROLLER OF EXAMINATION",
+                  style: TextStyle(
+                      decoration: TextDecoration.none,
+                      fontSize: 18.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.normal),
+                ),
+              ))
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

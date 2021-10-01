@@ -4,8 +4,9 @@ import 'package:students_portal/internal_screens/login.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: Stack(
-      children: [Login(), Background()],
+    home: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [CustomHeader(), Login()],
     ),
     debugShowCheckedModeBanner: false,
   ));

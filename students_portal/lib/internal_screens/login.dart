@@ -14,6 +14,7 @@ class _LoginState extends State<Login> {
     return Center(
       child: Container(
         color: const Color(0Xff0171c5),
+        height: 50.0,
       ),
     );
   }
