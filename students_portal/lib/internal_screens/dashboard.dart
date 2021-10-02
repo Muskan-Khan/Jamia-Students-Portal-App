@@ -16,7 +16,7 @@ class LoggedInCandidateDashboard extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.752,
               color: Colors.white,
             ),
-            const DashboardElements()
+            const MyStatelessWidget()
           ],
         )
       ],
