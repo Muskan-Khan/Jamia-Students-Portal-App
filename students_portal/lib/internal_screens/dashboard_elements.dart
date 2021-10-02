@@ -83,7 +83,7 @@ class MyStatelessWidget extends StatelessWidget {
         return SingleChildScrollView(
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              minHeight: viewportConstraints.maxHeight,
+              minHeight: viewportConstraints.maxHeight / 5,
             ),
             child: IntrinsicHeight(
               child: Column(
@@ -91,13 +91,13 @@ class MyStatelessWidget extends StatelessWidget {
                   Container(
                     // A fixed-height child.
                     color: const Color(0xffeeee00), // Yellow
-                    height: 490.0,
+                    height: 290.0,
                     alignment: Alignment.center,
                   ),
                   Container(
                     // A fixed-height child.
                     color: const Color(0xffee0000), // Yellow
-                    height: 1090.0,
+                    height: 490.0,
                     alignment: Alignment.center,
                   ),
                 ],
