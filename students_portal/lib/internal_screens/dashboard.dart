@@ -11,27 +11,29 @@ class LoggedInCandidateDashboard extends StatelessWidget {
       children: [
         const CustomHeader(),
         // MyStatelessWidget()
-        SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              minHeight: 200,
-            ),
-            child: IntrinsicHeight(
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    // A fixed-height child.
-                    color: const Color(0xffeeee00), // Yellow
-                    height: 220.0,
-                    alignment: Alignment.center,
-                  ),
-                  Container(
-                    // A fixed-height child.
-                    color: const Color(0xffee0000), // Yellow
-                    height: 190.0,
-                    alignment: Alignment.center,
-                  ),
-                ],
+        Expanded(
+          child: SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                minHeight: 200,
+              ),
+              child: IntrinsicHeight(
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      // A fixed-height child.
+                      color: const Color(0xffeeee00), // Yellow
+                      height: 520.0,
+                      alignment: Alignment.center,
+                    ),
+                    Container(
+                      // A fixed-height child.
+                      color: const Color(0xffee0000), // Yellow
+                      height: 190.0,
+                      alignment: Alignment.center,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
