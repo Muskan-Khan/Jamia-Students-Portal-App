@@ -32,7 +32,9 @@ class LoginFieldHead extends StatefulWidget {
 class _LoginFieldHeadState extends State<LoginFieldHead> {
   final bool _value = false;
 
-  int val = -1;
+  int group = 1;
+
+  get onChanged => null;
 
   @override
   Widget build(BuildContext context) {
@@ -121,16 +123,49 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                         ],
                       ),
                     ),
+                    Material(
+                      child: Row(
+                        children: <Widget>[
+                          Row(
+                            children: [
+                              Radio(
+                                  value: 1,
+                                  groupValue: group,
+                                  onChanged: onChanged),
+                              const Text("With Email Id",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: 2,
+                                  groupValue: group,
+                                  onChanged: onChanged),
+                              const Text("With Enrolment No.",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  )),
+                            ],
+                          ),
+                          // Column(
+                          //   children: [
+                          //     TextFormField(
+                          //       decoration: const InputDecoration(
+                          //           border: UnderlineInputBorder(),
+                          //           labelText: 'Enter your username'),
+                          //     )
+                          //   ],
+                          // ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
-            )
-            // RadioButtons()
-            //Label
-            // InputBox()
-            //Label
-            // InputBox()
-            //Button
+            ),
           ],
         ),
       ),
