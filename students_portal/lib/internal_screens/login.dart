@@ -38,7 +38,6 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Center(
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.9,
@@ -86,41 +85,48 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(0.0),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         color: Colors.white,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              "Login Panel",
-                              style: TextStyle(
-                                  decorationColor: Colors.redAccent,
-                                  decorationThickness: 1,
-                                  fontSize: 20,
-                                  decorationStyle: TextDecorationStyle.solid,
-                                  color: Colors.black),
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              decoration: const BoxDecoration(
+                                  border: Border(
+                                bottom: BorderSide(
+                                    color: Colors.redAccent,
+                                    width: 2,
+                                    style: BorderStyle.solid),
+                              )),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Login Panel",
+                                  style: TextStyle(
+                                    decoration: TextDecoration.none,
+                                    fontSize: 20,
+                                    decorationStyle: TextDecorationStyle.solid,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
                             )
                           ],
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "Put your Account details",
-                            style: TextStyle(
-                                decorationColor: Colors.redAccent,
-                                decorationThickness: 1,
-                                fontSize: 15,
-                                decorationStyle: TextDecorationStyle.solid,
-                                color: Colors.black),
-                          )
-                        ],
+                    const Padding(
+                      padding: EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        "Put your Account details",
+                        style: TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 15,
+                            decorationStyle: TextDecorationStyle.solid,
+                            color: Colors.black),
                       ),
                     ),
                     Material(
@@ -150,18 +156,23 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                                   )),
                             ],
                           ),
-                          // Column(
-                          //   children: [
-                          //     TextFormField(
-                          //       decoration: const InputDecoration(
-                          //           border: UnderlineInputBorder(),
-                          //           labelText: 'Enter your username'),
-                          //     )
-                          //   ],
-                          // ),
                         ],
                       ),
                     ),
+                    // const LoginWithEmail(
+                    //   key: null,
+                    // ),
+                    const LoginWithEnrolment(
+                      key: null,
+                    ),
+                    ElevatedButton(
+                      autofocus: true,
+                      clipBehavior: Clip.none,
+                      onPressed: null,
+                      style:
+                          ElevatedButton.styleFrom(primary: Colors.blue[800]),
+                      child: const Text("Proceed"),
+                    )
                   ],
                 ),
               ),
@@ -170,5 +181,99 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
         ),
       ),
     );
+  }
+}
+
+class LoginWithEmail extends StatefulWidget {
+  const LoginWithEmail({Key? key}) : super(key: key);
+
+  @override
+  _LoginWithEmailState createState() => _LoginWithEmailState();
+}
+
+class _LoginWithEmailState extends State<LoginWithEmail> {
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+        child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text(
+            "Email Id",
+            textAlign: TextAlign.left,
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Email Id',
+                  contentPadding: EdgeInsets.all(5.0)),
+            ),
+          ),
+          Text("Password",
+              textAlign: TextAlign.left, style: TextStyle(fontSize: 20)),
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Password',
+                  contentPadding: EdgeInsets.all(5.0)),
+            ),
+          ),
+        ],
+      ),
+    ));
+  }
+}
+
+class LoginWithEnrolment extends StatefulWidget {
+  const LoginWithEnrolment({Key? key}) : super(key: key);
+
+  @override
+  _LoginWithEnrolmentState createState() => _LoginWithEnrolmentState();
+}
+
+class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+        child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text(
+            "Enrolment No",
+            textAlign: TextAlign.left,
+            style: TextStyle(fontSize: 20),
+          ),
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Enrolment No',
+                  contentPadding: EdgeInsets.all(5.0)),
+            ),
+          ),
+          Text("Password",
+              textAlign: TextAlign.left, style: TextStyle(fontSize: 20)),
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Password',
+                  contentPadding: EdgeInsets.all(5.0)),
+            ),
+          ),
+        ],
+      ),
+    ));
   }
 }
