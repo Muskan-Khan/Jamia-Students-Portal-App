@@ -61,6 +61,7 @@ flutter:
   assets:
     - assets/images/jmilogo.png
     - assets/images/jamialogo.jpg
+    - assets/images/studentIcon.png
     # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

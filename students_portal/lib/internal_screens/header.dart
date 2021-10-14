@@ -15,7 +15,6 @@ class CustomHeader extends StatelessWidget {
                   clipper: BlueShade(),
                   child: Container(
                     color: const Color(0xff39a6f0),
-                    // height: 270,
                   ),
                 ),
                 Column(
@@ -44,7 +43,10 @@ class CustomHeader extends StatelessWidget {
                 ),
               ],
             ),
-            const Login(),
+            Container(
+              color: const Color(0Xff0171c5),
+              height: 50.0,
+            ),
           ],
         ));
   }
