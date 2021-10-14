@@ -18,18 +18,14 @@ class _DashboardElementsState extends State<DashboardElements> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            cont(Colors.green),
-            cont(Colors.blue),
-            cont(Colors.orange),
-            cont(Colors.redAccent),
-          ],
-        ),
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        cont(Colors.green),
+        cont(Colors.blue),
+        cont(Colors.orange),
+        cont(Colors.redAccent),
+      ],
     );
   }
 }
