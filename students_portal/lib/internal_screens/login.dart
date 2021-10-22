@@ -12,7 +12,7 @@ class LoginField extends StatelessWidget {
       Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.752,
+            height: MediaQuery.of(context).size.height * 0.72,
             color: const Color(0xffeeeeee),
           ),
           LoginFieldHead()
