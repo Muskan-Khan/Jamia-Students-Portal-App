@@ -159,12 +159,12 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                         ],
                       ),
                     ),
-                    // const LoginWithEmail(
-                    //   key: null,
-                    // ),
-                    const LoginWithEnrolment(
+                    const LoginWithEmail(
                       key: null,
                     ),
+                    // const LoginWithEnrolment(
+                    //   key: null,
+                    // ),
                     ElevatedButton(
                       autofocus: true,
                       clipBehavior: Clip.none,
@@ -191,63 +191,94 @@ class LoginWithEmail extends StatefulWidget {
   _LoginWithEmailState createState() => _LoginWithEmailState();
 }
 
+final _formKey = GlobalKey<FormState>();
+
 class _LoginWithEmailState extends State<LoginWithEmail> {
   final userEmail = TextEditingController();
   final userPassword = TextEditingController();
+
+  void _printLatestEmail() {
+    print('Email: ${userEmail.text}');
+  }
+
+  void _printLatestPassword() {
+    print('Password: ${userPassword.text}');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Start listening to changes.
+    userEmail.addListener(_printLatestEmail);
+    userPassword.addListener((_printLatestPassword));
+  }
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     userEmail.dispose();
+    userPassword.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Material(
-        child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "Email Id",
-            textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 20),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: TextField(
-              controller: userEmail,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Email Id',
-                  contentPadding: EdgeInsets.all(5.0)),
+        child: Form(
+      key: _formKey,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Email Id",
+              textAlign: TextAlign.left,
+              style: TextStyle(fontSize: 20),
             ),
-          ),
-          const Text("Password",
-              textAlign: TextAlign.left, style: TextStyle(fontSize: 20)),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: TextField(
-              enableInteractiveSelection: true,
-              controller: userPassword,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Password',
-                  contentPadding: EdgeInsets.all(5.0)),
-            ),
-          ),
-        ],
+            Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: TextFormField(
+                  controller: userEmail,
+                  // onChanged: (text) {
+                  //   // print('Enetred Value: $userEmail');
+                  // },
+                  // validator: null,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Email Id",
+                      contentPadding: EdgeInsets.fromLTRB(5, 1, 5, 1)),
+                )),
+
+            // InputDecoration(
+            //                     border: UnderlineInputBorder(), labelText: "Enter Email"),
+
+            const Text("Password",
+                textAlign: TextAlign.left, style: TextStyle(fontSize: 20)),
+            Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: TextFormField(
+                  controller: userPassword,
+                  // validator: null,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Password",
+                      contentPadding: EdgeInsets.fromLTRB(5, 1, 5, 1)),
+                )),
+
+            // TextField(
+            //               enableInteractiveSelection: true,
+            //               controller: userPassword,
+            //               decoration: const InputDecoration(
+            //                   border: OutlineInputBorder(),
+            //                   hintText: 'Password',
+            //                   contentPadding: EdgeInsets.all(5.0)),
+            //             ),
+          ],
+        ),
       ),
     ));
-  }
-
-  @override
-  void setState(VoidCallback fn) {
-    // TODO: implement setState
-    print(userEmail);
-    print(userPassword);
   }
 }
 
