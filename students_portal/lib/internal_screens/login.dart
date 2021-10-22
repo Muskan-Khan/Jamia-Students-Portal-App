@@ -62,14 +62,14 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                             style: TextStyle(
                                 decoration: TextDecoration.none,
                                 color: Colors.white,
-                                fontSize: 35),
+                                fontSize: 25),
                           ),
                           Text(
                             "Student Exam Portal",
                             style: TextStyle(
                                 decoration: TextDecoration.none,
                                 color: Colors.white,
-                                fontSize: 20),
+                                fontSize: 15),
                           )
                         ],
                       ),
@@ -140,7 +140,7 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                                   onChanged: onChanged),
                               const Text("With Email Id",
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 13.5,
                                   )),
                             ],
                           ),
@@ -152,7 +152,7 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                                   onChanged: onChanged),
                               const Text("With Enrolment No.",
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 13.5,
                                   )),
                             ],
                           ),
@@ -192,6 +192,16 @@ class LoginWithEmail extends StatefulWidget {
 }
 
 class _LoginWithEmailState extends State<LoginWithEmail> {
+  final userEmail = TextEditingController();
+  final userPassword = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    userEmail.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -199,27 +209,30 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text(
+        children: [
+          const Text(
             "Email Id",
             textAlign: TextAlign.left,
             style: TextStyle(fontSize: 20),
           ),
           Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15.0),
             child: TextField(
-              decoration: InputDecoration(
+              controller: userEmail,
+              decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Email Id',
                   contentPadding: EdgeInsets.all(5.0)),
             ),
           ),
-          Text("Password",
+          const Text("Password",
               textAlign: TextAlign.left, style: TextStyle(fontSize: 20)),
           Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15.0),
             child: TextField(
-              decoration: InputDecoration(
+              enableInteractiveSelection: true,
+              controller: userPassword,
+              decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Password',
                   contentPadding: EdgeInsets.all(5.0)),
@@ -228,6 +241,13 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
         ],
       ),
     ));
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    print(userEmail);
+    print(userPassword);
   }
 }
 
