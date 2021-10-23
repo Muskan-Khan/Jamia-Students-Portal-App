@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:postgres/postgres.dart';
 import 'package:students_portal/internal_screens/header.dart';
 
 class LoginField extends StatelessWidget {
@@ -15,7 +16,7 @@ class LoginField extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.72,
             color: const Color(0xffeeeeee),
           ),
-          LoginFieldHead()
+          const LoginFieldHead()
         ],
       )
     ]);
@@ -33,17 +34,17 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
   final bool _value = false;
 
   int group = 1;
-  late String username;
-  late String password;
+  // late String username;
+  // late String password;
   get onChanged => null;
 
-  String? get userID => null;
+  // String? get userID => null;
 
-  String? get userPassword => null;
-  setCredentials(String userID, String userPassword) {
-    username = userID;
-    password = userPassword;
-  }
+  // String? get userPassword => null;
+  // setCredentials(String userID, String userPassword) {
+  //   username = userID;
+  //   password = userPassword;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -139,6 +140,8 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                       ),
                     ),
                     Material(
+                        child: Container(
+                      color: Colors.white,
                       child: Row(
                         children: <Widget>[
                           Row(
@@ -167,21 +170,11 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                           ),
                         ],
                       ),
+                    )),
+                    const LoginWithEmail(
+                      key: null,
+                      // getCredentials: setCredentials(userID!, userPassword!)
                     ),
-                    LoginWithEmail(
-                        key: null,
-                        getCredentials: setCredentials(userID!, userPassword!)),
-                    // const LoginWithEnrolment(
-                    //   key: null,
-                    // ),
-                    ElevatedButton(
-                      autofocus: true,
-                      clipBehavior: Clip.none,
-                      onPressed: null,
-                      style:
-                          ElevatedButton.styleFrom(primary: Colors.blue[800]),
-                      child: const Text("Proceed"),
-                    )
                   ],
                 ),
               ),
@@ -205,8 +198,39 @@ final _formKey = GlobalKey<FormState>();
 class _LoginWithEmailState extends State<LoginWithEmail> {
   final userEmail = TextEditingController();
   final userPassword = TextEditingController();
-  late final Function() getCredentails;
-  void submitCredentials() {}
+  void databaseConnectivity() async {
+    try {
+      var connection = PostgreSQLConnection("10.0.2.2", 5432, "StudentsPortal",
+          username: "postgres", password: "Latitude21");
+      await connection.open();
+
+      // List<Map<String, Map<String, dynamic>>> results =
+      //     await connection.mappedResultsQuery("SELECT name FROM test");
+      List<List<dynamic>> results = await connection.query(
+          "SELECT btrim(email),btrim(password) FROM studentscredentials",
+          substitutionValues: {"aValue": 3});
+
+      for (final row in results) {
+        String id = row[0];
+        print(id + " Hello " + userEmail.text);
+        String password = row[1];
+        // void validateCredentials() {
+        // ignore: unrelated_type_equality_checks
+        if (userEmail.text == id && userPassword.text == password) {
+          print("Whoa, Login Successful");
+        } else {
+          print("Invalid Credentials");
+        }
+        break;
+        // }
+      }
+      await connection.close();
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  // late final Function() getCredentails;
 
   void _printLatestEmail() {
     print('Email: ${userEmail.text}');
@@ -223,7 +247,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     // Start listening to changes.
     userEmail.addListener(_printLatestEmail);
     userPassword.addListener((_printLatestPassword));
-    getCredentails();
+    // getCredentails();
   }
 
   @override
@@ -237,40 +261,53 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   @override
   Widget build(BuildContext context) {
     return Material(
-        child: Form(
-      key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Email Id",
-              textAlign: TextAlign.left,
-              style: TextStyle(fontSize: 20),
-            ),
-            Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextFormField(
-                  controller: userEmail,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "Email Id",
-                      contentPadding: EdgeInsets.fromLTRB(5, 1, 5, 1)),
-                )),
-            const Text("Password",
-                textAlign: TextAlign.left, style: TextStyle(fontSize: 20)),
-            Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextFormField(
-                  controller: userPassword,
-                  // validator: null,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "Password",
-                      contentPadding: EdgeInsets.fromLTRB(5, 1, 5, 1)),
-                )),
-          ],
+        child: Container(
+      color: Colors.white,
+      child: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Email Id",
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 20),
+              ),
+              Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    // validator: null,
+                    controller: userEmail,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: "Email Id",
+                        contentPadding: EdgeInsets.fromLTRB(5, 1, 5, 1)),
+                  )),
+              const Text("Password",
+                  textAlign: TextAlign.left, style: TextStyle(fontSize: 20)),
+              Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    controller: userPassword,
+                    // validator: null,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: "Password",
+                        contentPadding: EdgeInsets.fromLTRB(5, 1, 5, 1)),
+                  )),
+              Center(
+                child: ElevatedButton(
+                  autofocus: true,
+                  clipBehavior: Clip.none,
+                  onPressed: databaseConnectivity,
+                  style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
+                  child: const Text("Proceed"),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     ));
@@ -292,13 +329,13 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text(
+        children: [
+          const Text(
             "Enrolment No",
             textAlign: TextAlign.left,
             style: TextStyle(fontSize: 20),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(15.0),
             child: TextField(
               decoration: InputDecoration(
@@ -307,9 +344,9 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
                   contentPadding: EdgeInsets.all(5.0)),
             ),
           ),
-          Text("Password",
+          const Text("Password",
               textAlign: TextAlign.left, style: TextStyle(fontSize: 20)),
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(15.0),
             child: TextField(
               decoration: InputDecoration(
@@ -318,6 +355,15 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
                   contentPadding: EdgeInsets.all(5.0)),
             ),
           ),
+          Center(
+            child: ElevatedButton(
+              autofocus: true,
+              clipBehavior: Clip.none,
+              onPressed: null,
+              style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
+              child: const Text("Proceed"),
+            ),
+          )
         ],
       ),
     ));
