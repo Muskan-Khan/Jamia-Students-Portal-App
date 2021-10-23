@@ -212,7 +212,6 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
 
       for (final row in results) {
         String id = row[0];
-        print(id + " Hello " + userEmail.text);
         String password = row[1];
         // void validateCredentials() {
         // ignore: unrelated_type_equality_checks
@@ -232,22 +231,9 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
 
   // late final Function() getCredentails;
 
-  void _printLatestEmail() {
-    print('Email: ${userEmail.text}');
-  }
-
-  void _printLatestPassword() {
-    print('Password: ${userPassword.text}');
-  }
-
   @override
   void initState() {
     super.initState();
-
-    // Start listening to changes.
-    userEmail.addListener(_printLatestEmail);
-    userPassword.addListener((_printLatestPassword));
-    // getCredentails();
   }
 
   @override
