@@ -33,8 +33,17 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
   final bool _value = false;
 
   int group = 1;
-
+  late String username;
+  late String password;
   get onChanged => null;
+
+  String? get userID => null;
+
+  String? get userPassword => null;
+  setCredentials(String userID, String userPassword) {
+    username = userID;
+    password = userPassword;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -159,9 +168,9 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                         ],
                       ),
                     ),
-                    const LoginWithEmail(
-                      key: null,
-                    ),
+                    LoginWithEmail(
+                        key: null,
+                        getCredentials: setCredentials(userID!, userPassword!)),
                     // const LoginWithEnrolment(
                     //   key: null,
                     // ),
@@ -185,7 +194,7 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
 }
 
 class LoginWithEmail extends StatefulWidget {
-  const LoginWithEmail({Key? key}) : super(key: key);
+  const LoginWithEmail({Key? key, getCredentials}) : super(key: key);
 
   @override
   _LoginWithEmailState createState() => _LoginWithEmailState();
@@ -196,6 +205,8 @@ final _formKey = GlobalKey<FormState>();
 class _LoginWithEmailState extends State<LoginWithEmail> {
   final userEmail = TextEditingController();
   final userPassword = TextEditingController();
+  late final Function() getCredentails;
+  void submitCredentials() {}
 
   void _printLatestEmail() {
     print('Email: ${userEmail.text}');
@@ -212,6 +223,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     // Start listening to changes.
     userEmail.addListener(_printLatestEmail);
     userPassword.addListener((_printLatestPassword));
+    getCredentails();
   }
 
   @override
@@ -241,19 +253,11 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                 padding: const EdgeInsets.all(10.0),
                 child: TextFormField(
                   controller: userEmail,
-                  // onChanged: (text) {
-                  //   // print('Enetred Value: $userEmail');
-                  // },
-                  // validator: null,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Email Id",
                       contentPadding: EdgeInsets.fromLTRB(5, 1, 5, 1)),
                 )),
-
-            // InputDecoration(
-            //                     border: UnderlineInputBorder(), labelText: "Enter Email"),
-
             const Text("Password",
                 textAlign: TextAlign.left, style: TextStyle(fontSize: 20)),
             Padding(
@@ -266,15 +270,6 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                       hintText: "Password",
                       contentPadding: EdgeInsets.fromLTRB(5, 1, 5, 1)),
                 )),
-
-            // TextField(
-            //               enableInteractiveSelection: true,
-            //               controller: userPassword,
-            //               decoration: const InputDecoration(
-            //                   border: OutlineInputBorder(),
-            //                   hintText: 'Password',
-            //                   contentPadding: EdgeInsets.all(5.0)),
-            //             ),
           ],
         ),
       ),
