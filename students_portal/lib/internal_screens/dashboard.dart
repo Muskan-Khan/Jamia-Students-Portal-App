@@ -22,16 +22,16 @@ class LoggedInCandidateDashboard extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 //backgroundColor:Colors.grey[100],
-                children: [
+                children: const [
                   SizedBox(
                     height: 30,
                   ),
-                  const DashboardElements(value: 'Student Data'),
-                  const DashboardElements(value: 'Greivance Redressal Form'),
-                  const DashboardElements(value: 'Examination Form'),
-                  const DashboardElements(value: 'Grade Card'),
-                  const DashboardElements(value: 'Migration Form'),
-                  const DashboardElements(value: 'Change Exam Form'),
+                  DashboardElements(value: 'Student Data'),
+                  DashboardElements(value: 'Greivance Redressal Form'),
+                  DashboardElements(value: 'Examination Form'),
+                  DashboardElements(value: 'Grade Card'),
+                  DashboardElements(value: 'Migration Form'),
+                  DashboardElements(value: 'Change Exam Form'),
                 ],
               )
             ],
