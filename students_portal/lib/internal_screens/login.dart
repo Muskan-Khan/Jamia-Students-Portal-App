@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:postgres/postgres.dart';
 import 'package:students_portal/internal_screens/header.dart';
+import 'package:students_portal/Database/db_connections.dart';
 
 class LoginField extends StatelessWidget {
   const LoginField({Key? key}) : super(key: key);
@@ -198,38 +198,19 @@ final _formKey = GlobalKey<FormState>();
 class _LoginWithEmailState extends State<LoginWithEmail> {
   final userEmail = TextEditingController();
   final userPassword = TextEditingController();
-  void databaseConnectivity() async {
-    try {
-      var connection = PostgreSQLConnection("10.0.2.2", 5432, "StudentsPortal",
-          username: "postgres", password: "Latitude21");
-      await connection.open();
-
-      // List<Map<String, Map<String, dynamic>>> results =
-      //     await connection.mappedResultsQuery("SELECT name FROM test");
-      List<List<dynamic>> results = await connection.query(
-          "SELECT btrim(email),btrim(password) FROM studentscredentials",
-          substitutionValues: {"aValue": 3});
-
-      for (final row in results) {
-        String id = row[0];
-        String password = row[1];
-        // void validateCredentials() {
-        // ignore: unrelated_type_equality_checks
-        if (userEmail.text == id && userPassword.text == password) {
-          print("Whoa, Login Successful");
-        } else {
-          print("Invalid Credentials");
-        }
-        break;
-        // }
-      }
-      await connection.close();
-    } catch (error) {
-      print(error);
-    }
-  }
 
   // late final Function() getCredentails;
+  DatabaseConnectivity con = DatabaseConnectivity(
+      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+  processInput() {
+    con.connect();
+// con.getResults;
+//     if (con.isAValidUser) {
+//       print("Alpha");
+//     }
+    con.isAValidUser(userEmail, userPassword);
+    // await con.connection.close();
+  }
 
   @override
   void initState() {
@@ -287,7 +268,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                 child: ElevatedButton(
                   autofocus: true,
                   clipBehavior: Clip.none,
-                  onPressed: databaseConnectivity,
+                  onPressed: processInput,
                   style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
                   child: const Text("Proceed"),
                 ),
