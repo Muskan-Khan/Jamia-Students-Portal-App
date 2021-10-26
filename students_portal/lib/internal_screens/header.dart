@@ -29,7 +29,7 @@ class CustomHeader extends StatelessWidget {
                     )),
                     const Center(
                         child: Padding(
-                      padding: EdgeInsets.only(top: 15.0, bottom: 5),
+                      padding: EdgeInsets.only(top: 5.0, bottom: 5),
                       child: Text(
                         "CONTROLLER OF EXAMINATION",
                         style: TextStyle(
@@ -45,7 +45,7 @@ class CustomHeader extends StatelessWidget {
             ),
             Container(
               color: const Color(0Xff0171c5),
-              height: 50.0,
+              height: MediaQuery.of(context).size.height / 20,
             ),
           ],
         ));
@@ -76,7 +76,7 @@ class Login extends StatelessWidget {
     return Center(
       child: Container(
         color: const Color(0Xff0171c5),
-        height: 50.0,
+        height: MediaQuery.of(context).size.height / 50,
       ),
     );
   }

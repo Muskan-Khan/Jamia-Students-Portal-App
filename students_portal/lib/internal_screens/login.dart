@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:postgres/postgres.dart';
 import 'package:students_portal/internal_screens/header.dart';
 
 class LoginField extends StatelessWidget {
@@ -12,10 +13,10 @@ class LoginField extends StatelessWidget {
       Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.752,
+            height: MediaQuery.of(context).size.height * 0.72,
             color: const Color(0xffeeeeee),
           ),
-          LoginFieldHead()
+          const LoginFieldHead()
         ],
       )
     ]);
@@ -32,11 +33,21 @@ class LoginFieldHead extends StatefulWidget {
 class _LoginFieldHeadState extends State<LoginFieldHead> {
   final bool _value = false;
 
-  int val = -1;
+  int group = 1;
+  // late String username;
+  // late String password;
+  get onChanged => null;
+
+  // String? get userID => null;
+
+  // String? get userPassword => null;
+  // setCredentials(String userID, String userPassword) {
+  //   username = userID;
+  //   password = userPassword;
+  // }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Center(
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.9,
@@ -61,14 +72,14 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                             style: TextStyle(
                                 decoration: TextDecoration.none,
                                 color: Colors.white,
-                                fontSize: 35),
+                                fontSize: 25),
                           ),
                           Text(
                             "Student Exam Portal",
                             style: TextStyle(
                                 decoration: TextDecoration.none,
                                 color: Colors.white,
-                                fontSize: 20),
+                                fontSize: 15),
                           )
                         ],
                       ),
@@ -84,56 +95,263 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(0.0),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         color: Colors.white,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              "Login Panel",
-                              style: TextStyle(
-                                  decorationColor: Colors.redAccent,
-                                  decorationThickness: 1,
-                                  fontSize: 20,
-                                  decorationStyle: TextDecorationStyle.solid,
-                                  color: Colors.black),
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              decoration: const BoxDecoration(
+                                  border: Border(
+                                bottom: BorderSide(
+                                    color: Colors.redAccent,
+                                    width: 2,
+                                    style: BorderStyle.solid),
+                              )),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Login Panel",
+                                  style: TextStyle(
+                                    decoration: TextDecoration.none,
+                                    fontSize: 20,
+                                    decorationStyle: TextDecorationStyle.solid,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
                             )
                           ],
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "Put your Account details",
-                            style: TextStyle(
-                                decorationColor: Colors.redAccent,
-                                decorationThickness: 1,
-                                fontSize: 15,
-                                decorationStyle: TextDecorationStyle.solid,
-                                color: Colors.black),
-                          )
+                    const Padding(
+                      padding: EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        "Put your Account details",
+                        style: TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 15,
+                            decorationStyle: TextDecorationStyle.solid,
+                            color: Colors.black),
+                      ),
+                    ),
+                    Material(
+                        child: Container(
+                      color: Colors.white,
+                      child: Row(
+                        children: <Widget>[
+                          Row(
+                            children: [
+                              Radio(
+                                  value: 1,
+                                  groupValue: group,
+                                  onChanged: onChanged),
+                              const Text("With Email Id",
+                                  style: TextStyle(
+                                    fontSize: 13.5,
+                                  )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: 2,
+                                  groupValue: group,
+                                  onChanged: onChanged),
+                              const Text("With Enrolment No.",
+                                  style: TextStyle(
+                                    fontSize: 13.5,
+                                  )),
+                            ],
+                          ),
                         ],
                       ),
+                    )),
+                    const LoginWithEmail(
+                      key: null,
+                      // getCredentials: setCredentials(userID!, userPassword!)
                     ),
                   ],
                 ),
               ),
-            )
-            // RadioButtons()
-            //Label
-            // InputBox()
-            //Label
-            // InputBox()
-            //Button
+            ),
           ],
         ),
       ),
     );
+  }
+}
+
+class LoginWithEmail extends StatefulWidget {
+  const LoginWithEmail({Key? key, getCredentials}) : super(key: key);
+
+  @override
+  _LoginWithEmailState createState() => _LoginWithEmailState();
+}
+
+final _formKey = GlobalKey<FormState>();
+
+class _LoginWithEmailState extends State<LoginWithEmail> {
+  final userEmail = TextEditingController();
+  final userPassword = TextEditingController();
+  void databaseConnectivity() async {
+    try {
+      var connection = PostgreSQLConnection("10.0.2.2", 5432, "StudentsPortal",
+          username: "postgres", password: "Latitude21");
+      await connection.open();
+
+      // List<Map<String, Map<String, dynamic>>> results =
+      //     await connection.mappedResultsQuery("SELECT name FROM test");
+      List<List<dynamic>> results = await connection.query(
+          "SELECT btrim(email),btrim(password) FROM studentscredentials",
+          substitutionValues: {"aValue": 3});
+
+      for (final row in results) {
+        String id = row[0];
+        String password = row[1];
+        // void validateCredentials() {
+        // ignore: unrelated_type_equality_checks
+        if (userEmail.text == id && userPassword.text == password) {
+          print("Whoa, Login Successful");
+        } else {
+          print("Invalid Credentials");
+        }
+        break;
+        // }
+      }
+      await connection.close();
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  // late final Function() getCredentails;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    userEmail.dispose();
+    userPassword.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+        child: Container(
+      color: Colors.white,
+      child: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Email Id",
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 20),
+              ),
+              Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    // validator: null,
+                    controller: userEmail,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: "Email Id",
+                        contentPadding: EdgeInsets.fromLTRB(5, 1, 5, 1)),
+                  )),
+              const Text("Password",
+                  textAlign: TextAlign.left, style: TextStyle(fontSize: 20)),
+              Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    controller: userPassword,
+                    // validator: null,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: "Password",
+                        contentPadding: EdgeInsets.fromLTRB(5, 1, 5, 1)),
+                  )),
+              Center(
+                child: ElevatedButton(
+                  autofocus: true,
+                  clipBehavior: Clip.none,
+                  onPressed: databaseConnectivity,
+                  style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
+                  child: const Text("Proceed"),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    ));
+  }
+}
+
+class LoginWithEnrolment extends StatefulWidget {
+  const LoginWithEnrolment({Key? key}) : super(key: key);
+
+  @override
+  _LoginWithEnrolmentState createState() => _LoginWithEnrolmentState();
+}
+
+class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+        child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Enrolment No",
+            textAlign: TextAlign.left,
+            style: TextStyle(fontSize: 20),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(15.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Enrolment No',
+                  contentPadding: EdgeInsets.all(5.0)),
+            ),
+          ),
+          const Text("Password",
+              textAlign: TextAlign.left, style: TextStyle(fontSize: 20)),
+          const Padding(
+            padding: EdgeInsets.all(15.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Password',
+                  contentPadding: EdgeInsets.all(5.0)),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              autofocus: true,
+              clipBehavior: Clip.none,
+              onPressed: null,
+              style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
+              child: const Text("Proceed"),
+            ),
+          )
+        ],
+      ),
+    ));
   }
 }
