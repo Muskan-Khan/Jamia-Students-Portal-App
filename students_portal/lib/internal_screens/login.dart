@@ -202,8 +202,8 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   // late final Function() getCredentails;
   DatabaseConnectivity con = DatabaseConnectivity(
       "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
-  processInput() {
-    con.connect();
+  processInput() async {
+    await con.connect();
 // con.getResults;
 //     if (con.isAValidUser) {
 //       print("Alpha");

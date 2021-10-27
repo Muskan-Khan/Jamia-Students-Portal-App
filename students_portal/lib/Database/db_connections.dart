@@ -25,7 +25,7 @@ class DatabaseConnectivity {
     print("Connection Object Created");
   }
 
-  void connect() async {
+  Future connect() async {
     print("Called Connect");
     try {
       connection = PostgreSQLConnection(hostname, port, database,
