@@ -204,11 +204,14 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
   processInput() async {
     await con.connect();
-// con.getResults;
-//     if (con.isAValidUser) {
-//       print("Alpha");
-//     }
-    con.isAValidUser(userEmail, userPassword);
+
+    final x = await con.isAValidUser(userEmail, userPassword);
+//x true signifies a valid user as it is a future it must be assigned before it can be used
+    if (x) {
+      print("Login Successful");
+    } else {
+      print("Invalid Credentials");
+    }
     // await con.connection.close();
   }
 
