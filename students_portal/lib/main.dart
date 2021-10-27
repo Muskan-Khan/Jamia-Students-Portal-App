@@ -10,8 +10,8 @@ void main() {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: const [
-            LoggedInCandidateDashboard()
-            // LoginField()
+            // LoggedInCandidateDashboard()
+            LoginField()
           ],
         )),
     debugShowCheckedModeBanner: false,
