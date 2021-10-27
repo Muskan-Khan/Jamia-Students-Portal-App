@@ -198,6 +198,7 @@ final _formKey = GlobalKey<FormState>();
 class _LoginWithEmailState extends State<LoginWithEmail> {
   final userEmail = TextEditingController();
   final userPassword = TextEditingController();
+<<<<<<< HEAD
 
   // late final Function() getCredentails;
   DatabaseConnectivity con = DatabaseConnectivity(
@@ -215,6 +216,22 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     // await con.connection.close();
   }
 
+=======
+
+  // late final Function() getCredentails;
+  DatabaseConnectivity con = DatabaseConnectivity(
+      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+  processInput() async {
+    await con.connect();
+// con.getResults;
+//     if (con.isAValidUser) {
+//       print("Alpha");
+//     }
+    con.isAValidUser(userEmail, userPassword);
+    // await con.connection.close();
+  }
+
+>>>>>>> dev2
   @override
   void initState() {
     super.initState();
