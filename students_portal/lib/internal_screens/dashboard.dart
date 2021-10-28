@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/internal_screens/dashboard_elements.dart';
 
-class LoggedInCandidateDashboard extends StatelessWidget {
-  const LoggedInCandidateDashboard({Key? key}) : super(key: key);
+class LoggedInCandidateDashboard extends StatefulWidget {
+  final String? enrolment;
+  const LoggedInCandidateDashboard({Key? key, this.enrolment})
+      : super(key: key);
 
+  @override
+  State<LoggedInCandidateDashboard> createState() =>
+      _LoggedInCandidateDashboardState();
+}
+
+class _LoggedInCandidateDashboardState
+    extends State<LoggedInCandidateDashboard> {
   @override
   Widget build(BuildContext context) {
     return Flexible(
@@ -19,6 +28,9 @@ class LoggedInCandidateDashboard extends StatelessWidget {
               //   //* 0.752,
               //   color: Colors.white,
               // ),
+              Center(
+                child: Text(),
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 //backgroundColor:Colors.grey[100],

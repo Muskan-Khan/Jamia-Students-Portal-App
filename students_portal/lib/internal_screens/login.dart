@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Database/db_connections.dart';
+import 'package:students_portal/internal_screens/dashboard_elements.dart';
+
+import 'dashboard.dart';
 
 class LoginField extends StatelessWidget {
   const LoginField({Key? key}) : super(key: key);
@@ -34,17 +37,7 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
   final bool _value = false;
 
   int group = 1;
-  // late String username;
-  // late String password;
   get onChanged => null;
-
-  // String? get userID => null;
-
-  // String? get userPassword => null;
-  // setCredentials(String userID, String userPassword) {
-  //   username = userID;
-  //   password = userPassword;
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -199,7 +192,6 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   final userEmail = TextEditingController();
   final userPassword = TextEditingController();
 
-  // late final Function() getCredentails;
   DatabaseConnectivity con = DatabaseConnectivity(
       "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
   processInput() async {
@@ -209,6 +201,14 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
 //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
       print("Login Successful");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoggedInCandidateDashboard(
+            enrolment: userEmail.text,
+          ),
+        ),
+      );
     } else {
       print("Invalid Credentials");
     }
