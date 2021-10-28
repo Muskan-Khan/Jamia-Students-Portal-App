@@ -7,12 +7,10 @@ void main() {
   runApp(MaterialApp(
     home: Scaffold(
         backgroundColor: Colors.grey[200],
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
-            // LoggedInCandidateDashboard()
-            LoginField()
-          ],
+        body: const Center(
+          child:
+              // LoggedInCandidateDashboard(enrolment: "Alpha")
+              LoginField(),
         )),
     debugShowCheckedModeBanner: false,
   ));

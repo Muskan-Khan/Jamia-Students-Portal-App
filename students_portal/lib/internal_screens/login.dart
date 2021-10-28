@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Database/db_connections.dart';
-import 'package:students_portal/internal_screens/dashboard_elements.dart';
+
+import 'package:students_portal/Components/blue_border.dart';
 
 import 'dashboard.dart';
 
@@ -10,19 +11,15 @@ class LoginField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Column(children: [
-      const CustomHeader(),
-      Stack(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.72,
-            color: const Color(0xffeeeeee),
-          ),
-          const LoginFieldHead()
-        ],
-      )
-    ]);
+    return SingleChildScrollView(
+      child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        const CustomHeader(),
+        const BlueBanner(studentsName: " "),
+        Stack(
+          children: const [LoginFieldHead()],
+        )
+      ]),
+    );
   }
 }
 
@@ -43,6 +40,8 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
+        //#This height requires change , it was inserted because without it a weird bar appearing on to of the screen
+        height: MediaQuery.of(context).size.width * 1.8,
         width: MediaQuery.of(context).size.width * 0.9,
         child: Column(
           children: [
