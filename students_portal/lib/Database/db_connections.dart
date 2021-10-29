@@ -40,11 +40,23 @@ class DatabaseConnectivity {
     // await connection.close();
   }
 
-  getResults() {
+// String searchCriterion
+  getAllColumns() {
     // print("Called getResults");
     return connection.query(
-        "SELECT btrim(email),btrim(password) FROM studentscredentials",
-        substitutionValues: {"aValue": 3});
+        "SELECT btrim(enrolment),btrim(email),btrim(password),btrim(name) FROM studentscredentials"
+        // ,
+        // substitutionValues: {"aValue": 3}
+        );
+  }
+
+  getResults() {
+    // print("Called getResults");
+    return connection
+        .query("SELECT btrim(email),btrim(password) FROM studentscredentials"
+            // ,
+            // substitutionValues: {"aValue": 3}
+            );
   }
 
   Future<bool> isAValidUser(TextEditingController userEmail,
@@ -56,8 +68,6 @@ class DatabaseConnectivity {
       String password = row[1];
       if (userEmail.text == id && userPassword.text == password) {
         return true;
-      } else {
-        return false;
       }
     }
     return false;
