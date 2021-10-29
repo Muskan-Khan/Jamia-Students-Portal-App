@@ -5,6 +5,7 @@ import 'package:students_portal/Database/db_connections.dart';
 import 'package:students_portal/Components/blue_border.dart';
 
 import 'dashboard.dart';
+import 'invalid_credentials.dart';
 
 class LoginField extends StatelessWidget {
   const LoginField({Key? key}) : super(key: key);
@@ -195,21 +196,43 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
   processInput() async {
     await con.connect();
+    List<List<dynamic>> allColumns = await con.getAllColumns();
+    String studentsName = " ";
+    bool isValidUser(
+        TextEditingController userEmail, TextEditingController userPassword) {
+      for (final row in allColumns) {
+        String id = row[1];
+        String password = row[2];
+        print(id);
+        print(password);
+        if (userEmail.text == id && userPassword.text == password) {
+          studentsName = row[3];
+          return true;
+        }
+      }
+      return false;
+    }
 
-    final x = await con.isAValidUser(userEmail, userPassword);
+    final x = isValidUser(userEmail, userPassword);
+    // print(x);
 //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
       print("Login Successful");
+
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => LoggedInCandidateDashboard(
-            enrolment: userEmail.text,
+            enrolment: studentsName,
           ),
         ),
       );
     } else {
       print("Invalid Credentials");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const InvalidCredentials()),
+      );
     }
     // await con.connection.close();
   }
