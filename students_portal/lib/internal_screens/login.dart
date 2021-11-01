@@ -164,10 +164,12 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                         ],
                       ),
                     )),
-                    const LoginWithEmail(
+                    // const LoginWithEmail(
+                    //   key: null,
+                    const LoginWithEnrolment(
                       key: null,
-                      // getCredentials: setCredentials(userID!, userPassword!)
                     ),
+                    // getCredentials: setCredentials(userID!, userPassword!)
                   ],
                 ),
               ),
@@ -180,7 +182,7 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
 }
 
 class LoginWithEmail extends StatefulWidget {
-  const LoginWithEmail({Key? key, getCredentials}) : super(key: key);
+  const LoginWithEmail({Key? key}) : super(key: key);
 
   @override
   _LoginWithEmailState createState() => _LoginWithEmailState();
@@ -314,49 +316,120 @@ class LoginWithEnrolment extends StatefulWidget {
 }
 
 class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
+  final _formKey = GlobalKey<FormState>();
+
+  final userEnrolment = TextEditingController();
+  final userPassword = TextEditingController();
+
+  DatabaseConnectivity con = DatabaseConnectivity(
+      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+  processEnrolmentInput() async {
+    await con.connect();
+    List<List<dynamic>> allColumns = await con.getAllColumns();
+    String studentsName = " ";
+    bool isValidUser(TextEditingController userEnrolment,
+        TextEditingController userPassword) {
+      for (final row in allColumns) {
+        String id = row[0];
+        String password = row[2];
+        print(id);
+        print(password);
+        if (userEnrolment.text == id && userPassword.text == password) {
+          studentsName = row[3];
+          return true;
+        }
+      }
+      return false;
+    }
+
+    final x = isValidUser(userEnrolment, userPassword);
+    // print(x);
+//x true signifies a valid user as it is a future it must be assigned before it can be used
+    if (x) {
+      print("Login Successful");
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoggedInCandidateDashboard(
+            enrolment: studentsName,
+          ),
+        ),
+      );
+    } else {
+      print("Invalid Credentials");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const InvalidCredentials()),
+      );
+    }
+    // await con.connection.close();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    userEnrolment.dispose();
+    userPassword.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
+        child: Container(
+      color: Colors.white,
+      child: Form(
+        key: _formKey,
         child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "Enrolment No",
-            textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 20),
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Enrolment No.",
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 20),
+              ),
+              Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    // validator: null,
+                    controller: userEnrolment,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: "Enrolment No.",
+                        contentPadding: EdgeInsets.fromLTRB(5, 1, 5, 1)),
+                  )),
+              const Text("Password",
+                  textAlign: TextAlign.left, style: TextStyle(fontSize: 20)),
+              Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    controller: userPassword,
+                    // validator: null,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: "Password",
+                        contentPadding: EdgeInsets.fromLTRB(5, 1, 5, 1)),
+                  )),
+              Center(
+                child: ElevatedButton(
+                  autofocus: true,
+                  clipBehavior: Clip.none,
+                  onPressed: processEnrolmentInput,
+                  style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
+                  child: const Text("Proceed"),
+                ),
+              )
+            ],
           ),
-          const Padding(
-            padding: EdgeInsets.all(15.0),
-            child: TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Enrolment No',
-                  contentPadding: EdgeInsets.all(5.0)),
-            ),
-          ),
-          const Text("Password",
-              textAlign: TextAlign.left, style: TextStyle(fontSize: 20)),
-          const Padding(
-            padding: EdgeInsets.all(15.0),
-            child: TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Password',
-                  contentPadding: EdgeInsets.all(5.0)),
-            ),
-          ),
-          Center(
-            child: ElevatedButton(
-              autofocus: true,
-              clipBehavior: Clip.none,
-              onPressed: null,
-              style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
-              child: const Text("Proceed"),
-            ),
-          )
-        ],
+        ),
       ),
     ));
   }
