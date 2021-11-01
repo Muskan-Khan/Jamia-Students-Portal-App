@@ -32,11 +32,6 @@ class LoginFieldHead extends StatefulWidget {
 }
 
 class _LoginFieldHeadState extends State<LoginFieldHead> {
-  final bool _value = false;
-
-  int group = 1;
-  get onChanged => null;
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -132,38 +127,9 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                             color: Colors.black),
                       ),
                     ),
-                    Material(
-                        child: Container(
-                      color: Colors.white,
-                      child: Row(
-                        children: <Widget>[
-                          Row(
-                            children: [
-                              Radio(
-                                  value: 1,
-                                  groupValue: group,
-                                  onChanged: onChanged),
-                              const Text("With Email Id",
-                                  style: TextStyle(
-                                    fontSize: 13.5,
-                                  )),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Radio(
-                                  value: 2,
-                                  groupValue: group,
-                                  onChanged: onChanged),
-                              const Text("With Enrolment No.",
-                                  style: TextStyle(
-                                    fontSize: 13.5,
-                                  )),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )),
+                    const FormControlsForLogin(
+                      key: null,
+                    ),
                     // const LoginWithEmail(
                     //   key: null,
                     const LoginWithEnrolment(
@@ -178,6 +144,50 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
         ),
       ),
     );
+  }
+}
+
+class FormControlsForLogin extends StatefulWidget {
+  const FormControlsForLogin({Key? key}) : super(key: key);
+
+  @override
+  _FormControlsForLoginState createState() => _FormControlsForLoginState();
+}
+
+class _FormControlsForLoginState extends State<FormControlsForLogin> {
+  final bool _value = false;
+
+  int group = 1;
+  get onChanged => null;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+        child: Container(
+      color: Colors.white,
+      child: Row(
+        children: <Widget>[
+          Row(
+            children: [
+              Radio(value: 1, groupValue: group, onChanged: onChanged),
+              const Text("With Email Id",
+                  style: TextStyle(
+                    fontSize: 13.5,
+                  )),
+            ],
+          ),
+          Row(
+            children: [
+              Radio(value: 2, groupValue: group, onChanged: onChanged),
+              const Text("With Enrolment No.",
+                  style: TextStyle(
+                    fontSize: 13.5,
+                  )),
+            ],
+          ),
+        ],
+      ),
+    ));
   }
 }
 
