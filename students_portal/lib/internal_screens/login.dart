@@ -32,6 +32,16 @@ class LoginFieldHead extends StatefulWidget {
 }
 
 class _LoginFieldHeadState extends State<LoginFieldHead> {
+//For controlling the Credentials whether Email or Enrolment no. for login
+  bool isEmailSelected = true;
+
+//For controlling the Credentials whether Email or Enrolment no. for login
+  void updateStatus(bool selectedStatus) {
+    setState(() {
+      isEmailSelected = selectedStatus;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -127,15 +137,20 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
                             color: Colors.black),
                       ),
                     ),
-                    const FormControlsForLogin(
-                      key: null,
+                    FormControlsForLogin(
+//For controlling the Credentials whether Email or Enrolment no. for login
+                      onSonChanged: (bool status) {
+                        updateStatus(status);
+                      },
                     ),
-                    // const LoginWithEmail(
-                    //   key: null,
-                    const LoginWithEnrolment(
-                      key: null,
-                    ),
-                    // getCredentials: setCredentials(userID!, userPassword!)
+
+//For controlling the Credentials whether Email or Enrolment no. for login
+
+                    if (isEmailSelected) ...[
+                      const LoginWithEmail()
+                    ] else ...[
+                      const LoginWithEnrolment()
+                    ]
                   ],
                 ),
               ),
@@ -147,10 +162,18 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
   }
 }
 
+//For changing radio button status
 enum LoginIds { email, enrolment }
 
+//For controlling the Credentials whether Email or Enrolment no. for login
+// Step 1: Define a Callback.
+typedef IntCallback = void Function(bool status);
+
 class FormControlsForLogin extends StatefulWidget {
-  const FormControlsForLogin({Key? key}) : super(key: key);
+//For controlling the Credentials whether Email or Enrolment no. for login
+  final IntCallback onSonChanged;
+  const FormControlsForLogin({Key? key, required this.onSonChanged})
+      : super(key: key);
 
   @override
   _FormControlsForLoginState createState() => _FormControlsForLoginState();
@@ -159,6 +182,10 @@ class FormControlsForLogin extends StatefulWidget {
 class _FormControlsForLoginState extends State<FormControlsForLogin> {
   int val = 1;
   LoginIds? _character = LoginIds.email;
+
+//For controlling the Credentials whether Email or Enrolment no. for login
+  bool status = true;
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -172,6 +199,8 @@ class _FormControlsForLoginState extends State<FormControlsForLogin> {
                   value: LoginIds.email,
                   groupValue: _character,
                   onChanged: (LoginIds? value) {
+//For controlling the Credentials whether Email or Enrolment no. for login
+                    widget.onSonChanged(status);
                     setState(() {
                       _character = value;
                     });
@@ -188,6 +217,8 @@ class _FormControlsForLoginState extends State<FormControlsForLogin> {
                   value: LoginIds.enrolment,
                   groupValue: _character,
                   onChanged: (LoginIds? value) {
+//For controlling the Credentials whether Email or Enrolment no. for login
+                    widget.onSonChanged(false);
                     setState(() {
                       _character = value;
                     });
