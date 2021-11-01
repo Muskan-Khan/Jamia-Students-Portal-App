@@ -147,6 +147,8 @@ class _LoginFieldHeadState extends State<LoginFieldHead> {
   }
 }
 
+enum LoginIds { email, enrolment }
+
 class FormControlsForLogin extends StatefulWidget {
   const FormControlsForLogin({Key? key}) : super(key: key);
 
@@ -155,11 +157,8 @@ class FormControlsForLogin extends StatefulWidget {
 }
 
 class _FormControlsForLoginState extends State<FormControlsForLogin> {
-  final bool _value = false;
-
-  int group = 1;
-  get onChanged => null;
-
+  int val = 1;
+  LoginIds? _character = LoginIds.email;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -169,7 +168,14 @@ class _FormControlsForLoginState extends State<FormControlsForLogin> {
         children: <Widget>[
           Row(
             children: [
-              Radio(value: 1, groupValue: group, onChanged: onChanged),
+              Radio<LoginIds>(
+                  value: LoginIds.email,
+                  groupValue: _character,
+                  onChanged: (LoginIds? value) {
+                    setState(() {
+                      _character = value;
+                    });
+                  }),
               const Text("With Email Id",
                   style: TextStyle(
                     fontSize: 13.5,
@@ -178,7 +184,14 @@ class _FormControlsForLoginState extends State<FormControlsForLogin> {
           ),
           Row(
             children: [
-              Radio(value: 2, groupValue: group, onChanged: onChanged),
+              Radio<LoginIds>(
+                  value: LoginIds.enrolment,
+                  groupValue: _character,
+                  onChanged: (LoginIds? value) {
+                    setState(() {
+                      _character = value;
+                    });
+                  }),
               const Text("With Enrolment No.",
                   style: TextStyle(
                     fontSize: 13.5,
