@@ -247,7 +247,7 @@ final _formKey = GlobalKey<FormState>();
 class _LoginWithEmailState extends State<LoginWithEmail> {
   final userEmail = TextEditingController();
   final userPassword = TextEditingController();
-
+#
   DatabaseConnectivity con = DatabaseConnectivity(
       "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
   processInput() async {
