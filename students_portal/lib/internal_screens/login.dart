@@ -338,6 +338,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
               Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextFormField(
+                    obscureText: true,
                     controller: userPassword,
                     // validator: null,
                     decoration: const InputDecoration(
@@ -465,6 +466,7 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
               Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextFormField(
+                    obscureText: true,
                     controller: userPassword,
                     // validator: null,
                     decoration: const InputDecoration(

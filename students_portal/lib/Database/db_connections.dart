@@ -11,8 +11,6 @@ class DatabaseConnectivity {
   final userEmail = TextEditingController();
   final userPassword = TextEditingController();
 
-  // late bool isAValidUser;
-  // late List<List<dynamic>> getResults;
   // ignore: prefer_typing_uninitialized_variables
   var connection;
   DatabaseConnectivity(String userHostname, int userPort, String userDatabase,
