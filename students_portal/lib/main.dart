@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:students_portal/internal_screens/dashboard.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/internal_screens/login.dart';
+import 'internal_screens/registration.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -11,6 +12,7 @@ void main() {
           child:
               // LoggedInCandidateDashboard(enrolment: "Alpha")
               LoginField(),
+          // RegistrationForm(),
         )),
     debugShowCheckedModeBanner: false,
   ));

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Database/db_connections.dart';
-
+import 'registration.dart';
 import 'package:students_portal/Components/blue_border.dart';
 
 import 'dashboard.dart';
@@ -293,6 +293,13 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     // await con.connection.close();
   }
 
+  callRegistration() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RegistrationForm()),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -353,6 +360,15 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                   onPressed: processInput,
                   style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
                   child: const Text("Proceed"),
+                ),
+              ),
+              Center(
+                child: ElevatedButton(
+                  autofocus: true,
+                  clipBehavior: Clip.none,
+                  onPressed: callRegistration,
+                  style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
+                  child: const Text("New Student Registration"),
                 ),
               )
             ],
@@ -421,6 +437,13 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
     // await con.connection.close();
   }
 
+  callRegistration() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RegistrationForm()),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -481,6 +504,15 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
                   onPressed: processEnrolmentInput,
                   style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
                   child: const Text("Proceed"),
+                ),
+              ),
+              Center(
+                child: ElevatedButton(
+                  autofocus: true,
+                  clipBehavior: Clip.none,
+                  onPressed: callRegistration,
+                  style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
+                  child: const Text("New Student Registration"),
                 ),
               )
             ],
