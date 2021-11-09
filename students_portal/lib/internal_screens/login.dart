@@ -3,7 +3,6 @@ import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Database/db_connections.dart';
 import 'registration.dart';
 import 'package:students_portal/Components/blue_border.dart';
-
 import 'dashboard.dart';
 import 'invalid_credentials.dart';
 

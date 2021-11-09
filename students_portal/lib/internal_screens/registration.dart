@@ -5,6 +5,31 @@ import 'package:students_portal/Components/blue_border.dart';
 class RegistrationForm extends StatelessWidget {
   RegistrationForm({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
+  final userEmail = TextEditingController();
+  final userPassword = TextEditingController();
+  final userEnrolment = TextEditingController();
+  final userStudentId = TextEditingController();
+  final userCourseId = TextEditingController();
+  final userDepartmentId = TextEditingController();
+  final userHOD = TextEditingController();
+  final userDepartmentName = TextEditingController();
+  final userCourseName = TextEditingController();
+  final userFacultyName = TextEditingController();
+  final userStudentName = TextEditingController();
+  final userFatherName = TextEditingController();
+  final userMotherName = TextEditingController();
+  final userDateOfBirth = TextEditingController();
+  final userPresentAddress = TextEditingController();
+  final userPermanentAddress = TextEditingController();
+  final userGender = TextEditingController();
+  final userBloodGroup = TextEditingController();
+  final userIdentificationMark = TextEditingController();
+  final userSocialCategory = TextEditingController();
+  final userNationality = TextEditingController();
+  final userReligion = TextEditingController();
+  final userDateYearOfAdmission = TextEditingController();
+  final userStateOfDomicile = TextEditingController();
+  final userAHostler = TextEditingController();
 
   registerUser() {
     print("Hello");
@@ -25,23 +50,6 @@ class RegistrationForm extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     decoration: BoxDecoration(
-                        //   boxShadow: const [
-                        //   BoxShadow(
-                        //     color: Colors.greenAccent,
-                        //     offset: Offset(
-                        //       5.0,
-                        //       0.0,
-                        //     ),
-                        //     blurRadius: 10.0,
-                        //     // spreadRadius: 2.0,
-                        //   ), //BoxShadow
-                        //   // BoxShadow(
-                        //   //   color: Colors.white,
-                        //   //   offset: const Offset(0.0, 0.0),
-                        //   //   blurRadius: 0.0,
-                        //   //   spreadRadius: 0.0,
-                        //   // ), //BoxShadow
-                        // ],
                         border: Border.all(color: const Color(0xff39a6f0))),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0, right: 20.0),
@@ -58,13 +66,31 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userEnrolment,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Enrolment No.",
                                       contentPadding:
                                           EdgeInsets.fromLTRB(5, 1, 5, 1)),
                                 )),
+                            const Text(
+                              "Email",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: TextFormField(
+                                  // validator: null,
+                                  keyboardType: TextInputType.emailAddress,
+                                  controller: userEmail,
+                                  decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      hintText: "Email",
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(5, 1, 5, 1)),
+                                )),
+
 //----------------------------Enrolled Courses Table----------------------------------
                             const Text(
                               "Student Id",
@@ -75,7 +101,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userStudentId,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Student Id",
@@ -93,7 +119,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userCourseId,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Course Id",
@@ -111,7 +137,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userDepartmentId,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Department",
@@ -127,7 +153,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userHOD,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Head of the Department",
@@ -145,7 +171,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userDepartmentName,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Department Name",
@@ -180,7 +206,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userCourseName,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Course Name",
@@ -199,7 +225,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userFacultyName,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Faculty",
@@ -214,7 +240,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // obscureText: true,
-                                  // controller: userPassword,
+                                  controller: userStudentName,
                                   // validator: null,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
@@ -231,7 +257,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userFatherName,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Father's Name",
@@ -245,7 +271,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // obscureText: true,
-                                  // controller: userPassword,
+                                  controller: userMotherName,
                                   // validator: null,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
@@ -262,7 +288,8 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  keyboardType: TextInputType.datetime,
+                                  controller: userDateOfBirth,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Date of Birth",
@@ -276,7 +303,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // obscureText: true,
-                                  // controller: userPassword,
+                                  controller: userPresentAddress,
                                   // validator: null,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
@@ -293,7 +320,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userPermanentAddress,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Permanent Address",
@@ -307,7 +334,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // obscureText: true,
-                                  // controller: userPassword,
+                                  controller: userGender,
                                   // validator: null,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
@@ -324,7 +351,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userBloodGroup,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Blood Group",
@@ -338,7 +365,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // obscureText: true,
-                                  // controller: userPassword,
+                                  controller: userIdentificationMark,
                                   // validator: null,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
@@ -355,7 +382,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userSocialCategory,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Social Category",
@@ -369,7 +396,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // obscureText: true,
-                                  // controller: userPassword,
+                                  controller: userNationality,
                                   // validator: null,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
@@ -386,7 +413,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userReligion,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Religion",
@@ -400,7 +427,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // obscureText: true,
-                                  // controller: userPassword,
+                                  controller: userDateYearOfAdmission,
                                   // validator: null,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
@@ -417,7 +444,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
-                                  // controller: userEmail,
+                                  controller: userStateOfDomicile,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "State of Domicile",
@@ -431,7 +458,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // obscureText: true,
-                                  // controller: userPassword,
+                                  controller: userAHostler,
                                   // validator: null,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
