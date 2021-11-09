@@ -270,6 +270,9 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     }
 
     final x = isValidUser(userEmail, userPassword);
+
+    userEmail.clear();
+    userPassword.clear();
     // print(x);
 //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
@@ -304,6 +307,11 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   void initState() {
     super.initState();
   }
+
+  // clearFormFields() {
+  //   userEmail.clear();
+  //   userPassword.clear();
+  // }
 
   @override
   void dispose() {
@@ -414,6 +422,9 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
     }
 
     final x = isValidUser(userEnrolment, userPassword);
+
+    userEnrolment.clear();
+    userPassword.clear();
     // print(x);
 //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
