@@ -249,7 +249,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   final userPassword = TextEditingController();
 
   DatabaseConnectivity con = DatabaseConnectivity(
-      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+      "10.0.2.2", 5432, "StudentsPortal", "postgres", "admin");
   processInput() async {
     await con.connect();
     List<List<dynamic>> allColumns = await con.getAllColumns();
@@ -377,7 +377,7 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
   final userPassword = TextEditingController();
 
   DatabaseConnectivity con = DatabaseConnectivity(
-      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+      "10.0.2.2", 5432, "StudentsPortal", "postgres", "admin");
   processEnrolmentInput() async {
     await con.connect();
     List<List<dynamic>> allColumns = await con.getAllColumns();
