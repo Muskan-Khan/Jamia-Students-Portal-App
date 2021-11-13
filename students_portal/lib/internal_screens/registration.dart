@@ -122,6 +122,22 @@ class RegistrationForm extends StatelessWidget {
                                       contentPadding:
                                           EdgeInsets.fromLTRB(5, 1, 5, 1)),
                                 )),
+                            const Text(
+                              "Password",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: TextFormField(
+                                  // validator: null,
+                                  controller: userPassword,
+                                  decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      hintText: "Password",
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(5, 1, 5, 1)),
+                                )),
 
 //----------------------------Enrolled Courses Table----------------------------------
                             const Text(

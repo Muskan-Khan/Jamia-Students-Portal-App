@@ -5,7 +5,9 @@
 // CREATE TABLE IF NOT EXISTS public.student
 // (
 //     enrolment_no character varying(8) COLLATE pg_catalog."default" NOT NULL,
+//     email character varying(30) COLLATE pg_catalog."default" NOT NULL,
 //     name character varying(30) COLLATE pg_catalog."default" NOT NULL,
+//     password character varying(30) COLLATE pg_catalog."default" NOT NULL,
 //     father_name character varying(30) COLLATE pg_catalog."default" NOT NULL,
 //     mother_name character varying(30) COLLATE pg_catalog."default" NOT NULL,
 //     dob character varying(30) COLLATE pg_catalog."default" NOT NULL,

@@ -45,7 +45,7 @@ class DatabaseConnectivity {
   getAllColumns() {
     // print("Called getResults");
     return connection.query(
-        "SELECT btrim(enrolment),btrim(email),btrim(password),btrim(name) FROM studentscredentials"
+        "SELECT btrim(enrolment_no),btrim(email),btrim(password),btrim(name) FROM student"
         // ,
         // substitutionValues: {"aValue": 3}
         );
@@ -53,11 +53,10 @@ class DatabaseConnectivity {
 
   getResults() {
     // print("Called getResults");
-    return connection
-        .query("SELECT btrim(email),btrim(password) FROM studentscredentials"
-            // ,
-            // substitutionValues: {"aValue": 3}
-            );
+    return connection.query("SELECT btrim(email),btrim(password) FROM student"
+        // ,
+        // substitutionValues: {"aValue": 3}
+        );
   }
 
 // StudentData studentData
@@ -66,11 +65,13 @@ class DatabaseConnectivity {
       await connection!
           .transaction((PostgreSQLExecutionContext connection) async {
         newUserRegistration = await connection.query(
-          'INSERT into Student (enrolment_no, name, father_name, mother_name, dob, present_address, permanent_address, gender, blood_group, identification_mark, social_category, nationality, religion, date_year_of_admission, state_of_domicile, hosteller)'
-          'values(@enrolment_no, @name, @father_name, @mother_name, @dob, @present_address, @permanent_address, @gender, @blood_group, @identification_mark, @social_category, @nationality, @religion, @date_year_of_admission, @state_of_domicile, @hosteller)',
+          'INSERT into Student (enrolment_no,email, name,password, father_name, mother_name, dob, present_address, permanent_address, gender, blood_group, identification_mark, social_category, nationality, religion, date_year_of_admission, state_of_domicile, hosteller)'
+          'values(@enrolment_no,@email, @name, @password, @father_name, @mother_name, @dob, @present_address, @permanent_address, @gender, @blood_group, @identification_mark, @social_category, @nationality, @religion, @date_year_of_admission, @state_of_domicile, @hosteller)',
           substitutionValues: {
             'enrolment_no': studentData.userEnrolment,
+            'email': studentData.userEmail,
             'name': studentData.userStudentName,
+            'password': studentData.userPassword,
             'father_name': studentData.userFatherName,
             'mother_name': studentData.userMotherName,
             'dob': studentData.userDateOfBirth,
