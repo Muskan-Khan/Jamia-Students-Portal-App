@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:students_portal/Database/db_connections.dart';
 import 'header.dart';
 import 'package:students_portal/Components/blue_border.dart';
 
@@ -31,7 +32,11 @@ class RegistrationForm extends StatelessWidget {
   final userStateOfDomicile = TextEditingController();
   final userAHostler = TextEditingController();
 
-  registerUser() {
+  registerUser() async {
+    DatabaseConnectivity con = DatabaseConnectivity(
+        "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+    await con.connect();
+    await con.insertUserData();
     print("Hello");
   }
 

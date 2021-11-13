@@ -37,3 +37,35 @@ class CustomHeader extends StatelessWidget {
         ));
   }
 }
+
+// String newBuyerFuture = '';
+// Future<String> registerBuyer(
+//     String email, String password, String fName, String lName) async {
+//   try {
+//     await connection!.open();
+//     await connection!.transaction((newBuyerConn) async {
+//       newBuyerRegisterResult = await newBuyerConn.query(
+//         'insert into myAppData.register (emailDB,passDB,fNameDB,lNameDB,statusDB,roleDB,authDB,registerDateDB)'
+//         'values(@emailValue,@passwordValue,@fNameValue,@lNameValue,@statusValue,@roleValue,@authValue,@registrationValue)',
+//         substitutionValues: {
+//           'emailValue': email,
+//           'passwordValue': password,
+//           'fNameValue': fName,
+//           'lNameValue': lName,
+//           'statusValue': true,
+//           'roleValue': 'ROLE_BUYER',
+//           'authValue': 'buyer',
+//           'registrationValue': DateTime.now(),
+//         },
+//         allowReuse: true,
+//         timeoutInSeconds: 30,
+//       );
+//       newBuyerFuture =
+//           (newBuyerRegisterResult!.affectedRowCount > 0 ? 'reg' : 'nop');
+//     });
+//   } catch (exc) {
+//     exc.toString();
+//     newBuyerFuture = 'exc';
+//   }
+//   return newBuyerFuture;
+// }

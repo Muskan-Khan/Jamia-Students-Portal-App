@@ -13,6 +13,8 @@ class DatabaseConnectivity {
 
   // ignore: prefer_typing_uninitialized_variables
   var connection;
+
+  PostgreSQLResult? newUserRegistration;
   DatabaseConnectivity(String userHostname, int userPort, String userDatabase,
       String userUsername, String userPassword) {
     hostname = userHostname;
@@ -55,6 +57,33 @@ class DatabaseConnectivity {
             // ,
             // substitutionValues: {"aValue": 3}
             );
+  }
+
+  Future<PostgreSQLResult?> insertUserData() async {
+    try {
+      await connection!
+          .transaction((PostgreSQLExecutionContext connection) async {
+        newUserRegistration = await connection.query(
+          //     """INSERT INTO Student(
+          // enrolment_no, name, father_name, mother_name, dob, present_address, permanent_address, gender, blood_group, identification_mark, social_category, nationality, religion, date_year_of_admission, state_of_domicile, hosteller)
+          // VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"""
+          'INSERT into studentscredentials (enrolment,email,password,name)'
+          'values(@enrolment,@email,@password,@name)',
+          substitutionValues: {
+            'enrolment': '12345',
+            'email': 'zjaweds@outlook',
+            'password': 'Password',
+            'name': 'Jaid',
+          },
+          allowReuse: true,
+          timeoutInSeconds: 30,
+        );
+      });
+    } catch (exc) {
+      exc.toString();
+      print(exc);
+    }
+    return newUserRegistration;
   }
 
   Future<bool> isAValidUser(TextEditingController userEmail,
