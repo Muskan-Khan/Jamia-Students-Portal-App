@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
+import 'package:students_portal/Components/students_data.dart';
 
 class DatabaseConnectivity {
   late String hostname;
@@ -59,21 +60,32 @@ class DatabaseConnectivity {
             );
   }
 
-  Future<PostgreSQLResult?> insertUserData() async {
+// StudentData studentData
+  Future<PostgreSQLResult?> insertUserData(StudentData studentData) async {
     try {
       await connection!
           .transaction((PostgreSQLExecutionContext connection) async {
         newUserRegistration = await connection.query(
-          //     """INSERT INTO Student(
-          // enrolment_no, name, father_name, mother_name, dob, present_address, permanent_address, gender, blood_group, identification_mark, social_category, nationality, religion, date_year_of_admission, state_of_domicile, hosteller)
-          // VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"""
-          'INSERT into studentscredentials (enrolment,email,password,name)'
-          'values(@enrolment,@email,@password,@name)',
+          'INSERT into Student (enrolment_no, name, father_name, mother_name, dob, present_address, permanent_address, gender, blood_group, identification_mark, social_category, nationality, religion, date_year_of_admission, state_of_domicile, hosteller)'
+          'values(@enrolment_no, @name, @father_name, @mother_name, @dob, @present_address, @permanent_address, @gender, @blood_group, @identification_mark, @social_category, @nationality, @religion, @date_year_of_admission, @state_of_domicile, @hosteller)',
           substitutionValues: {
-            'enrolment': '12345',
-            'email': 'zjaweds@outlook',
-            'password': 'Password',
-            'name': 'Jaid',
+            'enrolment_no': '$studentData.userEnrolment.text',
+            'name': '$studentData.userStudentName.text',
+            'father_name': '$studentData.userFatherName.text',
+            'mother_name': '$studentData.userMotherName.text',
+            'dob': '$studentData.userDateOfBirth.text',
+            'present_address': '$studentData.userPresentAddress.text',
+            'permanent_address': '$studentData.userPermanentAddress.text',
+            'gender': '$studentData.userGender.text',
+            'blood_group': '$studentData.userBloodGroup.text',
+            'identification_mark': '$studentData.userIdentificationMark.text',
+            'social_category': '$studentData.userSocialCategory.text',
+            'nationality': '$studentData.userNationality.text',
+            'religion': '$studentData.userReligion.text',
+            'date_year_of_admission':
+                '$studentData.userDateYearOfAdmission.text',
+            'state_of_domicile': '$studentData.userStateOfDomicile.text',
+            'hosteller': '$studentData.userAHostler.text'
           },
           allowReuse: true,
           timeoutInSeconds: 30,
