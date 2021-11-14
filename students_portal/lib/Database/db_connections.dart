@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
+import 'package:students_portal/Components/students_data.dart';
 
 class DatabaseConnectivity {
   late String hostname;
@@ -13,6 +14,8 @@ class DatabaseConnectivity {
 
   // ignore: prefer_typing_uninitialized_variables
   var connection;
+
+  PostgreSQLResult? newUserRegistration;
   DatabaseConnectivity(String userHostname, int userPort, String userDatabase,
       String userUsername, String userPassword) {
     hostname = userHostname;
@@ -42,7 +45,7 @@ class DatabaseConnectivity {
   getAllColumns() {
     // print("Called getResults");
     return connection.query(
-        "SELECT btrim(enrolment),btrim(email),btrim(password),btrim(name) FROM studentscredentials"
+        "SELECT btrim(enrolment_no),btrim(email),btrim(password),btrim(name) FROM student"
         // ,
         // substitutionValues: {"aValue": 3}
         );
@@ -50,11 +53,49 @@ class DatabaseConnectivity {
 
   getResults() {
     // print("Called getResults");
-    return connection
-        .query("SELECT btrim(email),btrim(password) FROM studentscredentials"
-            // ,
-            // substitutionValues: {"aValue": 3}
-            );
+    return connection.query("SELECT btrim(email),btrim(password) FROM student"
+        // ,
+        // substitutionValues: {"aValue": 3}
+        );
+  }
+
+// StudentData studentData
+  Future<PostgreSQLResult?> insertUserData(StudentData studentData) async {
+    try {
+      await connection!
+          .transaction((PostgreSQLExecutionContext connection) async {
+        newUserRegistration = await connection.query(
+          'INSERT into Student (enrolment_no,email, name,password, father_name, mother_name, dob, present_address, permanent_address, gender, blood_group, identification_mark, social_category, nationality, religion, date_year_of_admission, state_of_domicile, hosteller)'
+          'values(@enrolment_no,@email, @name, @password, @father_name, @mother_name, @dob, @present_address, @permanent_address, @gender, @blood_group, @identification_mark, @social_category, @nationality, @religion, @date_year_of_admission, @state_of_domicile, @hosteller)',
+          substitutionValues: {
+            'enrolment_no': studentData.userEnrolment,
+            'email': studentData.userEmail,
+            'name': studentData.userStudentName,
+            'password': studentData.userPassword,
+            'father_name': studentData.userFatherName,
+            'mother_name': studentData.userMotherName,
+            'dob': studentData.userDateOfBirth,
+            'present_address': studentData.userPresentAddress,
+            'permanent_address': studentData.userPermanentAddress,
+            'gender': studentData.userGender,
+            'blood_group': studentData.userBloodGroup,
+            'identification_mark': studentData.userIdentificationMark,
+            'social_category': studentData.userSocialCategory,
+            'nationality': studentData.userNationality,
+            'religion': studentData.userReligion,
+            'date_year_of_admission': studentData.userDateYearOfAdmission,
+            'state_of_domicile': studentData.userStateOfDomicile,
+            'hosteller': studentData.userAHostler
+          },
+          allowReuse: true,
+          timeoutInSeconds: 30,
+        );
+      });
+    } catch (exc) {
+      exc.toString();
+      print(exc);
+    }
+    return newUserRegistration;
   }
 
   Future<bool> isAValidUser(TextEditingController userEmail,

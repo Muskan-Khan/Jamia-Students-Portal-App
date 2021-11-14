@@ -1,0 +1,38 @@
+
+
+
+INSERT INTO public."Student"(
+	enrolment_no, name, father_name, mother_name, dob, present_address, permanent_address, gender, blood_group, identification_mark, social_category, nationality, religion, date_year_of_admission, state_of_domicile, hosteller)
+	VALUES ('12-12345', 'Alpha', 'Beta', 'Gamma', '1980-08-10', 'Hostel A Hostel B ', 'Home A Home B', 'Male', 'O+', 'Cut Mark', 'Socia;l Animal', 'Indian', 'Islam', '2019', 'Bihar', 'Yes');
+
+
+
+    -- Table: public.Student
+
+-- DROP TABLE public."Student";
+
+CREATE TABLE IF NOT EXISTS public."Student"
+(
+    enrolment_no character varying(8) COLLATE pg_catalog."default" NOT NULL,
+    name character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    father_name character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    mother_name character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    dob date NOT NULL,
+    present_address character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    permanent_address character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    gender character varying(6) COLLATE pg_catalog."default" NOT NULL,
+    blood_group character varying(3) COLLATE pg_catalog."default" NOT NULL,
+    identification_mark character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    social_category character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    nationality character varying(15) COLLATE pg_catalog."default" NOT NULL,
+    religion character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    date_year_of_admission character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    state_of_domicile character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    hosteller character varying(3) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Student_pkey" PRIMARY KEY (enrolment_no)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."Student"
+    OWNER to postgres;
