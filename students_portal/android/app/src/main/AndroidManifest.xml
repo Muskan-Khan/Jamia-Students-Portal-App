@@ -2,7 +2,9 @@
     package="com.example.students_portal">
    <application
         android:label="students_portal"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true" 
+    >   
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -38,4 +40,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
 </manifest>

@@ -131,6 +131,7 @@ class RegistrationForm extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: TextFormField(
                                   // validator: null,
+                                  // obscureText: true,
                                   controller: userPassword,
                                   decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
