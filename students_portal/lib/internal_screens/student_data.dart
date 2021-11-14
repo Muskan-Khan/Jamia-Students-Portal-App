@@ -41,7 +41,7 @@ class StudentData extends StatelessWidget {
                             style:
                                 TextStyle(color: Colors.white, fontSize: 20)))),
                 Container(
-                    margin: EdgeInsets.only(left: 260),
+                    margin: EdgeInsets.only(left: 170),
                     //padding: EdgeInsets.all(10),
 
                     child: Image.asset(
