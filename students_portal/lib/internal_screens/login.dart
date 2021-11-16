@@ -254,6 +254,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     await con.connect();
     List<List<dynamic>> allColumns = await con.getAllColumns();
     String studentsName = " ";
+    String enrolmentNo = " ";
     bool isValidUser(
         TextEditingController userEmail, TextEditingController userPassword) {
       for (final row in allColumns) {
@@ -262,6 +263,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
         print(id);
         print(password);
         if (userEmail.text == id && userPassword.text == password) {
+          enrolmentNo = row[0];
           studentsName = row[3];
           return true;
         }
@@ -279,7 +281,8 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
         context,
         MaterialPageRoute(
           builder: (context) => LoggedInCandidateDashboard(
-            enrolment: studentsName,
+            enrolmentNo: enrolmentNo,
+            name: studentsName,
           ),
         ),
       );
@@ -377,11 +380,12 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
   final userPassword = TextEditingController();
 
   DatabaseConnectivity con = DatabaseConnectivity(
-      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+      "10.0.2.2", 5432, "StudentsPortal", "postgres", "admin");
   processEnrolmentInput() async {
     await con.connect();
     List<List<dynamic>> allColumns = await con.getAllColumns();
     String studentsName = " ";
+    String enrolmentNo = " ";
     bool isValidUser(TextEditingController userEnrolment,
         TextEditingController userPassword) {
       for (final row in allColumns) {
@@ -390,6 +394,7 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
         print(id);
         print(password);
         if (userEnrolment.text == id && userPassword.text == password) {
+          enrolmentNo = row[0];
           studentsName = row[3];
           return true;
         }
@@ -407,7 +412,8 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
         context,
         MaterialPageRoute(
           builder: (context) => LoggedInCandidateDashboard(
-            enrolment: studentsName,
+            enrolmentNo: enrolmentNo,
+            name: studentsName,
           ),
         ),
       );
