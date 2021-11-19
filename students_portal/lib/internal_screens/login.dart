@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Database/db_connections.dart';
-
+import 'registration.dart';
 import 'package:students_portal/Components/blue_border.dart';
-
 import 'dashboard.dart';
 import 'invalid_credentials.dart';
 
@@ -272,6 +271,9 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     }
 
     final x = isValidUser(userEmail, userPassword);
+
+    userEmail.clear();
+    userPassword.clear();
     // print(x);
 //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
@@ -296,10 +298,22 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     // await con.connection.close();
   }
 
+  callRegistration() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RegistrationForm()),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
   }
+
+  // clearFormFields() {
+  //   userEmail.clear();
+  //   userPassword.clear();
+  // }
 
   @override
   void dispose() {
@@ -357,6 +371,15 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                   style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
                   child: const Text("Proceed"),
                 ),
+              ),
+              Center(
+                child: ElevatedButton(
+                  autofocus: true,
+                  clipBehavior: Clip.none,
+                  onPressed: callRegistration,
+                  style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
+                  child: const Text("New Student Registration"),
+                ),
               )
             ],
           ),
@@ -403,6 +426,9 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
     }
 
     final x = isValidUser(userEnrolment, userPassword);
+
+    userEnrolment.clear();
+    userPassword.clear();
     // print(x);
 //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
@@ -425,6 +451,13 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
       );
     }
     // await con.connection.close();
+  }
+
+  callRegistration() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RegistrationForm()),
+    );
   }
 
   @override
@@ -487,6 +520,15 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
                   onPressed: processEnrolmentInput,
                   style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
                   child: const Text("Proceed"),
+                ),
+              ),
+              Center(
+                child: ElevatedButton(
+                  autofocus: true,
+                  clipBehavior: Clip.none,
+                  onPressed: callRegistration,
+                  style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
+                  child: const Text("New Student Registration"),
                 ),
               )
             ],
