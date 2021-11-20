@@ -278,15 +278,15 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     // print(x);
     //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
-      print("Login Successful");
-
+      print("Login Successful: " + (con).toString());
+      await con.connect();
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => LoggedInCandidateDashboard(
             enrolmentNo: enrolmentNo,
             name: studentsName,
-            connection: con,
+            conn: con,
           ),
         ),
       );
@@ -442,7 +442,7 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
           builder: (context) => LoggedInCandidateDashboard(
             enrolmentNo: enrolmentNo,
             name: studentsName,
-            connection: con,
+            conn: con,
           ),
         ),
       );

@@ -9,14 +9,15 @@ import 'package:students_portal/Components/blue_border.dart';
 class LoggedInCandidateDashboard extends StatefulWidget {
   final String enrolmentNo;
   final String name;
-  LoggedInCandidateDashboard(
-      {Key? key,
-      required this.enrolmentNo,
-      required this.name,
-      required DatabaseConnectivity connection})
-      : super(key: key);
+  final DatabaseConnectivity conn;
+  LoggedInCandidateDashboard({
+    Key? key,
+    required this.enrolmentNo,
+    required this.name,
+    required this.conn,
+  }) : super(key: key);
 
-  get connection => null;
+  // get connection => null;
 
   @override
   State<LoggedInCandidateDashboard> createState() =>
@@ -47,33 +48,32 @@ class _LoggedInCandidateDashboardState
                     SizedBox(
                       height: 30,
                     ),
-                    DashboardElements(
-                        value: 'Student Data', dc: widget.connection),
+                    DashboardElements(value: 'Student Data', dc: widget.conn),
                     DashboardElements(
                         value: 'Greivance Redressal Form',
                         // enrolmentNo: '',
-                        dc: widget.connection),
+                        dc: widget.conn),
                     DashboardElements(
                         value: 'Examination Form',
                         // enrolmentNo: '',
-                        dc: widget.connection),
+                        dc: widget.conn),
                     DashboardElements(
                         value: 'Grade Card'
 
                         // enrolmentNo: '',
                         ,
-                        dc: widget.connection),
+                        dc: widget.conn),
                     DashboardElements(
                         value: 'Migration Form'
                         // enrolmentNo: '',
                         ,
-                        dc: widget.connection),
+                        dc: widget.conn),
                     DashboardElements(
                         value: 'Change Exam Form'
 
                         // enrolmentNo: '',
                         ,
-                        dc: widget.connection),
+                        dc: widget.conn),
                   ],
                 )
               ],
