@@ -19,27 +19,31 @@ class StudentData extends StatelessWidget {
             BlueBanner(studentsName: "ABC "),
             Row(
               children: [
-                InkWell(
-                  onTap: () {},
-                  child: Padding(
-                      padding: EdgeInsets.all(5),
-                      child: Image.asset(
-                        'assets/images/home.png',
-                        height: MediaQuery.of(context).size.height / 30,
-                        width: MediaQuery.of(context).size.width / 10,
-                      )),
+                Material(
+                  child: InkWell(
+                    onTap: () {},
+                    child: Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Image.asset(
+                          'assets/images/home.png',
+                          height: MediaQuery.of(context).size.height / 30,
+                          width: MediaQuery.of(context).size.width / 10,
+                        )),
+                  ),
                 ),
                 Text(
                   '/',
                   style: TextStyle(color: Colors.blue, fontSize: 20),
                 ),
-                InkWell(
-                    onTap: () {},
-                    child: Padding(
-                        padding: EdgeInsets.all(5),
-                        child: Text('View',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20)))),
+                Material(
+                  child: InkWell(
+                      onTap: () {},
+                      child: Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Text('View',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 20)))),
+                ),
                 Container(
                     margin: EdgeInsets.only(left: 170),
                     //padding: EdgeInsets.all(10),

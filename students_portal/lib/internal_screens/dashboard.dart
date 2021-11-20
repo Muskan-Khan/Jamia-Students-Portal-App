@@ -45,7 +45,7 @@ class _LoggedInCandidateDashboardState
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     DashboardElements(value: 'Student Data', dc: widget.conn),
