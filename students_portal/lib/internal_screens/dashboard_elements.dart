@@ -5,7 +5,7 @@ class DashboardElements extends StatefulWidget {
   final String value;
   final String enrolmentNo;
   //const DashboardElements({Key? key, required this.value}) : super(key: key);
-  DashboardElements({Key? key, required this.value, required this.enrolmentNo})
+  const DashboardElements({Key? key, required this.value, required this.enrolmentNo})
       : super(key: key);
 
   @override

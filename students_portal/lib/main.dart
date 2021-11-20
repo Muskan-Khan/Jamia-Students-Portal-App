@@ -11,10 +11,10 @@ void main() {
         backgroundColor: Colors.grey[200],
         body: const Center(
           child:
-              // LoggedInCandidateDashboard(enrolment: "Alpha")
-              // LoginField(),
-              // RegistrationForm(),
-              StudentData(),
+              // LoggedInCandidateDashboard(enrolmentNo: "Alpha", name: "Beta")
+              LoginField(),
+          // RegistrationForm(),
+          // StudentData(),
         )),
     debugShowCheckedModeBanner: false,
   ));
