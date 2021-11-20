@@ -270,12 +270,13 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       return false;
     }
 
+    print("Calling Validation");
     final x = isValidUser(userEmail, userPassword);
 
     userEmail.clear();
     userPassword.clear();
     // print(x);
-//x true signifies a valid user as it is a future it must be assigned before it can be used
+    //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
       print("Login Successful");
 
@@ -285,6 +286,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
           builder: (context) => LoggedInCandidateDashboard(
             enrolmentNo: enrolmentNo,
             name: studentsName,
+            connection: con,
           ),
         ),
       );
@@ -440,6 +442,7 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
           builder: (context) => LoggedInCandidateDashboard(
             enrolmentNo: enrolmentNo,
             name: studentsName,
+            connection: con,
           ),
         ),
       );

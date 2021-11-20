@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_this
 
 import 'package:flutter/material.dart';
+import 'package:students_portal/Database/db_connections.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/internal_screens/dashboard_elements.dart';
 import 'package:students_portal/Components/blue_border.dart';
@@ -9,8 +10,13 @@ class LoggedInCandidateDashboard extends StatefulWidget {
   final String enrolmentNo;
   final String name;
   LoggedInCandidateDashboard(
-      {Key? key, required this.enrolmentNo, required this.name})
+      {Key? key,
+      required this.enrolmentNo,
+      required this.name,
+      required DatabaseConnectivity connection})
       : super(key: key);
+
+  get connection => null;
 
   @override
   State<LoggedInCandidateDashboard> createState() =>
@@ -42,27 +48,32 @@ class _LoggedInCandidateDashboardState
                       height: 30,
                     ),
                     DashboardElements(
-                        value: 'Student Data', enrolmentNo: widget.enrolmentNo),
+                        value: 'Student Data', dc: widget.connection),
                     DashboardElements(
-                      value: 'Greivance Redressal Form',
-                      enrolmentNo: '',
-                    ),
+                        value: 'Greivance Redressal Form',
+                        // enrolmentNo: '',
+                        dc: widget.connection),
                     DashboardElements(
-                      value: 'Examination Form',
-                      enrolmentNo: '',
-                    ),
+                        value: 'Examination Form',
+                        // enrolmentNo: '',
+                        dc: widget.connection),
                     DashboardElements(
-                      value: 'Grade Card',
-                      enrolmentNo: '',
-                    ),
+                        value: 'Grade Card'
+
+                        // enrolmentNo: '',
+                        ,
+                        dc: widget.connection),
                     DashboardElements(
-                      value: 'Migration Form',
-                      enrolmentNo: '',
-                    ),
+                        value: 'Migration Form'
+                        // enrolmentNo: '',
+                        ,
+                        dc: widget.connection),
                     DashboardElements(
-                      value: 'Change Exam Form',
-                      enrolmentNo: '',
-                    ),
+                        value: 'Change Exam Form'
+
+                        // enrolmentNo: '',
+                        ,
+                        dc: widget.connection),
                   ],
                 )
               ],

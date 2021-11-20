@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 import 'package:students_portal/Components/students_data.dart';
+import 'package:students_portal/Components/students_data.dart';
 
 class DatabaseConnectivity {
   late String hostname;
@@ -41,22 +42,42 @@ class DatabaseConnectivity {
     // await connection.close();
   }
 
-// String searchCriterion
   getAllColumns() {
-    // print("Called getResults");
     return connection.query(
-        "SELECT btrim(enrolment_no),btrim(email),btrim(password),btrim(name) FROM student"
-        // ,
-        // substitutionValues: {"aValue": 3}
-        );
+        "SELECT btrim(enrolment_no),btrim(email),btrim(password),btrim(name) FROM student");
   }
 
   getResults() {
-    // print("Called getResults");
-    return connection.query("SELECT btrim(email),btrim(password) FROM student"
-        // ,
-        // substitutionValues: {"aValue": 3}
-        );
+    return connection.query("SELECT btrim(email),btrim(password) FROM student");
+  }
+
+  Future<StudentData> getStudentsData() async {
+    print("Called Get Students Data");
+    StudentData sd = StudentData();
+    List<List<dynamic>> results = await connection.query(
+        "SELECT btrim(enrolment_no),btrim(email),btrim(name),btrim(password),btrim(father_name),btrim(mother_name),btrim(dob),btrim(present_address),btrim(permanent_address),btrim(gender),btrim(blood_group),btrim(identification_mark),btrim(social_category),btrim(nationality),btrim(religion),btrim(date_year_of_admission),btrim(state_of_domicile),btrim(hosteller) FROM student");
+    print("Call Successfully Ended");
+    for (final row in results) {
+      sd.userEnrolment = row[0];
+      sd.userEmail = row[1];
+      sd.userStudentName = row[2];
+      sd.userPassword = row[3];
+      sd.userFatherName = row[4];
+      sd.userMotherName = row[5];
+      sd.userDateOfBirth = row[6];
+      sd.userPresentAddress = row[7];
+      sd.userPermanentAddress = row[8];
+      sd.userGender = row[9];
+      sd.userBloodGroup = row[10];
+      sd.userIdentificationMark = row[11];
+      sd.userSocialCategory = row[12];
+      sd.userNationality = row[13];
+      sd.userReligion = row[14];
+      sd.userDateYearOfAdmission = row[15];
+      sd.userStateOfDomicile = row[16];
+      sd.userAHostler = row[17];
+    }
+    return sd;
   }
 
 // StudentData studentData
