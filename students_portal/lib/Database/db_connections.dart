@@ -51,9 +51,9 @@ class DatabaseConnectivity {
     return connection.query("SELECT btrim(email),btrim(password) FROM student");
   }
 
-  Future<StudentData> getStudentsData() async {
+  getStudentsData(StudentData sd) async {
     print("Called Get Students Data");
-    StudentData sd = StudentData();
+
     List<List<dynamic>> results = await connection.query(
         "SELECT btrim(enrolment_no),btrim(email),btrim(name),btrim(password),btrim(father_name),btrim(mother_name),btrim(dob),btrim(present_address),btrim(permanent_address),btrim(gender),btrim(blood_group),btrim(identification_mark),btrim(social_category),btrim(nationality),btrim(religion),btrim(date_year_of_admission),btrim(state_of_domicile),btrim(hosteller) FROM student");
     print("Call Successfully Ended");
@@ -77,7 +77,10 @@ class DatabaseConnectivity {
       sd.userStateOfDomicile = row[16];
       sd.userAHostler = row[17];
     }
-    return sd;
+    print(sd.userEnrolment);
+    print(sd.userEmail);
+    print(sd.userStudentName);
+    // return sd;
   }
 
 // StudentData studentData

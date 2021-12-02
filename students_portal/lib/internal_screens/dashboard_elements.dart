@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:students_portal/Components/students_data.dart';
 import 'package:students_portal/Database/db_connections.dart';
 import 'student_data.dart';
 
@@ -19,11 +20,16 @@ class _DashboardElementsState extends State<DashboardElements> {
   @override
   Widget build(BuildContext context) {
     getData() async {
-      await widget.dc.getStudentsData();
+      StudentData sd = StudentData();
+      await widget.dc.getStudentsData(sd);
       print("Just Called, Get Students Data");
 
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const StudentData()));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => StudentDataScreen(
+                    studentData: sd,
+                  )));
     }
 
     return Center(

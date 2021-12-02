@@ -276,9 +276,10 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     userEmail.clear();
     userPassword.clear();
     // print(x);
+    // + (con).toString()
     //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
-      print("Login Successful: " + (con).toString());
+      print("Login Successful! ");
       await con.connect();
       Navigator.push(
         context,
