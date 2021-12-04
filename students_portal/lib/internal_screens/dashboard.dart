@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_this
 
 import 'package:flutter/material.dart';
+import 'package:students_portal/Components/blue_border_content.dart';
 import 'package:students_portal/Database/db_connections.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/internal_screens/dashboard_elements.dart';
@@ -37,7 +38,14 @@ class _LoggedInCandidateDashboardState
       child: Column(
         children: [
           const CustomHeader(),
-          BlueBanner(studentsName: widget.name),
+          BlueBanner(
+            studentDataHeading: BlueBorderContent(
+              icon: Row(
+                children: const [Text(" ")],
+              ),
+            ),
+          ),
+          // BlueBanner(studentsName: widget.name),
           Container(
             color: Colors.white,
             child: Stack(
