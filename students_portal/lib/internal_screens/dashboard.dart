@@ -39,7 +39,7 @@ class _LoggedInCandidateDashboardState
         children: [
           const CustomHeader(),
           BlueBanner(
-              studentDataHeading: BlueBorderContent(
+            studentDataHeading: BlueBorderContent(
             homeIcon: Image.asset('assets/images/home.png').image,
             studentIcon: Image.asset('assets/images/user.png').image,
             studentName: widget.name,

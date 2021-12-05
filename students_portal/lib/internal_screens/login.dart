@@ -287,6 +287,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     if (x) {
       print("Login Successful! ");
       await con.connect();
+      print("Name is: " + studentsName);
       Navigator.push(
         context,
         MaterialPageRoute(
