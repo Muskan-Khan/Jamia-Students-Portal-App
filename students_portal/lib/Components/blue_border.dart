@@ -15,9 +15,9 @@ class BlueBanner extends StatelessWidget {
         height: MediaQuery.of(context).size.height / 20,
         width: MediaQuery.of(context).size.width,
         child: BlueBorderContent(
-          icon: Row(
-            children: const [Text("Hello")],
-          ),
+          homeIcon: Image.asset('assets/images/home.png').image,
+          studentIcon: Image.asset('assets/images/user.png').image,
+          studentName: "Abc",
         )
         // Align(
         //   alignment: Alignment.center,

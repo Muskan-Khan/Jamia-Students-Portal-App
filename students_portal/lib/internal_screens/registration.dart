@@ -79,12 +79,11 @@ class RegistrationForm extends StatelessWidget {
               children: [
                 const CustomHeader(),
                 BlueBanner(
-                  studentDataHeading: BlueBorderContent(
-                    icon: Row(
-                      children: const [Text(" ")],
-                    ),
-                  ),
-                ),
+                    studentDataHeading: BlueBorderContent(
+                  homeIcon: Image.asset('assets/images/home.png').image,
+                  studentIcon: Image.asset('assets/images/user.png').image,
+                  studentName: "Abc",
+                )),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(

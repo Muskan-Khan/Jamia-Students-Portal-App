@@ -16,12 +16,11 @@ class LoginField extends StatelessWidget {
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         const CustomHeader(),
         BlueBanner(
-          studentDataHeading: BlueBorderContent(
-            icon: Row(
-              children: const [Text(" ")],
-            ),
-          ),
-        ),
+            studentDataHeading: BlueBorderContent(
+          homeIcon: Image.asset('assets/images/home.png').image,
+          studentIcon: Image.asset('assets/images/user.png').image,
+          studentName: "Abc",
+        )),
         Stack(
           children: const [LoginFieldHead()],
         )

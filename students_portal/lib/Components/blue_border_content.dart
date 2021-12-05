@@ -16,11 +16,24 @@
 import 'package:flutter/material.dart';
 
 class BlueBorderContent extends StatelessWidget {
-  final Row icon;
-  const BlueBorderContent({Key? key, required this.icon}) : super(key: key);
+  final ImageProvider homeIcon;
+  final ImageProvider studentIcon;
+  final String studentName;
+  const BlueBorderContent(
+      {Key? key,
+      required this.homeIcon,
+      required this.studentIcon,
+      required this.studentName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row();
+    return Row(
+      children: [
+        Image(image: homeIcon),
+        Image(image: studentIcon),
+        Text(studentName)
+      ],
+    );
   }
 }
