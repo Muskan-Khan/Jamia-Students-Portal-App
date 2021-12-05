@@ -24,7 +24,7 @@ class StudentDataScreen extends StatelessWidget {
                 studentDataHeading: BlueBorderContent(
               homeIcon: Image.asset('assets/images/home.png').image,
               studentIcon: Image.asset('assets/images/user.png').image,
-              studentName: "Abc",
+              studentName: studentData.userStudentName,
             )),
             Row(
               children: [
@@ -53,15 +53,6 @@ class StudentDataScreen extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.white, fontSize: 20)))),
                 ),
-                // Container(
-                //     margin: EdgeInsets.only(left: 170),
-                //     //padding: EdgeInsets.all(10),
-
-                //     child: Image.asset(
-                //       'assets/images/user.png',
-                //       height: MediaQuery.of(context).size.height / 40,
-                //       width: MediaQuery.of(context).size.width / 10,
-                //     ))
               ],
             ),
           ]),
@@ -86,9 +77,6 @@ class StudentDataScreen extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.all(30),
                 color: Colors.white,
-                //decoration: BoxDecoration(
-                //border: Border.all(color: //Colors.pink),
-                //),
                 child: Column(
                   children: [
                     Container(
