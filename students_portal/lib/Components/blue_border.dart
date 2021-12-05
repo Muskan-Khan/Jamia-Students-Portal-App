@@ -17,7 +17,7 @@ class BlueBanner extends StatelessWidget {
         child: BlueBorderContent(
           homeIcon: Image.asset('assets/images/home.png').image,
           studentIcon: Image.asset('assets/images/user.png').image,
-          studentName: "Abc",
+          studentName: studentDataHeading.studentName,
         )
         // Align(
         //   alignment: Alignment.center,

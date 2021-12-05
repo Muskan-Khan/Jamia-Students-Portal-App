@@ -16,10 +16,10 @@
 import 'package:flutter/material.dart';
 
 class BlueBorderContent extends StatelessWidget {
-  final ImageProvider homeIcon;
-  final ImageProvider studentIcon;
+  late ImageProvider homeIcon;
+  late ImageProvider studentIcon;
   final String studentName;
-  const BlueBorderContent(
+  BlueBorderContent(
       {Key? key,
       required this.homeIcon,
       required this.studentIcon,
@@ -29,10 +29,22 @@ class BlueBorderContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Image(image: homeIcon),
-        Image(image: studentIcon),
-        Text(studentName)
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(image: studentIcon),
+            Text(
+              studentName,
+              style: TextStyle(
+                  fontSize: 23,
+                  color: Colors.amber[400],
+                  decoration: TextDecoration.none),
+            )
+          ],
+        )
       ],
     );
   }

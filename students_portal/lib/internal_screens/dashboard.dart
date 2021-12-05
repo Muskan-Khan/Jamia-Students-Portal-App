@@ -29,9 +29,6 @@ class LoggedInCandidateDashboard extends StatefulWidget {
 
 class _LoggedInCandidateDashboardState
     extends State<LoggedInCandidateDashboard> {
-  // final String name;
-  // final String enrolmentNo;
-  // _LoggedInCandidateDashboardState(this.enrolmentNo, this.name);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -39,7 +36,7 @@ class _LoggedInCandidateDashboardState
         children: [
           const CustomHeader(),
           BlueBanner(
-            studentDataHeading: BlueBorderContent(
+              studentDataHeading: BlueBorderContent(
             homeIcon: Image.asset('assets/images/home.png').image,
             studentIcon: Image.asset('assets/images/user.png').image,
             studentName: widget.name,

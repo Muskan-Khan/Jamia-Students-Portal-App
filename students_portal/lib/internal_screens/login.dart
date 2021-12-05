@@ -17,8 +17,8 @@ class LoginField extends StatelessWidget {
         const CustomHeader(),
         BlueBanner(
             studentDataHeading: BlueBorderContent(
-          homeIcon: Image.asset('assets/images/home.png').image,
-          studentIcon: Image.asset('assets/images/user.png').image,
+          homeIcon: Image.asset("").image,
+          studentIcon: Image.asset("").image,
           studentName: " ",
         )),
         Stack(
