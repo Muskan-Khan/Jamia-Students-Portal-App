@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:students_portal/internal_screens/dashboard.dart';
+// import 'package:students_portal/internal_screens/dashboard.dart';
 import 'package:students_portal/internal_screens/header.dart';
-import 'package:students_portal/internal_screens/login.dart';
-import 'internal_screens/registration.dart';
-import 'internal_screens/student_data.dart';
+// import 'package:students_portal/internal_screens/login.dart';
+// import 'internal_screens/registration.dart';
+// import 'internal_screens/student_data.dart';
+import 'package:students_portal/internal_screens/examination_form_screen.dart';
 
 void main() {
   runApp(MaterialApp(
     home: Scaffold(
         backgroundColor: Colors.grey[200],
-        body: const Center(
+        body: Center(
           child:
               // LoggedInCandidateDashboard(enrolment: "Alpha")
               // LoginField(),
               // RegistrationForm(),
-              StudentData(),
+              ExamFormScreen(),
         )),
     debugShowCheckedModeBanner: false,
   ));
