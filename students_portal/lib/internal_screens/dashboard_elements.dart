@@ -6,10 +6,14 @@ import 'student_data.dart';
 
 class DashboardElements extends StatefulWidget {
   final String value;
-  // final String enrolmentNo;
+  final String enrolmentNo;
   final DatabaseConnectivity dc;
   //const DashboardElements({Key? key, required this.value}) : super(key: key);
-  const DashboardElements({Key? key, required this.value, required this.dc})
+  const DashboardElements(
+      {Key? key,
+      required this.value,
+      required this.dc,
+      required this.enrolmentNo})
       : super(key: key);
 
   @override
@@ -22,14 +26,16 @@ class _DashboardElementsState extends State<DashboardElements> {
     getData() async {
       StudentData sdreturned = StudentData();
       await widget.dc.connect();
-      widget.dc.getStudentsData(sdreturned);
+      widget.dc.getStudentsData(sdreturned, widget.enrolmentNo);
       print("Just Called, Get Students Data: " + sdreturned.userStudentName);
 
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  StudentDataScreen(studentData: sdreturned)));
+              builder: (context) => StudentDataScreen(
+                    studentData: sdreturned,
+                    enrolmentNo: widget.enrolmentNo,
+                  )));
     }
 
     return Center(

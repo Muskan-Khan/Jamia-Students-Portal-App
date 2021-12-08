@@ -51,16 +51,17 @@ class DatabaseConnectivity {
     return connection.query("SELECT btrim(email),btrim(password) FROM student");
   }
 
-  getStudentsData(StudentData sd) async {
+  getStudentsData(StudentData sd, String enrNo) async {
     print("Called Get Students Data");
 
     List<List<dynamic>> results = await connection.query(
-        "SELECT btrim(enrolment_no),btrim(email),btrim(name),btrim(password),btrim(father_name),btrim(mother_name),btrim(dob),btrim(present_address),btrim(permanent_address),btrim(gender),btrim(blood_group),btrim(identification_mark),btrim(social_category),btrim(nationality),btrim(religion),btrim(date_year_of_admission),btrim(state_of_domicile),btrim(hosteller) FROM student");
+        "SELECT enrolment_no,btrim(email),btrim(name),btrim(password),btrim(father_name),btrim(mother_name),btrim(dob),btrim(present_address),btrim(permanent_address),btrim(gender),btrim(blood_group),btrim(identification_mark),btrim(social_category),btrim(nationality),btrim(religion),btrim(date_year_of_admission),btrim(state_of_domicile),btrim(hosteller) FROM student where enrolment_no = @enrNo",
+        substituionValues: {"enrNo": enrNo});
     print("Call Successfully Initiated");
     for (final row in results) {
       sd.userEnrolment = row[0];
       sd.userEmail = row[1];
-      print(row);
+      print(sd.userEmail);
       sd.userStudentName = row[2];
       sd.userPassword = row[3];
       sd.userFatherName = row[4];

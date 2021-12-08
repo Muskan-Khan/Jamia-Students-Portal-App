@@ -48,32 +48,44 @@ class _LoggedInCandidateDashboardState
                     const SizedBox(
                       height: 30,
                     ),
-                    DashboardElements(value: 'Student Data', dc: widget.conn),
                     DashboardElements(
-                        value: 'Greivance Redressal Form',
-                        // enrolmentNo: '',
-                        dc: widget.conn),
+                      value: 'Student Data',
+                      dc: widget.conn,
+                      enrolmentNo: widget.enrolmentNo,
+                    ),
                     DashboardElements(
-                        value: 'Examination Form',
-                        // enrolmentNo: '',
-                        dc: widget.conn),
+                      value: 'Greivance Redressal Form',
+                      // enrolmentNo: '',
+                      dc: widget.conn, enrolmentNo: widget.enrolmentNo,
+                    ),
                     DashboardElements(
-                        value: 'Grade Card'
+                      value: 'Examination Form',
+                      // enrolmentNo: '',
+                      dc: widget.conn, enrolmentNo: widget.enrolmentNo,
+                    ),
+                    DashboardElements(
+                      value: 'Grade Card'
 
-                        // enrolmentNo: '',
-                        ,
-                        dc: widget.conn),
+                      // enrolmentNo: '',
+                      ,
+                      dc: widget.conn,
+                      enrolmentNo: widget.enrolmentNo,
+                    ),
                     DashboardElements(
-                        value: 'Migration Form'
-                        // enrolmentNo: '',
-                        ,
-                        dc: widget.conn),
+                      value: 'Migration Form'
+                      // enrolmentNo: '',
+                      ,
+                      dc: widget.conn,
+                      enrolmentNo: widget.enrolmentNo,
+                    ),
                     DashboardElements(
-                        value: 'Change Exam Form'
+                      value: 'Change Exam Form'
 
-                        // enrolmentNo: '',
-                        ,
-                        dc: widget.conn),
+                      // enrolmentNo: '',
+                      ,
+                      dc: widget.conn,
+                      enrolmentNo: widget.enrolmentNo,
+                    ),
                   ],
                 )
               ],

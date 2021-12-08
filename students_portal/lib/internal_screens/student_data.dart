@@ -8,7 +8,9 @@ import 'package:students_portal/Components/students_data.dart';
 
 class StudentDataScreen extends StatelessWidget {
   final StudentData studentData;
-  const StudentDataScreen({Key? key, required this.studentData})
+  final String enrolmentNo;
+  const StudentDataScreen(
+      {Key? key, required this.studentData, required this.enrolmentNo})
       : super(key: key);
 
   @override
