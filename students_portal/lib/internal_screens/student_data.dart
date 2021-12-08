@@ -11,6 +11,7 @@ class StudentDataScreen extends StatelessWidget {
   const StudentDataScreen({Key? key, required this.studentData})
       : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(

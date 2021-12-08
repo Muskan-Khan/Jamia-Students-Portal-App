@@ -20,16 +20,16 @@ class _DashboardElementsState extends State<DashboardElements> {
   @override
   Widget build(BuildContext context) {
     getData() async {
-      StudentData sd = StudentData();
-      await widget.dc.getStudentsData(sd);
-      print("Just Called, Get Students Data");
+      StudentData sdreturned = StudentData();
+      await widget.dc.connect();
+      widget.dc.getStudentsData(sdreturned);
+      print("Just Called, Get Students Data: " + sdreturned.userStudentName);
 
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => StudentDataScreen(
-                    studentData: sd,
-                  )));
+              builder: (context) =>
+                  StudentDataScreen(studentData: sdreturned)));
     }
 
     return Center(
