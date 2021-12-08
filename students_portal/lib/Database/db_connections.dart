@@ -58,7 +58,8 @@ class DatabaseConnectivity {
 
     // PostgreSQLResult
     List<List<dynamic>> results = await connection.query(
-        'SELECT enrolment_no,btrim(email),btrim(name),btrim(password),btrim(father_name),btrim(mother_name),btrim(dob),btrim(present_address),btrim(permanent_address),btrim(gender),btrim(blood_group),btrim(identification_mark),btrim(social_category),btrim(nationality),btrim(religion),btrim(date_year_of_admission),btrim(state_of_domicile),btrim(hosteller) FROM student ');
+        'SELECT enrolment_no,btrim(email),btrim(name),btrim(password),btrim(father_name),btrim(mother_name),btrim(dob),btrim(present_address),btrim(permanent_address),btrim(gender),btrim(blood_group),btrim(identification_mark),btrim(social_category),btrim(nationality),btrim(religion),btrim(date_year_of_admission),btrim(state_of_domicile),btrim(hosteller) FROM student where enrolment_no = @enNo',
+        substitutionValues: {"enNo": enrolmentNo});
     print("Call Successfully Initiated");
     for (final row in results) {
       sd.userEnrolment = row[0];
@@ -79,7 +80,7 @@ class DatabaseConnectivity {
       sd.userDateYearOfAdmission = row[15];
       sd.userStateOfDomicile = row[16];
       sd.userAHostler = row[17];
-      if (row[0] == enrolmentNo) break;
+      // if (row[0] == enrolmentNo) break;
     }
     print(sd);
     print(sd.userEmail);
