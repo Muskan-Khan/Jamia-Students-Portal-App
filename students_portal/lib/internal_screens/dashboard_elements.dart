@@ -26,7 +26,7 @@ class _DashboardElementsState extends State<DashboardElements> {
     getData() async {
       StudentData sdreturned = StudentData();
       await widget.dc.connect();
-      widget.dc.getStudentsData(sdreturned, widget.enrolmentNo);
+      await widget.dc.getStudentsData(sdreturned, widget.enrolmentNo);
       print("Just Called, Get Students Data: " + sdreturned.userStudentName);
 
       Navigator.push(
