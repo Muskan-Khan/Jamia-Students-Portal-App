@@ -7,9 +7,9 @@ import 'student_data.dart';
 class DashboardElements extends StatefulWidget {
   final String value;
   // final String enrolmentNo;
-  final DatabaseConnectivity dc;
+  final StudentData sd;
   //const DashboardElements({Key? key, required this.value}) : super(key: key);
-  const DashboardElements({Key? key, required this.value, required this.dc})
+  const DashboardElements({Key? key, required this.value, required this.sd})
       : super(key: key);
 
   @override
@@ -21,9 +21,8 @@ class _DashboardElementsState extends State<DashboardElements> {
   Widget build(BuildContext context) {
     getData() async {
       StudentData sd = StudentData();
-      await widget.dc.getStudentsData(sd);
-      print("Just Called, Get Students Data");
-
+      StudentData? ds = await widget.sd.getStudentsData(sd);
+      print(ds);
       Navigator.push(
           context,
           MaterialPageRoute(

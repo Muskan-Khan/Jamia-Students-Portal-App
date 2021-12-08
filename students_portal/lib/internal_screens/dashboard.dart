@@ -6,16 +6,18 @@ import 'package:students_portal/Database/db_connections.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/internal_screens/dashboard_elements.dart';
 import 'package:students_portal/Components/blue_border.dart';
+import 'package:students_portal/Components/students_data.dart';
 
 class LoggedInCandidateDashboard extends StatefulWidget {
   final String enrolmentNo;
   final String name;
-  final DatabaseConnectivity conn;
+  // final DatabaseConnectivity conn;
+  final StudentData sd;
   LoggedInCandidateDashboard({
     Key? key,
     required this.enrolmentNo,
     required this.name,
-    required this.conn,
+    required this.sd,
   }) : super(key: key);
 
   // get connection => null;
@@ -52,32 +54,32 @@ class _LoggedInCandidateDashboardState
                     const SizedBox(
                       height: 30,
                     ),
-                    DashboardElements(value: 'Student Data', dc: widget.conn),
+                    DashboardElements(value: 'Student Data', sd: widget.sd),
                     DashboardElements(
                         value: 'Greivance Redressal Form',
                         // enrolmentNo: '',
-                        dc: widget.conn),
+                        sd: widget.sd),
                     DashboardElements(
                         value: 'Examination Form',
                         // enrolmentNo: '',
-                        dc: widget.conn),
+                        sd: widget.sd),
                     DashboardElements(
                         value: 'Grade Card'
 
                         // enrolmentNo: '',
                         ,
-                        dc: widget.conn),
+                        sd: widget.sd),
                     DashboardElements(
                         value: 'Migration Form'
                         // enrolmentNo: '',
                         ,
-                        dc: widget.conn),
+                        sd: widget.sd),
                     DashboardElements(
                         value: 'Change Exam Form'
 
                         // enrolmentNo: '',
                         ,
-                        dc: widget.conn),
+                        sd: widget.sd),
                   ],
                 )
               ],

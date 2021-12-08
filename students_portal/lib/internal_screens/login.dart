@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:students_portal/Components/blue_border_content.dart';
+import 'package:students_portal/Components/students_data.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Database/db_connections.dart';
 import 'registration.dart';
@@ -294,7 +295,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
           builder: (context) => LoggedInCandidateDashboard(
             enrolmentNo: enrolmentNo,
             name: studentsName,
-            conn: con,
+            sd: StudentData(),
           ),
         ),
       );
@@ -450,7 +451,7 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
           builder: (context) => LoggedInCandidateDashboard(
             enrolmentNo: enrolmentNo,
             name: studentsName,
-            conn: con,
+            sd: StudentData(),
           ),
         ),
       );

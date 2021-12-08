@@ -51,7 +51,7 @@ class DatabaseConnectivity {
     return connection.query("SELECT btrim(email),btrim(password) FROM student");
   }
 
-  getStudentsData(StudentData sd) async {
+  Future<StudentData?> getStudentsData(StudentData sd) async {
     print("Called Get Students Data");
 
     List<List<dynamic>> results = await connection.query(
