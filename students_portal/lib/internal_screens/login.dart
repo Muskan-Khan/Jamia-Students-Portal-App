@@ -17,11 +17,12 @@ class LoginField extends StatelessWidget {
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         const CustomHeader(),
         BlueBanner(
-            studentDataHeading: BlueBorderContent(
-          homeIcon: Image.asset("").image,
-          studentIcon: Image.asset("").image,
-          studentName: " ",
-        )),
+          studentDataHeading: BlueBorderContent(
+            homeIcon: "assets/images/transparent.png",
+            studentIcon: "assets/images/transparent.png",
+            studentName: " ",
+          ),
+        ),
         Stack(
           children: const [LoginFieldHead()],
         )
@@ -295,7 +296,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
           builder: (context) => LoggedInCandidateDashboard(
             enrolmentNo: enrolmentNo,
             name: studentsName,
-            sd: StudentData(),
+            conn: con,
           ),
         ),
       );
@@ -451,7 +452,7 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
           builder: (context) => LoggedInCandidateDashboard(
             enrolmentNo: enrolmentNo,
             name: studentsName,
-            sd: StudentData(),
+            conn: con,
           ),
         ),
       );

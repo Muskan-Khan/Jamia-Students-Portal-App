@@ -4,9 +4,10 @@ import 'package:students_portal/Components/blue_border_content.dart';
 
 class BlueBanner extends StatelessWidget {
   final BlueBorderContent studentDataHeading;
-
-  const BlueBanner({Key? key, required this.studentDataHeading})
-      : super(key: key);
+  const BlueBanner({
+    Key? key,
+    required this.studentDataHeading,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +16,8 @@ class BlueBanner extends StatelessWidget {
         height: MediaQuery.of(context).size.height / 20,
         width: MediaQuery.of(context).size.width,
         child: BlueBorderContent(
-          homeIcon: Image.asset('assets/images/home.png').image,
-          studentIcon: Image.asset('assets/images/user.png').image,
+          homeIcon: studentDataHeading.homeIcon,
+          studentIcon: studentDataHeading.studentIcon,
           studentName: studentDataHeading.studentName,
         )
         // Align(

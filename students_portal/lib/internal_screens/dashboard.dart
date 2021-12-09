@@ -6,18 +6,16 @@ import 'package:students_portal/Database/db_connections.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/internal_screens/dashboard_elements.dart';
 import 'package:students_portal/Components/blue_border.dart';
-import 'package:students_portal/Components/students_data.dart';
 
 class LoggedInCandidateDashboard extends StatefulWidget {
   final String enrolmentNo;
   final String name;
-  // final DatabaseConnectivity conn;
-  final StudentData sd;
+  final DatabaseConnectivity conn;
   LoggedInCandidateDashboard({
     Key? key,
     required this.enrolmentNo,
     required this.name,
-    required this.sd,
+    required this.conn,
   }) : super(key: key);
 
   // get connection => null;
@@ -31,6 +29,9 @@ class LoggedInCandidateDashboard extends StatefulWidget {
 
 class _LoggedInCandidateDashboardState
     extends State<LoggedInCandidateDashboard> {
+  // final String name;
+  // final String enrolmentNo;
+  // _LoggedInCandidateDashboardState(this.enrolmentNo, this.name);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -38,12 +39,12 @@ class _LoggedInCandidateDashboardState
         children: [
           const CustomHeader(),
           BlueBanner(
-              studentDataHeading: BlueBorderContent(
-            homeIcon: Image.asset('assets/images/home.png').image,
-            studentIcon: Image.asset('assets/images/user.png').image,
-            studentName: widget.name,
-          )),
-          // BlueBanner(studentsName: widget.name),
+            studentDataHeading: BlueBorderContent(
+              homeIcon: 'assets/images/home.png',
+              studentIcon: 'assets/images/user.png',
+              studentName: widget.name,
+            ),
+          ),
           Container(
             color: Colors.white,
             child: Stack(
@@ -54,32 +55,44 @@ class _LoggedInCandidateDashboardState
                     const SizedBox(
                       height: 30,
                     ),
-                    DashboardElements(value: 'Student Data', sd: widget.sd),
                     DashboardElements(
-                        value: 'Greivance Redressal Form',
-                        // enrolmentNo: '',
-                        sd: widget.sd),
+                      value: 'Student Data',
+                      dc: widget.conn,
+                      enrolmentNo: widget.enrolmentNo,
+                    ),
                     DashboardElements(
-                        value: 'Examination Form',
-                        // enrolmentNo: '',
-                        sd: widget.sd),
+                      value: 'Greivance Redressal Form',
+                      // enrolmentNo: '',
+                      dc: widget.conn, enrolmentNo: widget.enrolmentNo,
+                    ),
                     DashboardElements(
-                        value: 'Grade Card'
+                      value: 'Examination Form',
+                      // enrolmentNo: '',
+                      dc: widget.conn, enrolmentNo: widget.enrolmentNo,
+                    ),
+                    DashboardElements(
+                      value: 'Grade Card'
 
-                        // enrolmentNo: '',
-                        ,
-                        sd: widget.sd),
+                      // enrolmentNo: '',
+                      ,
+                      dc: widget.conn,
+                      enrolmentNo: widget.enrolmentNo,
+                    ),
                     DashboardElements(
-                        value: 'Migration Form'
-                        // enrolmentNo: '',
-                        ,
-                        sd: widget.sd),
+                      value: 'Migration Form'
+                      // enrolmentNo: '',
+                      ,
+                      dc: widget.conn,
+                      enrolmentNo: widget.enrolmentNo,
+                    ),
                     DashboardElements(
-                        value: 'Change Exam Form'
+                      value: 'Change Exam Form'
 
-                        // enrolmentNo: '',
-                        ,
-                        sd: widget.sd),
+                      // enrolmentNo: '',
+                      ,
+                      dc: widget.conn,
+                      enrolmentNo: widget.enrolmentNo,
+                    ),
                   ],
                 )
               ],

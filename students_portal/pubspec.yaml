@@ -70,6 +70,7 @@ flutter:
     - assets/images/user-icon.png
     - assets/images/user.png
     - assets/images/home.png
+    - assets/images/
     - assets/webpages/
     # - images/a_dot_ham.jpeg
 
