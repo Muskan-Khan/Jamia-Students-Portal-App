@@ -63,7 +63,133 @@ class ExamFormState extends State<ExamForm> {
                     TableRow(children: [
                       Container(
                           padding: EdgeInsets.all(5),
+                          child: Text('DSA ',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.normal))),
+                      Container(
+                          //padding: EdgeInsets.all(5),
+                          child: Checkbox(
+                              value: value,
+                              onChanged: (value) {
+                                setState(() {
+                                  value = value;
+                                });
+                              })),
+                    ]),
+                    TableRow(children: [
+                      Container(
+                          padding: EdgeInsets.all(5),
+                          child: Text('Algorithm ',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.normal))),
+                      Container(
+                          //padding: EdgeInsets.all(5),
+                          child: Checkbox(
+                              value: value,
+                              onChanged: (value) {
+                                setState(() {
+                                  value = value;
+                                });
+                              })),
+                    ]),
+                    TableRow(children: [
+                      Container(
+                          padding: EdgeInsets.all(5),
+                          child: Text('Cloud computing',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.normal))),
+                      Container(
+                          //padding: EdgeInsets.all(5),
+                          child: Checkbox(
+                              value: value,
+                              onChanged: (value) {
+                                setState(() {
+                                  value = value;
+                                });
+                              })),
+                    ]),
+                    TableRow(children: [
+                      Container(
+                          padding: EdgeInsets.all(5),
+                          child: Text('DBMS ',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.normal))),
+                      Container(
+                          //padding: EdgeInsets.all(5),
+                          child: Checkbox(
+                              value: value,
+                              onChanged: (value) {
+                                setState(() {
+                                  value = value;
+                                });
+                              })),
+                    ]),
+                    TableRow(children: [
+                      Container(
+                          padding: EdgeInsets.all(5),
+                          child: Text('CPP ',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.normal))),
+                      Container(
+                          //padding: EdgeInsets.all(5),
+                          child: Checkbox(
+                              value: value,
+                              onChanged: (value) {
+                                setState(() {
+                                  value = value;
+                                });
+                              })),
+                    ]),
+                    TableRow(children: [
+                      Container(
+                          padding: EdgeInsets.all(5),
+                          child: Text('Discrete Maths ',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.normal))),
+                      Container(
+                          //padding: EdgeInsets.all(5),
+                          child: Checkbox(
+                              value: value,
+                              onChanged: (value) {
+                                setState(() {
+                                  value = value;
+                                });
+                              })),
+                    ]),
+                    TableRow(children: [
+                      Container(
+                          padding: EdgeInsets.all(5),
                           child: Text('Java ',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.normal))),
+                      Container(
+                          //padding: EdgeInsets.all(5),
+                          child: Checkbox(
+                              value: value,
+                              onChanged: (value) {
+                                setState(() {
+                                  value = value;
+                                });
+                              })),
+                    ]),
+                    TableRow(children: [
+                      Container(
+                          padding: EdgeInsets.all(5),
+                          child: Text('Programming in C ',
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                   fontSize: 18,

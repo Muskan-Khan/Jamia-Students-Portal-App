@@ -6,30 +6,27 @@ import 'package:students_portal/internal_screens/dashboard_elements.dart';
 import 'package:students_portal/Components/blue_border.dart';
 
 class LoggedInCandidateDashboard extends StatefulWidget {
-  final String enrolmentNo;
-  final String name;
-  const LoggedInCandidateDashboard(
-      {Key? key, required this.enrolmentNo, required this.name})
-      : super(key: key);
+  //final String enrolmentNo;
+  //final String name;
+  const LoggedInCandidateDashboard({Key? key}) : super(key: key);
 
   @override
   State<LoggedInCandidateDashboard> createState() =>
-      _LoggedInCandidateDashboardState(
-          enrolmentNo: this.enrolmentNo, name: this.name);
+      _LoggedInCandidateDashboardState();
 }
 
 class _LoggedInCandidateDashboardState
     extends State<LoggedInCandidateDashboard> {
-  final String name;
-  final String enrolmentNo;
-  _LoggedInCandidateDashboardState(this.enrolmentNo, this.name);
+  //final String name;
+  //final String enrolmentNo;
+  _LoggedInCandidateDashboardState();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
           const CustomHeader(),
-          BlueBanner(studentsName: widget.name),
+          BlueBanner(studentsName: 'ABC'),
           Container(
             color: Colors.white,
             child: Stack(
@@ -41,7 +38,8 @@ class _LoggedInCandidateDashboardState
                       height: 30,
                     ),
                     DashboardElements(
-                        value: 'Student Data', enrolmentNo: widget.enrolmentNo),
+                      value: 'Student Data',
+                    ),
                     DashboardElements(value: 'Greivance Redressal Form'),
                     DashboardElements(value: 'Examination Form'),
                     DashboardElements(value: 'Grade Card'),

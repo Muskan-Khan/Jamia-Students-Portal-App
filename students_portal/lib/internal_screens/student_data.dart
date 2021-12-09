@@ -138,7 +138,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text('',
+                                child: Text('19MCA011',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         fontSize: 18,
@@ -154,7 +154,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text('',
+                                child: Text('XYZ',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         fontSize: 18,
@@ -170,7 +170,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text('',
+                                child: Text('PQR',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         fontSize: 18,
@@ -186,7 +186,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text(' ',
+                                child: Text('2 Nov 1997',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontSize: 18,
@@ -202,7 +202,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text('',
+                                child: Text('Bihar',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontSize: 18,
@@ -218,7 +218,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text('',
+                                child: Text('Indian',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontSize: 18,
@@ -234,7 +234,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text('',
+                                child: Text('Islam',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontSize: 18,
@@ -250,7 +250,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text('',
+                                child: Text('No',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontSize: 18,
@@ -266,7 +266,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text('',
+                                child: Text('Patna, Bihar',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontSize: 18,
@@ -282,7 +282,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text('',
+                                child: Text('Okhla, New Delhi',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontSize: 18,
@@ -298,7 +298,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text('',
+                                child: Text('abc@gmail.com',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontSize: 18,
@@ -314,7 +314,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text('',
+                                child: Text('12345',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontSize: 18,
@@ -330,7 +330,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text('',
+                                child: Text('ABC',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontSize: 18,
