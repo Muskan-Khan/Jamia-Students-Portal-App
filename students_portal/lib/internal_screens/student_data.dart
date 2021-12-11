@@ -4,10 +4,16 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Components/blue_border.dart';
+import 'package:students_portal/Components/students_data.dart';
 
-class StudentData extends StatelessWidget {
-  const StudentData({Key? key}) : super(key: key);
+class StudentDataScreen extends StatelessWidget {
+  final StudentData studentData;
+  final String enrolmentNo;
+  const StudentDataScreen(
+      {Key? key, required this.studentData, required this.enrolmentNo})
+      : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
@@ -16,30 +22,34 @@ class StudentData extends StatelessWidget {
         children: [
           const CustomHeader(),
           Stack(children: [
-            BlueBanner(studentsName: "ABC "),
+            BlueBanner(studentsName: studentData.userStudentName),
             Row(
               children: [
-                InkWell(
-                  onTap: () {},
-                  child: Padding(
-                      padding: EdgeInsets.all(5),
-                      child: Image.asset(
-                        'assets/images/home.png',
-                        height: MediaQuery.of(context).size.height / 30,
-                        width: MediaQuery.of(context).size.width / 10,
-                      )),
+                Material(
+                  child: InkWell(
+                    onTap: () {},
+                    child: Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Image.asset(
+                          'assets/images/home.png',
+                          height: MediaQuery.of(context).size.height / 30,
+                          width: MediaQuery.of(context).size.width / 10,
+                        )),
+                  ),
                 ),
                 Text(
                   '/',
                   style: TextStyle(color: Colors.blue, fontSize: 20),
                 ),
-                InkWell(
-                    onTap: () {},
-                    child: Padding(
-                        padding: EdgeInsets.all(5),
-                        child: Text('View',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20)))),
+                Material(
+                  child: InkWell(
+                      onTap: () {},
+                      child: Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Text('View',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 20)))),
+                ),
                 Container(
                     margin: EdgeInsets.only(left: 170),
                     //padding: EdgeInsets.all(10),
@@ -101,7 +111,7 @@ class StudentData extends StatelessWidget {
                         width: double.infinity,
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey)),
-                        child: Text('STUDENT DATA SHEET',
+                        child: const Text('STUDENT DATA SHEET',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 22,
@@ -114,7 +124,7 @@ class StudentData extends StatelessWidget {
                             children: [
                           TableRow(children: [
                             Container(
-                                padding: EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5),
                                 child: Text('Candidate Name: ',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
@@ -122,7 +132,7 @@ class StudentData extends StatelessWidget {
                                         fontWeight: FontWeight.bold))),
                             Container(
                                 padding: EdgeInsets.all(5),
-                                child: Text('ABC',
+                                child: Text(studentData.userStudentName,
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         fontSize: 18,

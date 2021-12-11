@@ -248,7 +248,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   final userPassword = TextEditingController();
 
   DatabaseConnectivity con = DatabaseConnectivity(
-      "10.0.2.2", 5432, "StudentsPortal", "postgres", "admin");
+      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
   processInput() async {
     await con.connect();
     List<List<dynamic>> allColumns = await con.getAllColumns();
@@ -270,21 +270,24 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       return false;
     }
 
+    print("Calling Validation");
     final x = isValidUser(userEmail, userPassword);
 
     userEmail.clear();
     userPassword.clear();
     // print(x);
-//x true signifies a valid user as it is a future it must be assigned before it can be used
+    // + (con).toString()
+    //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
-      print("Login Successful");
-
+      print("Login Successful! ");
+      await con.connect();
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => LoggedInCandidateDashboard(
             enrolmentNo: enrolmentNo,
             name: studentsName,
+            conn: con,
           ),
         ),
       );
@@ -403,7 +406,7 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
   final userPassword = TextEditingController();
 
   DatabaseConnectivity con = DatabaseConnectivity(
-      "10.0.2.2", 5432, "StudentsPortal", "postgres", "admin");
+      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
   processEnrolmentInput() async {
     await con.connect();
     List<List<dynamic>> allColumns = await con.getAllColumns();
@@ -440,6 +443,7 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
           builder: (context) => LoggedInCandidateDashboard(
             enrolmentNo: enrolmentNo,
             name: studentsName,
+            conn: con,
           ),
         ),
       );

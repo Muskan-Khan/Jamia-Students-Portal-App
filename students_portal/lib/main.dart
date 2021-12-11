@@ -6,21 +6,6 @@ import 'package:students_portal/internal_screens/dashboard.dart';
 import 'internal_screens/student_data.dart';
 import 'package:students_portal/internal_screens/examination_form_screen.dart';
 
-// void main() {
-//   runApp(MaterialApp(
-//     home: Scaffold(
-//         backgroundColor: Colors.grey[200],
-//         body: Center(
-//           child:
-//               // LoggedInCandidateDashboard(enrolment: "Alpha")
-//               // LoginField(),
-//               // RegistrationForm(),
-//               ExamFormScreen(),
-//         )),
-//     debugShowCheckedModeBanner: false,
-//   ));
-// }
-
 void main() {
   runApp(MaterialApp(
     home: Scaffold(
@@ -30,11 +15,26 @@ void main() {
               // LoggedInCandidateDashboard(enrolment: "Alpha")
               // LoginField(),
               // RegistrationForm(),
-              const StudentData(),
+              ExamFormScreen(),
         )),
     debugShowCheckedModeBanner: false,
   ));
 }
+
+// void main() {
+//   runApp(MaterialApp(
+//     home: Scaffold(
+//         backgroundColor: Colors.grey[200],
+//         body: Center(
+//           child:
+//               // LoggedInCandidateDashboard(enrolmentNo: "Alpha", name: "Beta")
+//               LoginField(),
+//           // RegistrationForm(),
+//           // StudentData(),
+//         )),
+//     debugShowCheckedModeBanner: false,
+//   ));
+// }
 
 // import 'package:flutter/material.dart';
 // import 'package:students_portal/internal_screens/login.dart';

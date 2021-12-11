@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Components/blue_border.dart';
@@ -42,169 +43,90 @@ class ExamFormState extends State<ExamForm> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
-                Table(
-                  border: TableBorder.all(
-                      color: Colors.grey, style: BorderStyle.solid),
-                  children: [
-                    TableRow(children: [
-                      Container(
-                          padding: EdgeInsets.all(5),
-                          child: Text('Subject Name: ',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold))),
-                      Container(
-                          padding: EdgeInsets.all(5),
-                          child: Text(' ',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold))),
+                Container(
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.grey)),
+                  margin: EdgeInsets.all(20),
+                  child: DataTable(showBottomBorder: true, columns: [
+                    DataColumn(
+                        label: Text('Subject',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                    DataColumn(label: Text(' '))
+                  ], rows: [
+                    DataRow(cells: [
+                      DataCell(Container(
+                          width: 250, child: Text('Programming in C'))),
+                      DataCell(Container(
+                        width: 80,
+                        child: Container(
+                            child: Checkbox(
+                                value: value,
+                                onChanged: (value) {
+                                  setState(() {
+                                    value = value;
+                                  });
+                                })),
+                      ))
                     ]),
-                    TableRow(children: [
-                      Container(
-                          padding: EdgeInsets.all(5),
-                          child: Text('DSA ',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal))),
-                      Container(
-                          //padding: EdgeInsets.all(5),
-                          child: Checkbox(
-                              value: value,
-                              onChanged: (value) {
-                                setState(() {
-                                  value = value;
-                                });
-                              })),
+                    DataRow(cells: [
+                      DataCell(Container(width: 250, child: Text('DBMS'))),
+                      DataCell(Container(
+                        width: 80,
+                        child: Container(
+                            child: Checkbox(
+                                value: value,
+                                onChanged: (value) {
+                                  setState(() {
+                                    value = value;
+                                  });
+                                })),
+                      ))
                     ]),
-                    TableRow(children: [
-                      Container(
-                          padding: EdgeInsets.all(5),
-                          child: Text('Algorithm ',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal))),
-                      Container(
-                          //padding: EdgeInsets.all(5),
-                          child: Checkbox(
-                              value: value,
-                              onChanged: (value) {
-                                setState(() {
-                                  value = value;
-                                });
-                              })),
+                    DataRow(cells: [
+                      DataCell(
+                          Container(width: 250, child: Text('Algorithms'))),
+                      DataCell(Container(
+                        width: 80,
+                        child: Container(
+                            child: Checkbox(
+                                value: value,
+                                onChanged: (value) {
+                                  setState(() {
+                                    value = value;
+                                  });
+                                })),
+                      ))
                     ]),
-                    TableRow(children: [
-                      Container(
-                          padding: EdgeInsets.all(5),
-                          child: Text('Cloud computing',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal))),
-                      Container(
-                          //padding: EdgeInsets.all(5),
-                          child: Checkbox(
-                              value: value,
-                              onChanged: (value) {
-                                setState(() {
-                                  value = value;
-                                });
-                              })),
+                    DataRow(cells: [
+                      DataCell(Container(width: 250, child: Text('DSA'))),
+                      DataCell(Container(
+                        width: 80,
+                        child: Container(
+                            child: Checkbox(
+                                value: value,
+                                onChanged: (value) {
+                                  setState(() {
+                                    value = value;
+                                  });
+                                })),
+                      ))
                     ]),
-                    TableRow(children: [
-                      Container(
-                          padding: EdgeInsets.all(5),
-                          child: Text('DBMS ',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal))),
-                      Container(
-                          //padding: EdgeInsets.all(5),
-                          child: Checkbox(
-                              value: value,
-                              onChanged: (value) {
-                                setState(() {
-                                  value = value;
-                                });
-                              })),
-                    ]),
-                    TableRow(children: [
-                      Container(
-                          padding: EdgeInsets.all(5),
-                          child: Text('CPP ',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal))),
-                      Container(
-                          //padding: EdgeInsets.all(5),
-                          child: Checkbox(
-                              value: value,
-                              onChanged: (value) {
-                                setState(() {
-                                  value = value;
-                                });
-                              })),
-                    ]),
-                    TableRow(children: [
-                      Container(
-                          padding: EdgeInsets.all(5),
-                          child: Text('Discrete Maths ',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal))),
-                      Container(
-                          //padding: EdgeInsets.all(5),
-                          child: Checkbox(
-                              value: value,
-                              onChanged: (value) {
-                                setState(() {
-                                  value = value;
-                                });
-                              })),
-                    ]),
-                    TableRow(children: [
-                      Container(
-                          padding: EdgeInsets.all(5),
-                          child: Text('Java ',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal))),
-                      Container(
-                          //padding: EdgeInsets.all(5),
-                          child: Checkbox(
-                              value: value,
-                              onChanged: (value) {
-                                setState(() {
-                                  value = value;
-                                });
-                              })),
-                    ]),
-                    TableRow(children: [
-                      Container(
-                          padding: EdgeInsets.all(5),
-                          child: Text('Programming in C ',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal))),
-                      Container(
-                          //padding: EdgeInsets.all(5),
-                          child: Checkbox(
-                              value: value,
-                              onChanged: (value) {
-                                setState(() {
-                                  value = value;
-                                });
-                              })),
-                    ]),
-                  ],
+                    DataRow(cells: [
+                      DataCell(
+                          Container(width: 250, child: Text('Discrete Maths'))),
+                      DataCell(Container(
+                        width: 80,
+                        child: Container(
+                            child: Checkbox(
+                                value: value,
+                                onChanged: (value) {
+                                  setState(() {
+                                    value = value;
+                                  });
+                                })),
+                      ))
+                    ])
+                  ]),
                 )
               ],
             )),
