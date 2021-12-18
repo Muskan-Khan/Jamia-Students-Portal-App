@@ -30,6 +30,9 @@ dependencies:
   flutter:
     sdk: flutter
   postgres: ^2.4.1+2
+  g_captcha: ^1.0.0
+  fluttertoast: ^8.0.8
+  webview_flutter_plus:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -63,6 +66,12 @@ flutter:
     - assets/images/jmilogo.png
     - assets/images/jamialogo.jpg
     - assets/images/studentIcon.png
+    - assets/images/JMIsinglelogo.jpg
+    - assets/images/user-icon.png
+    - assets/images/user.png
+    - assets/images/home.png
+    - assets/images/
+    - assets/webpages/
     # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

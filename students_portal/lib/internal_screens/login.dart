@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:students_portal/Components/blue_border_content.dart';
+import 'package:students_portal/Components/students_data.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Database/db_connections.dart';
-
+import 'registration.dart';
 import 'package:students_portal/Components/blue_border.dart';
-
 import 'dashboard.dart';
 import 'invalid_credentials.dart';
 
@@ -15,7 +16,13 @@ class LoginField extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         const CustomHeader(),
-        const BlueBanner(studentsName: " "),
+        BlueBanner(
+          studentDataHeading: BlueBorderContent(
+            homeIcon: "assets/images/transparent.png",
+            studentIcon: "assets/images/transparent.png",
+            studentName: " ",
+          ),
+        ),
         Stack(
           children: const [LoginFieldHead()],
         )
@@ -254,6 +261,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     await con.connect();
     List<List<dynamic>> allColumns = await con.getAllColumns();
     String studentsName = " ";
+    String enrolmentNo = " ";
     bool isValidUser(
         TextEditingController userEmail, TextEditingController userPassword) {
       for (final row in allColumns) {
@@ -262,6 +270,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
         print(id);
         print(password);
         if (userEmail.text == id && userPassword.text == password) {
+          enrolmentNo = row[0];
           studentsName = row[3];
           return true;
         }
@@ -269,17 +278,25 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       return false;
     }
 
+    print("Calling Validation");
     final x = isValidUser(userEmail, userPassword);
-    // print(x);
-//x true signifies a valid user as it is a future it must be assigned before it can be used
-    if (x) {
-      print("Login Successful");
 
+    userEmail.clear();
+    userPassword.clear();
+    // print(x);
+    // + (con).toString()
+    //x true signifies a valid user as it is a future it must be assigned before it can be used
+    if (x) {
+      print("Login Successful! ");
+      await con.connect();
+      print("Name is: " + studentsName);
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => LoggedInCandidateDashboard(
-            enrolment: studentsName,
+            enrolmentNo: enrolmentNo,
+            name: studentsName,
+            conn: con,
           ),
         ),
       );
@@ -293,10 +310,22 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     // await con.connection.close();
   }
 
+  callRegistration() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RegistrationForm()),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
   }
+
+  // clearFormFields() {
+  //   userEmail.clear();
+  //   userPassword.clear();
+  // }
 
   @override
   void dispose() {
@@ -354,6 +383,15 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                   style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
                   child: const Text("Proceed"),
                 ),
+              ),
+              Center(
+                child: ElevatedButton(
+                  autofocus: true,
+                  clipBehavior: Clip.none,
+                  onPressed: callRegistration,
+                  style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
+                  child: const Text("New Student Registration"),
+                ),
               )
             ],
           ),
@@ -382,6 +420,7 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
     await con.connect();
     List<List<dynamic>> allColumns = await con.getAllColumns();
     String studentsName = " ";
+    String enrolmentNo = " ";
     bool isValidUser(TextEditingController userEnrolment,
         TextEditingController userPassword) {
       for (final row in allColumns) {
@@ -390,6 +429,7 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
         print(id);
         print(password);
         if (userEnrolment.text == id && userPassword.text == password) {
+          enrolmentNo = row[0];
           studentsName = row[3];
           return true;
         }
@@ -398,6 +438,9 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
     }
 
     final x = isValidUser(userEnrolment, userPassword);
+
+    userEnrolment.clear();
+    userPassword.clear();
     // print(x);
 //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
@@ -407,7 +450,9 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
         context,
         MaterialPageRoute(
           builder: (context) => LoggedInCandidateDashboard(
-            enrolment: studentsName,
+            enrolmentNo: enrolmentNo,
+            name: studentsName,
+            conn: con,
           ),
         ),
       );
@@ -419,6 +464,13 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
       );
     }
     // await con.connection.close();
+  }
+
+  callRegistration() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RegistrationForm()),
+    );
   }
 
   @override
@@ -481,6 +533,15 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
                   onPressed: processEnrolmentInput,
                   style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
                   child: const Text("Proceed"),
+                ),
+              ),
+              Center(
+                child: ElevatedButton(
+                  autofocus: true,
+                  clipBehavior: Clip.none,
+                  onPressed: callRegistration,
+                  style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
+                  child: const Text("New Student Registration"),
                 ),
               )
             ],
