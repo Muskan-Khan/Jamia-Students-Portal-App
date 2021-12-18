@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:students_portal/Components/students_data.dart';
+import 'package:students_portal/Components/students_grade.dart';
 import 'package:students_portal/Database/db_connections.dart';
+import 'package:students_portal/internal_screens/grade_card.dart';
 import 'student_data.dart';
+//Unnecessary comment
+//const DashboardElements({Key? key, required this.value}) : super(key: key);
 
 class DashboardElements extends StatefulWidget {
+  final int screenToCall;
   final String value;
   final String enrolmentNo;
   final DatabaseConnectivity dc;
@@ -13,29 +18,60 @@ class DashboardElements extends StatefulWidget {
       {Key? key,
       required this.value,
       required this.dc,
-      required this.enrolmentNo})
+      required this.enrolmentNo,
+      required this.screenToCall})
       : super(key: key);
 
   @override
   _DashboardElementsState createState() => _DashboardElementsState();
 }
 
+// GradeData g = GradeData();
+// List<GradeData> gdr = List<GradeData>.filled(20, g, growable: true);
+StudentData sdreturned = StudentData();
+
 class _DashboardElementsState extends State<DashboardElements> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    getData() async {
-      StudentData sdreturned = StudentData();
+    getGradeData() async {
       await widget.dc.connect();
       await widget.dc.getStudentsData(sdreturned, widget.enrolmentNo);
-      print("Just Called, Get Students Data: " + sdreturned.userStudentName);
+      List<GradeData> gd = await widget.dc.getGradeData(widget.enrolmentNo);
+      return gd;
+    }
 
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => StudentDataScreen(
-                    studentData: sdreturned,
-                    enrolmentNo: widget.enrolmentNo,
-                  )));
+    getData() async {
+      await widget.dc.connect();
+      await widget.dc.getStudentsData(sdreturned, widget.enrolmentNo);
+      // print("Just Called, Get Students Data: " + sdreturned.userStudentName);
+    }
+
+    functionSelector() async {
+      if (widget.screenToCall == 1) {
+        await getData();
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => StudentDataScreen(
+                      studentData: sdreturned,
+                      enrolmentNo: widget.enrolmentNo,
+                    )));
+      } else if (widget.screenToCall == 4) {
+        List<GradeData> gds = await getGradeData();
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => GradeCard(
+                      enrolmentNo: widget.enrolmentNo,
+                      name: sdreturned.userStudentName,
+                      gdreturned: gds,
+                    )));
+      }
     }
 
     return Center(
@@ -57,7 +93,7 @@ class _DashboardElementsState extends State<DashboardElements> {
               width: 200,
               height: 200,
               child: InkWell(
-                onTap: getData,
+                onTap: functionSelector,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
@@ -68,13 +104,11 @@ class _DashboardElementsState extends State<DashboardElements> {
                           radius: 90,
                           child: Column(children: [
                             Container(
+                              child:
+                                  Image.asset("assets/images/studentIcon.png"),
                               padding: const EdgeInsets.only(top: 10),
                               height: 100,
                               width: 100,
-                              child: const CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                    "https://cdn2.iconfinder.com/data/icons/user-23/512/User_Generic_1.png"),
-                              ),
                             ),
                             Container(
                               padding: const EdgeInsets.only(top: 10),

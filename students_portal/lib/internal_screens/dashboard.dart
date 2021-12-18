@@ -11,7 +11,7 @@ class LoggedInCandidateDashboard extends StatefulWidget {
   final String enrolmentNo;
   final String name;
   final DatabaseConnectivity conn;
-  LoggedInCandidateDashboard({
+  const LoggedInCandidateDashboard({
     Key? key,
     required this.enrolmentNo,
     required this.name,
@@ -59,16 +59,19 @@ class _LoggedInCandidateDashboardState
                       value: 'Student Data',
                       dc: widget.conn,
                       enrolmentNo: widget.enrolmentNo,
+                      screenToCall: 1,
                     ),
                     DashboardElements(
                       value: 'Greivance Redressal Form',
                       // enrolmentNo: '',
                       dc: widget.conn, enrolmentNo: widget.enrolmentNo,
+                      screenToCall: 2,
                     ),
                     DashboardElements(
                       value: 'Examination Form',
                       // enrolmentNo: '',
                       dc: widget.conn, enrolmentNo: widget.enrolmentNo,
+                      screenToCall: 3,
                     ),
                     DashboardElements(
                       value: 'Grade Card'
@@ -77,6 +80,7 @@ class _LoggedInCandidateDashboardState
                       ,
                       dc: widget.conn,
                       enrolmentNo: widget.enrolmentNo,
+                      screenToCall: 4,
                     ),
                     DashboardElements(
                       value: 'Migration Form'
@@ -84,6 +88,7 @@ class _LoggedInCandidateDashboardState
                       ,
                       dc: widget.conn,
                       enrolmentNo: widget.enrolmentNo,
+                      screenToCall: 5,
                     ),
                     DashboardElements(
                       value: 'Change Exam Form'
@@ -92,6 +97,7 @@ class _LoggedInCandidateDashboardState
                       ,
                       dc: widget.conn,
                       enrolmentNo: widget.enrolmentNo,
+                      screenToCall: 6,
                     ),
                   ],
                 )
