@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 import 'package:students_portal/Components/students_data.dart';
 import 'package:students_portal/Components/students_data.dart';
+import 'package:students_portal/Components/students_grade.dart';
 
 class DatabaseConnectivity {
   late String hostname;
@@ -24,22 +25,48 @@ class DatabaseConnectivity {
     database = userDatabase;
     username = userUsername;
     password = userPassword;
-    // print("Connection Object Created");
   }
 
   Future connect() async {
-    // print("Called Connect");
     try {
       connection = PostgreSQLConnection(hostname, port, database,
           username: username, password: password);
       await connection.open();
-      // print("Connection Created");
     } catch (error) {
-      print(error);
+      //Trial
+      AlertDialog(
+        title: Text(error.toString()),
+      );
     }
-    // List<Map<String, Map<String, dynamic>>> results =
-    //     await connection.mappedResultsQuery("SELECT name FROM test");
-    // await connection.close();
+  }
+
+  getGradeData(String enrolmentNo) async {
+    // print("Called get Grade Data");
+    List<List<dynamic>> results = await connection.query(
+        'SELECT enrolment_no,semester,session,exam_type,honours,cardurl FROM gradecard where enrolment_no = @enNo',
+        substitutionValues: {"enNo": enrolmentNo});
+    // print("Called get Grade Data Select statement");
+    int i = 0;
+
+    GradeData f = GradeData();
+    List<GradeData> gds =
+        List<GradeData>.filled(results.length, f, growable: true);
+    for (final row in results) {
+      GradeData g = GradeData();
+      g.userEnrolment = row[0];
+      g.semester = row[1];
+      g.session = row[2];
+      g.examType = row[3];
+      g.honours = row[4];
+      g.cardURL = row[5];
+      // print("In for loop of Grade Data Select statement: " + g.semester);
+      gds[i] = g;
+      i++;
+    }
+    // for (final r in gds) {
+    //   print(r.semester);
+    // }
+    return gds;
   }
 
   getAllColumns() {
@@ -52,15 +79,9 @@ class DatabaseConnectivity {
   }
 
   getStudentsData(StudentData sd, String enrolmentNo) async {
-    print("Called Get Students Data");
-
-// where enrolment_no = @enrNo
-
-    // PostgreSQLResult
     List<List<dynamic>> results = await connection.query(
         'SELECT enrolment_no,btrim(email),btrim(name),btrim(password),btrim(father_name),btrim(mother_name),btrim(dob),btrim(present_address),btrim(permanent_address),btrim(gender),btrim(blood_group),btrim(identification_mark),btrim(social_category),btrim(nationality),btrim(religion),btrim(date_year_of_admission),btrim(state_of_domicile),btrim(hosteller) FROM student where enrolment_no = @enNo',
         substitutionValues: {"enNo": enrolmentNo});
-    print("Call Successfully Initiated");
     for (final row in results) {
       sd.userEnrolment = row[0];
       sd.userEmail = row[1];
@@ -82,10 +103,10 @@ class DatabaseConnectivity {
       sd.userAHostler = row[17];
       // if (row[0] == enrolmentNo) break;
     }
-    print(sd);
-    print(sd.userEmail);
-    print(sd.userStudentName);
-    print("Call Successfully Ended");
+    // print(sd);
+    // print(sd.userEmail);
+    // print(sd.userStudentName);
+    // print("Call Successfully Ended");
     // return sd;
   }
 

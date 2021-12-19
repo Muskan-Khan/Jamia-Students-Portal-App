@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   postgres: ^2.4.1+2
-  g_captcha: ^1.0.0
+  # g_captcha: ^1.0.0
   fluttertoast: ^8.0.8
   webview_flutter_plus:
 
@@ -38,6 +38,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  # dio: any
+  # path_provider: any
+  # file_utils: any
+  # permission_handler: any
 
 dev_dependencies:
   flutter_test:
