@@ -1,24 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:students_portal/Database/db_connections.dart';
 import 'package:students_portal/internal_screens/dashboard.dart';
-import 'package:students_portal/internal_screens/header.dart';
-import 'package:students_portal/internal_screens/login.dart';
-import 'internal_screens/registration.dart';
+//import 'package:students_portal/internal_screens/header.dart';
+// import 'package:students_portal/internal_screens/login.dart';
+// import 'internal_screens/registration.dart';
+import 'internal_screens/login.dart';
 import 'internal_screens/student_data.dart';
+import 'package:students_portal/internal_screens/examination_form_screen.dart';
 
+DatabaseConnectivity dcs = DatabaseConnectivity(
+    "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
 void main() {
   runApp(MaterialApp(
     home: Scaffold(
         backgroundColor: Colors.grey[200],
-        body: const Center(
+        body: Center(
           child:
-              // LoggedInCandidateDashboard(enrolmentNo: "Alpha", name: "Beta")
-              LoginField(),
-          // RegistrationForm(),
-          // StudentData(),
+              // LoggedInCandidateDashboard(enrolment: "Alpha")
+              // LoginField(),
+              // RegistrationForm(),
+              ExamFormScreen(
+            course: '',
+            dc: dcs,
+            enrolmentNo: '',
+          ),
         )),
     debugShowCheckedModeBanner: false,
   ));
 }
+
+// void main() {
+//   runApp(MaterialApp(
+//     home: Scaffold(
+//         backgroundColor: Colors.grey[200],
+//         body: Center(
+//           child:
+//               // LoggedInCandidateDashboard(enrolmentNo: "Alpha", name: "Beta")
+//               LoginField(),
+//           // RegistrationForm(),
+//           // StudentData(),
+//         )),
+//     debugShowCheckedModeBanner: false,
+//   ));
+// }
 
 // import 'package:flutter/material.dart';
 // import 'package:students_portal/internal_screens/login.dart';
