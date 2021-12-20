@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:students_portal/Components/blue_border_content.dart';
+import 'package:students_portal/Components/students_data.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Database/db_connections.dart';
 import 'registration.dart';
@@ -14,7 +16,13 @@ class LoginField extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         const CustomHeader(),
-        const BlueBanner(studentsName: " "),
+        BlueBanner(
+          studentDataHeading: BlueBorderContent(
+            homeIcon: "assets/images/transparent.png",
+            studentIcon: "assets/images/transparent.png",
+            studentName: " ",
+          ),
+        ),
         Stack(
           children: const [LoginFieldHead()],
         )
@@ -248,7 +256,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   final userPassword = TextEditingController();
 
   DatabaseConnectivity con = DatabaseConnectivity(
-      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+      "10.0.2.2", 5432, "StudentsPortal", "postgres", "admin");
   processInput() async {
     await con.connect();
     List<List<dynamic>> allColumns = await con.getAllColumns();
@@ -281,6 +289,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     if (x) {
       print("Login Successful! ");
       await con.connect();
+      print("Name is: " + studentsName);
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -406,7 +415,7 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
   final userPassword = TextEditingController();
 
   DatabaseConnectivity con = DatabaseConnectivity(
-      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+      "10.0.2.2", 5432, "StudentsPortal", "postgres", "admin");
   processEnrolmentInput() async {
     await con.connect();
     List<List<dynamic>> allColumns = await con.getAllColumns();

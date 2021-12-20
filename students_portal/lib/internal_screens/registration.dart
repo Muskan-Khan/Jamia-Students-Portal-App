@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:students_portal/Components/blue_border_content.dart';
 import 'package:students_portal/Database/db_connections.dart';
 import 'header.dart';
 import 'package:students_portal/Components/blue_border.dart';
@@ -77,7 +78,13 @@ class RegistrationForm extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const CustomHeader(),
-                const BlueBanner(studentsName: " "),
+                BlueBanner(
+                  studentDataHeading: BlueBorderContent(
+                    homeIcon: 'assets/images/transparent.png',
+                    studentIcon: 'assets/images/transparent.png',
+                    studentName: " ",
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(

@@ -26,4 +26,6 @@ class StudentData {
   late String userDateYearOfAdmission = TextEditingController().text;
   late String userStateOfDomicile = TextEditingController().text;
   late String userAHostler = TextEditingController().text;
+
+  getStudentsData(StudentData sd) {}
 }

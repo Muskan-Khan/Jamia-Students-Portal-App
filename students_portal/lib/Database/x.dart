@@ -29,3 +29,28 @@
 
 // ALTER TABLE public.student
 //     OWNER to postgres;
+
+
+
+// ______________________________________________________________________________________
+
+// Grade Card
+
+// -- Table: public.student
+
+// -- DROP TABLE public.student;
+
+// CREATE TABLE IF NOT EXISTS public.student
+// (
+//     enrolment_no character varying(8) COLLATE pg_catalog."default" NOT NULL,
+//     semester character varying(10) COLLATE pg_catalog."default" NOT NULL,
+//     session character varying(10) COLLATE pg_catalog."default" NOT NULL,
+//     exam_type character varying(30) COLLATE pg_catalog."default" NOT NULL,
+//     honours character varying(30) COLLATE pg_catalog."default" NOT NULL,
+//     CONSTRAINT "Student_pkey" PRIMARY KEY (enrolment_no)
+// )
+
+// TABLESPACE pg_default;
+
+// ALTER TABLE public.student
+//     OWNER to postgres;

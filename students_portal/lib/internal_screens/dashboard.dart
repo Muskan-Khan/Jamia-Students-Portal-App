@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_this
 
 import 'package:flutter/material.dart';
+import 'package:students_portal/Components/blue_border_content.dart';
 import 'package:students_portal/Database/db_connections.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/internal_screens/dashboard_elements.dart';
@@ -10,7 +11,7 @@ class LoggedInCandidateDashboard extends StatefulWidget {
   final String enrolmentNo;
   final String name;
   final DatabaseConnectivity conn;
-  LoggedInCandidateDashboard({
+  const LoggedInCandidateDashboard({
     Key? key,
     required this.enrolmentNo,
     required this.name,
@@ -37,7 +38,13 @@ class _LoggedInCandidateDashboardState
       child: Column(
         children: [
           const CustomHeader(),
-          BlueBanner(studentsName: 'ABC'),
+          BlueBanner(
+            studentDataHeading: BlueBorderContent(
+              homeIcon: 'assets/images/home.png',
+              studentIcon: 'assets/images/user.png',
+              studentName: widget.name,
+            ),
+          ),
           Container(
             color: Colors.white,
             child: Stack(
@@ -52,16 +59,19 @@ class _LoggedInCandidateDashboardState
                       value: 'Student Data',
                       dc: widget.conn,
                       enrolmentNo: widget.enrolmentNo,
+                      screenToCall: 1,
                     ),
                     DashboardElements(
                       value: 'Greivance Redressal Form',
                       // enrolmentNo: '',
                       dc: widget.conn, enrolmentNo: widget.enrolmentNo,
+                      screenToCall: 2,
                     ),
                     DashboardElements(
                       value: 'Examination Form',
                       // enrolmentNo: '',
                       dc: widget.conn, enrolmentNo: widget.enrolmentNo,
+                      screenToCall: 3,
                     ),
                     DashboardElements(
                       value: 'Grade Card'
@@ -70,6 +80,7 @@ class _LoggedInCandidateDashboardState
                       ,
                       dc: widget.conn,
                       enrolmentNo: widget.enrolmentNo,
+                      screenToCall: 4,
                     ),
                     DashboardElements(
                       value: 'Migration Form'
@@ -77,6 +88,7 @@ class _LoggedInCandidateDashboardState
                       ,
                       dc: widget.conn,
                       enrolmentNo: widget.enrolmentNo,
+                      screenToCall: 5,
                     ),
                     DashboardElements(
                       value: 'Change Exam Form'
@@ -85,6 +97,7 @@ class _LoggedInCandidateDashboardState
                       ,
                       dc: widget.conn,
                       enrolmentNo: widget.enrolmentNo,
+                      screenToCall: 6,
                     ),
                   ],
                 )
