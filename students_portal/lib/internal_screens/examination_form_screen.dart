@@ -2,11 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
+import 'package:students_portal/Database/db_connections.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Components/blue_border.dart';
 import 'package:students_portal/internal_screens/examination_form.dart';
 
 class ExamFormScreen extends StatelessWidget {
+  final String enrolmentNo;
+  final String course;
+  final DatabaseConnectivity dc;
+  const ExamFormScreen({
+    Key? key,
+    required this.enrolmentNo,
+    required this.dc,
+    required this.course,
+  }) : super(key: key);
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
