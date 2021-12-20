@@ -301,10 +301,26 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
         ),
       );
     } else {
-      print("Invalid Credentials");
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const InvalidCredentials()),
+        MaterialPageRoute(
+            builder: (context) => Scaffold(
+                  body: AlertDialog(
+                    title: const Text('Invalid Credentials'),
+                    content: const Text(
+                        'You seem to have enered wrong username and password combination!'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Cancel'),
+                        child: const Text('Retry'),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Exit'),
+                        child: const Text('Exit'),
+                      ),
+                    ],
+                  ),
+                )),
       );
     }
     // await con.connection.close();
@@ -457,10 +473,26 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
         ),
       );
     } else {
-      print("Invalid Credentials");
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const InvalidCredentials()),
+        MaterialPageRoute(
+            builder: (context) => Scaffold(
+                  body: AlertDialog(
+                    title: const Text('Invalid Credentials'),
+                    content: const Text(
+                        'You seem to have enered wrong username and password combination!'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Cancel'),
+                        child: const Text('Retry'),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Exit'),
+                        child: const Text('Exit'),
+                      ),
+                    ],
+                  ),
+                )),
       );
     }
     // await con.connection.close();

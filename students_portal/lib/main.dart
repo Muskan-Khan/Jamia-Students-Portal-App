@@ -14,16 +14,16 @@ void main() {
   runApp(MaterialApp(
     home: Scaffold(
         backgroundColor: Colors.grey[200],
-        body: Center(
+        body: const Center(
           child:
               // LoggedInCandidateDashboard(enrolment: "Alpha")
-              // LoginField(),
-              // RegistrationForm(),
-              ExamFormScreen(
-            course: '',
-            dc: dcs,
-            enrolmentNo: '',
-          ),
+              LoginField(),
+          // RegistrationForm(),
+          //     ExamFormScreen(
+          //   course: '',
+          //   dc: dcs,
+          //   enrolmentNo: '',
+          // ),
         )),
     debugShowCheckedModeBanner: false,
   ));
