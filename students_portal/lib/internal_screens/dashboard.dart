@@ -62,13 +62,13 @@ class _LoggedInCandidateDashboardState
                       screenToCall: 1,
                     ),
                     DashboardElements(
-                      value: 'Greivance Redressal Form',
+                      value: 'Examination Form',
                       // enrolmentNo: '',
                       dc: widget.conn, enrolmentNo: widget.enrolmentNo,
                       screenToCall: 2,
                     ),
                     DashboardElements(
-                      value: 'Examination Form',
+                      value: 'Grievance Form',
                       // enrolmentNo: '',
                       dc: widget.conn, enrolmentNo: widget.enrolmentNo,
                       screenToCall: 3,

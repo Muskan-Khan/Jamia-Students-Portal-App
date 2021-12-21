@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
+import 'package:students_portal/Components/blue_border_content.dart';
 import 'package:students_portal/Database/db_connections.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Components/blue_border.dart';
@@ -9,15 +10,17 @@ import 'package:students_portal/internal_screens/examination_form.dart';
 
 class ExamFormScreen extends StatelessWidget {
   final String enrolmentNo;
+  final String name;
   final String course;
-  final DatabaseConnectivity dc;
+  //final DatabaseConnectivity dc;
   const ExamFormScreen({
     Key? key,
     required this.enrolmentNo,
-    required this.dc,
+    required this.name,
     required this.course,
   }) : super(key: key);
   Widget build(BuildContext context) {
+    var studentData;
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -26,7 +29,13 @@ class ExamFormScreen extends StatelessWidget {
           const CustomHeader(),
           Stack(
             children: [
-              BlueBanner(studentsName: "ABC "),
+              BlueBanner(
+                studentDataHeading: BlueBorderContent(
+                  homeIcon: 'assets/images/home.png',
+                  studentIcon: 'assets/images/user.png',
+                  studentName: "studentData.userStudentName",
+                ),
+              ),
               Row(
                 children: [
                   InkWell(
@@ -63,7 +72,11 @@ class ExamFormScreen extends StatelessWidget {
               ),
             ],
           ),
-          Padding(padding: EdgeInsets.all(10), child: Selection()),
+          Padding(
+              padding: EdgeInsets.all(10),
+              child: Selection(
+                course: course,
+              )),
           ExamForm(),
         ],
       ),
@@ -72,15 +85,17 @@ class ExamFormScreen extends StatelessWidget {
 }
 
 class Selection extends StatefulWidget {
+  String course = "";
+  Selection({
+    Key? key,
+    required this.course,
+  }) : super(key: key);
   _SelectionState createState() => _SelectionState();
 }
 
 class _SelectionState extends State<Selection> {
   String dropDownValue = 'Select';
-  var itemsList1 = [
-    'Select',
-    'MCA 6-Sem',
-  ];
+  var courseList = [widget.course];
   Widget build(BuildContext context) {
     return Container(
       child: Column(

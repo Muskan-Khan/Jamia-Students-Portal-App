@@ -74,97 +74,6 @@ class StudentDataScreen extends StatelessWidget {
                   ),
                   color: Colors.grey[600],
                 ),
-<<<<<<< HEAD
-                color: Colors.grey[600],
-              ),
-              Container(
-                margin: EdgeInsets.all(30),
-                color: Colors.white,
-                //decoration: BoxDecoration(
-                //border: Border.all(color: //Colors.pink),
-                //),
-                child: Column(
-                  children: [
-                    Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black)),
-                        child: Text('Jamia Millia Islamia',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                            ))),
-                    Container(
-                        padding: EdgeInsets.all(5),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey)),
-                        child: Image.asset('assets/images/JMIsinglelogo.jpg',
-                            width: 100, height: 100)),
-                    Container(
-                        padding: EdgeInsets.all(10),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey)),
-                        child: const Text('STUDENT DATA SHEET',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ))),
-                    Container(
-                        child: Table(
-                            border: TableBorder.all(
-                                color: Colors.grey, style: BorderStyle.solid),
-                            children: [
-                          TableRow(children: [
-                            Container(
-                                padding: const EdgeInsets.all(5),
-                                child: Text('Candidate Name: ',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text(studentData.userStudentName,
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold))),
-                          ]),
-                          TableRow(children: [
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Enrolment No: ',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('19MCA011',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.normal)))
-                          ]),
-                          TableRow(children: [
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text("Father's Name: ",
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('XYZ',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-=======
                 Container(
                   margin: const EdgeInsets.all(30),
                   color: Colors.white,
@@ -236,7 +145,6 @@ class StudentDataScreen extends StatelessWidget {
                                   child: Text(studentData.userEnrolment,
                                       textAlign: TextAlign.left,
                                       style: const TextStyle(
->>>>>>> main
                                         fontSize: 18,
                                       )))
                             ]),
@@ -254,14 +162,6 @@ class StudentDataScreen extends StatelessWidget {
                                       textAlign: TextAlign.left,
                                       style: const TextStyle(
                                         fontSize: 18,
-<<<<<<< HEAD
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('PQR',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-=======
                                       ))),
                             ]),
                             TableRow(children: [
@@ -277,7 +177,6 @@ class StudentDataScreen extends StatelessWidget {
                                   child: Text(studentData.userMotherName,
                                       textAlign: TextAlign.left,
                                       style: const TextStyle(
->>>>>>> main
                                         fontSize: 18,
                                       ))),
                             ]),
@@ -295,163 +194,6 @@ class StudentDataScreen extends StatelessWidget {
                                       textAlign: TextAlign.left,
                                       style: const TextStyle(
                                         fontSize: 18,
-<<<<<<< HEAD
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('2 Nov 1997',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ))),
-                          ]),
-                          TableRow(children: [
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('State of Domicile: ',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Bihar',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ))),
-                          ]),
-                          TableRow(children: [
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Nationality: ',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Indian',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ))),
-                          ]),
-                          TableRow(children: [
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Religion: ',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Islam',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ))),
-                          ]),
-                          TableRow(children: [
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Whether Staying in Hostel:: ',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('No',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ))),
-                          ]),
-                          TableRow(children: [
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Present Address: ',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Patna, Bihar',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ))),
-                          ]),
-                          TableRow(children: [
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Permanent Address : ',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Okhla, New Delhi',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ))),
-                          ]),
-                          TableRow(children: [
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Email: ',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('abc@gmail.com',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ))),
-                          ]),
-                          TableRow(children: [
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Mobile No: ',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('12345',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ))),
-                          ]),
-                          TableRow(children: [
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('Signature: ',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold))),
-                            Container(
-                                padding: EdgeInsets.all(5),
-                                child: Text('ABC',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ))),
-                          ])
-                        ])),
-                  ],
-=======
                                       ))),
                             ]),
                             TableRow(children: [
@@ -602,7 +344,6 @@ class StudentDataScreen extends StatelessWidget {
                           ])),
                     ],
                   ),
->>>>>>> main
                 ),
               ],
             ),
