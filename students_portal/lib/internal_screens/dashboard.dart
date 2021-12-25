@@ -18,20 +18,13 @@ class LoggedInCandidateDashboard extends StatefulWidget {
     required this.conn,
   }) : super(key: key);
 
-  // get connection => null;
-
   @override
   State<LoggedInCandidateDashboard> createState() =>
-      _LoggedInCandidateDashboardState(
-          // enrolmentNo: this.enrolmentNo, name: this.name
-          );
+      _LoggedInCandidateDashboardState();
 }
 
 class _LoggedInCandidateDashboardState
     extends State<LoggedInCandidateDashboard> {
-  // final String name;
-  // final String enrolmentNo;
-  // _LoggedInCandidateDashboardState(this.enrolmentNo, this.name);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -63,38 +56,30 @@ class _LoggedInCandidateDashboardState
                     ),
                     DashboardElements(
                       value: 'Greivance Redressal Form',
-                      // enrolmentNo: '',
-                      dc: widget.conn, enrolmentNo: widget.enrolmentNo,
+                      dc: widget.conn,
+                      enrolmentNo: widget.enrolmentNo,
                       screenToCall: 2,
                     ),
                     DashboardElements(
                       value: 'Examination Form',
-                      // enrolmentNo: '',
-                      dc: widget.conn, enrolmentNo: widget.enrolmentNo,
+                      dc: widget.conn,
+                      enrolmentNo: widget.enrolmentNo,
                       screenToCall: 3,
                     ),
                     DashboardElements(
-                      value: 'Grade Card'
-
-                      // enrolmentNo: '',
-                      ,
+                      value: 'Grade Card',
                       dc: widget.conn,
                       enrolmentNo: widget.enrolmentNo,
                       screenToCall: 4,
                     ),
                     DashboardElements(
-                      value: 'Migration Form'
-                      // enrolmentNo: '',
-                      ,
+                      value: 'Migration Form',
                       dc: widget.conn,
                       enrolmentNo: widget.enrolmentNo,
                       screenToCall: 5,
                     ),
                     DashboardElements(
-                      value: 'Change Exam Form'
-
-                      // enrolmentNo: '',
-                      ,
+                      value: 'Change Exam Form',
                       dc: widget.conn,
                       enrolmentNo: widget.enrolmentNo,
                       screenToCall: 6,

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:students_portal/Components/blue_border_content.dart';
-import 'package:students_portal/Components/students_data.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Database/db_connections.dart';
 import 'registration.dart';
 import 'package:students_portal/Components/blue_border.dart';
 import 'dashboard.dart';
-import 'invalid_credentials.dart';
 
 class LoginField extends StatelessWidget {
   const LoginField({Key? key}) : super(key: key);
@@ -16,7 +14,7 @@ class LoginField extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         const CustomHeader(),
-        BlueBanner(
+        const BlueBanner(
           studentDataHeading: BlueBorderContent(
             homeIcon: "assets/images/transparent.png",
             studentIcon: "assets/images/transparent.png",
@@ -267,8 +265,8 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       for (final row in allColumns) {
         String id = row[1];
         String password = row[2];
-        print(id);
-        print(password);
+        //print(id);
+        //print(password);
         if (userEmail.text == id && userPassword.text == password) {
           enrolmentNo = row[0];
           studentsName = row[3];
@@ -278,18 +276,18 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       return false;
     }
 
-    print("Calling Validation");
+    //print("Calling Validation");
     final x = isValidUser(userEmail, userPassword);
 
     userEmail.clear();
     userPassword.clear();
-    // print(x);
+    // //print(x);
     // + (con).toString()
     //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
-      print("Login Successful! ");
+      //print("Login Successful! ");
       await con.connect();
-      print("Name is: " + studentsName);
+      //print("Name is: " + studentsName);
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -442,8 +440,8 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
       for (final row in allColumns) {
         String id = row[0];
         String password = row[2];
-        print(id);
-        print(password);
+        //print(id);
+        //print(password);
         if (userEnrolment.text == id && userPassword.text == password) {
           enrolmentNo = row[0];
           studentsName = row[3];
@@ -457,10 +455,10 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
 
     userEnrolment.clear();
     userPassword.clear();
-    // print(x);
+    // //print(x);
 //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
-      print("Login Successful");
+      //print("Login Successful");
 
       Navigator.push(
         context,

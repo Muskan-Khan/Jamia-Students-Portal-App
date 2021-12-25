@@ -6,7 +6,7 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Text("Welcome",style: TextStyle(fontSize: 20),),
       ),

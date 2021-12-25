@@ -5,15 +5,12 @@ import 'package:students_portal/Components/students_grade.dart';
 import 'package:students_portal/Database/db_connections.dart';
 import 'package:students_portal/internal_screens/grade_card.dart';
 import 'student_data.dart';
-//Unnecessary comment
-//const DashboardElements({Key? key, required this.value}) : super(key: key);
 
 class DashboardElements extends StatefulWidget {
   final int screenToCall;
   final String value;
   final String enrolmentNo;
   final DatabaseConnectivity dc;
-  //const DashboardElements({Key? key, required this.value}) : super(key: key);
   const DashboardElements(
       {Key? key,
       required this.value,
@@ -25,9 +22,6 @@ class DashboardElements extends StatefulWidget {
   @override
   _DashboardElementsState createState() => _DashboardElementsState();
 }
-
-// GradeData g = GradeData();
-// List<GradeData> gdr = List<GradeData>.filled(20, g, growable: true);
 StudentData sdreturned = StudentData();
 
 class _DashboardElementsState extends State<DashboardElements> {
@@ -48,7 +42,6 @@ class _DashboardElementsState extends State<DashboardElements> {
     getData() async {
       await widget.dc.connect();
       await widget.dc.getStudentsData(sdreturned, widget.enrolmentNo);
-      // print("Just Called, Get Students Data: " + sdreturned.userStudentName);
     }
 
     functionSelector() async {

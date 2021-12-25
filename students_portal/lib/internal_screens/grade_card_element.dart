@@ -1,10 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:students_portal/Components/students_data.dart';
-import 'package:students_portal/Components/students_grade.dart';
-import 'package:students_portal/Database/db_connections.dart';
-import 'down.dart';
-import 'student_data.dart';
 
 class GradeCardElement extends StatefulWidget {
   final String enrolmentNo;

@@ -65,7 +65,7 @@ class RegistrationForm extends StatelessWidget {
         "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
     await con.connect();
     await con.insertUserData(sd);
-    print("Hello");
+    //print("Hello");
   }
 
   @override
@@ -78,7 +78,7 @@ class RegistrationForm extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const CustomHeader(),
-                BlueBanner(
+                const BlueBanner(
                   studentDataHeading: BlueBorderContent(
                     homeIcon: 'assets/images/transparent.png',
                     studentIcon: 'assets/images/transparent.png',

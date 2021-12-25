@@ -20,17 +20,6 @@ class BlueBanner extends StatelessWidget {
           studentIcon: studentDataHeading.studentIcon,
           studentName: studentDataHeading.studentName,
         )
-        // Align(
-        //   alignment: Alignment.center,
-        //   child: Text(
-        //     studentsName,
-        //     style: TextStyle(
-        //       color: Colors.amber[400],
-        //       fontSize: 23,
-        //       decoration: TextDecoration.none,
-        //     ),
-        //   ),
-        // )
         );
   }
 }
