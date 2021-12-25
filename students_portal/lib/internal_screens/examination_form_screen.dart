@@ -21,64 +21,66 @@ class ExamFormScreen extends StatelessWidget {
   }) : super(key: key);
   Widget build(BuildContext context) {
     var studentData;
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const CustomHeader(),
-          Stack(
-            children: [
-              BlueBanner(
-                studentDataHeading: BlueBorderContent(
-                  homeIcon: 'assets/images/home.png',
-                  studentIcon: 'assets/images/user.png',
-                  studentName: "studentData.userStudentName",
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const CustomHeader(),
+            Stack(
+              children: [
+                BlueBanner(
+                  studentDataHeading: BlueBorderContent(
+                    homeIcon: 'assets/images/home.png',
+                    studentIcon: 'assets/images/user.png',
+                    studentName: "studentData.userStudentName",
+                  ),
                 ),
-              ),
-              Row(
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Padding(
-                        padding: EdgeInsets.all(5),
-                        child: Image.asset(
-                          'assets/images/home.png',
-                          height: MediaQuery.of(context).size.height / 30,
-                          width: MediaQuery.of(context).size.width / 10,
-                        )),
-                  ),
-                  Text(
-                    '/',
-                    style: TextStyle(color: Colors.blue, fontSize: 20),
-                  ),
-                  InkWell(
+                Row(
+                  children: [
+                    InkWell(
                       onTap: () {},
                       child: Padding(
                           padding: EdgeInsets.all(5),
-                          child: Text('View',
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 20)))),
-                  Container(
-                      margin: EdgeInsets.only(left: 170),
-                      //padding: EdgeInsets.all(10),
+                          child: Image.asset(
+                            'assets/images/home.png',
+                            height: MediaQuery.of(context).size.height / 30,
+                            width: MediaQuery.of(context).size.width / 10,
+                          )),
+                    ),
+                    Text(
+                      '/',
+                      style: TextStyle(color: Colors.blue, fontSize: 20),
+                    ),
+                    InkWell(
+                        onTap: () {},
+                        child: Padding(
+                            padding: EdgeInsets.all(5),
+                            child: Text('View',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20)))),
+                    Container(
+                        margin: EdgeInsets.only(left: 170),
+                        //padding: EdgeInsets.all(10),
 
-                      child: Image.asset(
-                        'assets/images/user.png',
-                        height: MediaQuery.of(context).size.height / 40,
-                        width: MediaQuery.of(context).size.width / 10,
-                      ))
-                ],
-              ),
-            ],
-          ),
-          Padding(
-              padding: EdgeInsets.all(10),
-              child: Selection(
-                course: course,
-              )),
-          ExamForm(),
-        ],
+                        child: Image.asset(
+                          'assets/images/user.png',
+                          height: MediaQuery.of(context).size.height / 40,
+                          width: MediaQuery.of(context).size.width / 10,
+                        ))
+                  ],
+                ),
+              ],
+            ),
+            Padding(
+                padding: EdgeInsets.all(10),
+                child: Selection(
+                  course: course,
+                )),
+            ExamForm(),
+          ],
+        ),
       ),
     );
   }
@@ -95,8 +97,10 @@ class Selection extends StatefulWidget {
 
 class _SelectionState extends State<Selection> {
   String dropDownValue = 'Select';
-  var courseList = [widget.course];
+
   Widget build(BuildContext context) {
+    var semList = ['Sem 1', 'Sem 3', 'Sem 5'];
+    var flag = false;
     return Container(
       child: Column(
         children: [
@@ -134,40 +138,25 @@ class _SelectionState extends State<Selection> {
                     )),
               ),
               Container(
-                  width: double.infinity,
-                  height: 30,
-                  margin:
-                      EdgeInsets.only(left: 20, top: 0, right: 20, bottom: 0),
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0),
-                    border: Border.all(
-                        color: Colors.grey,
-                        style: BorderStyle.solid,
-                        width: 0.80),
+                width: double.infinity,
+                height: 30,
+                margin: EdgeInsets.only(left: 20, top: 0, right: 20, bottom: 0),
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  border: Border.all(
+                      color: Colors.grey,
+                      style: BorderStyle.solid,
+                      width: 0.80),
+                ),
+                child: Text(
+                  widget.course,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontStyle: FontStyle.normal,
                   ),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton(
-                        value: dropDownValue,
-                        isExpanded: true,
-
-                        //icon: const Icon(Icons.keyboard_arrow_down),
-                        //elevation: 200,
-                        // Array list of items
-                        items: itemsList1.map((String it) {
-                          return DropdownMenuItem(
-                            value: it,
-                            child: Text(it),
-                          );
-                        }).toList(),
-                        // After selecting the desired option,it will
-                        // change button value to selected value
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropDownValue = newValue!;
-                          });
-                        }),
-                  )),
+                ),
+              ),
               Container(
                 width: double.infinity,
                 margin:
@@ -198,52 +187,7 @@ class _SelectionState extends State<Selection> {
                       //elevation: 200,
                       isExpanded: true,
                       // Array list of items
-                      items: itemsList1.map((String it) {
-                        return DropdownMenuItem(
-                          value: it,
-                          child: Text(it),
-                        );
-                      }).toList(),
-                      // After selecting the desired option,it will
-                      // change button value to selected value
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropDownValue = newValue!;
-                        });
-                      }),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                margin:
-                    EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
-                padding: EdgeInsets.all(5),
-                child: Text('Type',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontStyle: FontStyle.normal,
-                    )),
-              ),
-              Container(
-                width: double.infinity,
-                height: 30,
-                margin: EdgeInsets.only(left: 20, top: 0, right: 20, bottom: 0),
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(
-                      color: Colors.grey,
-                      style: BorderStyle.solid,
-                      width: 0.80),
-                ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton(
-                      value: dropDownValue,
-                      isExpanded: true,
-                      //icon: const Icon(Icons.keyboard_arrow_down),
-                      //elevation: 200,
-                      // Array list of items
-                      items: itemsList1.map((String it) {
+                      items: semList.map((String it) {
                         return DropdownMenuItem(
                           value: it,
                           child: Text(it),
