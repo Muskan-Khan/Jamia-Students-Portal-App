@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:students_portal/Components/students_data.dart';
 import 'package:students_portal/Components/students_grade.dart';
 import 'package:students_portal/Database/db_connections.dart';
+import 'package:students_portal/internal_screens/examination_form_screen.dart';
 import 'package:students_portal/internal_screens/grade_card.dart';
 import 'student_data.dart';
 
@@ -44,6 +45,13 @@ class _DashboardElementsState extends State<DashboardElements> {
       await widget.dc.getStudentsData(sdreturned, widget.enrolmentNo);
     }
 
+    getCourse() async {
+      await widget.dc.connect();
+      String course = await widget.dc.getCourse(widget.enrolmentNo);
+      return course;
+      // print("Just Called, Get Students Data: " + sdreturned.userStudentName);
+    }
+
     functionSelector() async {
       if (widget.screenToCall == 1) {
         await getData();
@@ -53,6 +61,17 @@ class _DashboardElementsState extends State<DashboardElements> {
                 builder: (context) => StudentDataScreen(
                       studentData: sdreturned,
                       enrolmentNo: widget.enrolmentNo,
+                    )));
+      } else if (widget.screenToCall == 2) {
+        String course = await getCourse();
+        print(course);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ExamFormScreen(
+                      enrolmentNo: widget.enrolmentNo,
+                      name: sdreturned.userStudentName,
+                      course: course,
                     )));
       } else if (widget.screenToCall == 4) {
         List<GradeData> gds = await getGradeData();

@@ -9,7 +9,14 @@ void main() {
     home: Scaffold(
         backgroundColor: Colors.grey[200],
         body: const Center(
-          child: LoginField(),
+          child:
+              // LoggedInCandidateDashboard(enrolment: "Alpha")
+              LoginField(),
+          // RegistrationForm(),
+          //     ExamFormScreen(
+          //   course: '',
+          //   enrolmentNo: '',
+          // ),
         )),
     debugShowCheckedModeBanner: false,
   ));

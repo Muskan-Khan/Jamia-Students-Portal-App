@@ -63,16 +63,16 @@ class DatabaseConnectivity {
 
   getAllColumns() {
     return connection.query(
-        "SELECT btrim(enrolment_no),btrim(email),btrim(password),btrim(name) FROM student");
+        "SELECT btrim(enrolment_no),btrim(email),btrim(password),btrim(name) FROM Student");
   }
 
   getResults() {
-    return connection.query("SELECT btrim(email),btrim(password) FROM student");
+    return connection.query("SELECT btrim(email),btrim(password) FROM Student");
   }
 
   getStudentsData(StudentData sd, String enrolmentNo) async {
     List<List<dynamic>> results = await connection.query(
-        'SELECT enrolment_no,btrim(email),btrim(name),btrim(password),btrim(father_name),btrim(mother_name),btrim(dob),btrim(present_address),btrim(permanent_address),btrim(gender),btrim(blood_group),btrim(identification_mark),btrim(social_category),btrim(nationality),btrim(religion),btrim(date_year_of_admission),btrim(state_of_domicile),btrim(hosteller) FROM student where enrolment_no = @enNo',
+        'SELECT enrolment_no,btrim(email),btrim(name),btrim(password),btrim(father_name),btrim(mother_name),btrim(dob),btrim(present_address),btrim(permanent_address),btrim(gender),btrim(blood_group),btrim(identification_mark),btrim(social_category),btrim(nationality),btrim(religion),btrim(date_year_of_admission),btrim(state_of_domicile),btrim(hosteller) FROM Student where enrolment_no = @enNo',
         substitutionValues: {"enNo": enrolmentNo});
     for (final row in results) {
       sd.userEnrolment = row[0];
@@ -93,9 +93,21 @@ class DatabaseConnectivity {
       sd.userDateYearOfAdmission = row[15];
       sd.userStateOfDomicile = row[16];
       sd.userAHostler = row[17];
-     }
+    }
   }
 
+  getCourse(String enrolmentNo) async {
+    String course = "";
+    List<List<dynamic>> results = await connection.query(
+        'SELECT btrim(course_id)FROM Enrolled_Courses where enrolment_no = @enNo',
+        substitutionValues: {"enNo": enrolmentNo});
+    for (final row in results) {
+      course = row[0];
+    }
+    return course;
+  }
+
+// StudentData studentData
   Future<PostgreSQLResult?> insertUserData(StudentData studentData) async {
     try {
       await connection!
