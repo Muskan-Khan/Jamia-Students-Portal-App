@@ -107,6 +107,18 @@ class DatabaseConnectivity {
     return course;
   }
 
+  getSubjects(String course, String sem) async {
+    List<String> subjectCodesList = <String>[];
+    int i = 0;
+    List<List<dynamic>> results = await connection.query(
+        'SELECT btrim(subject_code) FROM course_subjects where course = @course and semester= @sem',
+        substitutionValues: {"course": course, "sem": sem});
+    for (final row in results) {
+      subjectCodesList.add(row[0]);
+    }
+    return subjectCodesList;
+  }
+
 // StudentData studentData
   Future<PostgreSQLResult?> insertUserData(StudentData studentData) async {
     try {
