@@ -20,7 +20,7 @@ class ExamFormScreen extends StatelessWidget {
     required this.course,
   }) : super(key: key);
   Widget build(BuildContext context) {
-    var studentData;
+    // var studentData;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -76,6 +76,7 @@ class ExamFormScreen extends StatelessWidget {
             Padding(
                 padding: EdgeInsets.all(10),
                 child: Selection(
+                  enrolmentNo: enrolmentNo,
                   course: course,
                 )),
             //ExamForm(),
@@ -88,8 +89,10 @@ class ExamFormScreen extends StatelessWidget {
 
 class Selection extends StatefulWidget {
   String course = "";
+  String enrolmentNo = "";
   Selection({
     Key? key,
+    required this.enrolmentNo,
     required this.course,
   }) : super(key: key);
   _SelectionState createState() => _SelectionState();
@@ -97,6 +100,7 @@ class Selection extends StatefulWidget {
 
 class _SelectionState extends State<Selection> {
   String selectedValue = 'select';
+  List<String> subjects = <String>[];
   bool flag = false;
   final DatabaseConnectivity dc =
       DatabaseConnectivity("10.0.2.2", 5432, "postgres", "postgres", "admin");
@@ -109,7 +113,7 @@ class _SelectionState extends State<Selection> {
   getSubj(String course, String sem) async {
     print('Before-Inside getSubjects');
     await dc.connect();
-    List<String> subjects = await dc.getSubjects(course, sem);
+    subjects = await dc.getSubjects(course, sem);
     print('After-Inside getSubjects');
     setState(() {
       flag = true;
@@ -344,7 +348,11 @@ class _SelectionState extends State<Selection> {
               ],
             ),
           ),
-          ExamForm(),
+          ExamForm(
+              enrolmentNo: widget.enrolmentNo,
+              subjects: subjects,
+              course: widget.course,
+              semester: selectedValue),
         ]
       ],
     );
