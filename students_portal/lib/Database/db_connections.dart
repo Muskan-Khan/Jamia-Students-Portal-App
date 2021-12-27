@@ -97,6 +97,7 @@ class DatabaseConnectivity {
   }
 
   getCourse(String enrolmentNo) async {
+    print("Called getCourse");
     String course = "";
     List<List<dynamic>> results = await connection.query(
         'SELECT btrim(course_id)FROM Enrolled_Courses where enrolment_no = @enNo',

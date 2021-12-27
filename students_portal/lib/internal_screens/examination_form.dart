@@ -7,6 +7,17 @@ import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Components/blue_border.dart';
 
 class ExamForm extends StatefulWidget {
+  final String enrolmentNo;
+  final List<String> subjects;
+  final String course;
+  final String semester;
+  const ExamForm({
+    Key? key,
+    required this.enrolmentNo,
+    required this.subjects,
+    required this.course,
+    required this.semester,
+  }) : super(key: key);
   ExamFormState createState() => ExamFormState();
 }
 

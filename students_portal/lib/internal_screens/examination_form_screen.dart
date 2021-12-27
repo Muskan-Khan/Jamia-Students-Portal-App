@@ -21,7 +21,7 @@ class ExamFormScreen extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var studentData;
+    // var studentData;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -31,11 +31,11 @@ class ExamFormScreen extends StatelessWidget {
             const CustomHeader(),
             Stack(
               children: [
-                BlueBanner(
+                const BlueBanner(
                   studentDataHeading: BlueBorderContent(
                     homeIcon: 'assets/images/home.png',
                     studentIcon: 'assets/images/user.png',
-                    studentName: "studentData.userStudentName",
+                    studentName: "Musk",
                   ),
                 ),
                 Row(
@@ -43,33 +43,24 @@ class ExamFormScreen extends StatelessWidget {
                     InkWell(
                       onTap: () {},
                       child: Padding(
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(8),
                           child: Image.asset(
-                            'assets/images/home.png',
+                            'assets/images/transparent.png',
                             height: MediaQuery.of(context).size.height / 30,
-                            width: MediaQuery.of(context).size.width / 10,
+                            width: MediaQuery.of(context).size.width / 14,
                           )),
                     ),
-                    Text(
+                    const Text(
                       '/',
                       style: TextStyle(color: Colors.blue, fontSize: 20),
                     ),
                     InkWell(
                         onTap: () {},
-                        child: Padding(
+                        child: const Padding(
                             padding: EdgeInsets.all(5),
-                            child: Text('View',
+                            child: Text('Exam Form',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20)))),
-                    Container(
-                        margin: EdgeInsets.only(left: 170),
-                        //padding: EdgeInsets.all(10),
-
-                        child: Image.asset(
-                          'assets/images/user.png',
-                          height: MediaQuery.of(context).size.height / 40,
-                          width: MediaQuery.of(context).size.width / 10,
-                        ))
                   ],
                 ),
               ],
@@ -77,6 +68,7 @@ class ExamFormScreen extends StatelessWidget {
             Padding(
                 padding: EdgeInsets.all(10),
                 child: Selection(
+                  enrolmentNo: enrolmentNo,
                   course: course,
                 )),
             //ExamForm(),
@@ -88,9 +80,11 @@ class ExamFormScreen extends StatelessWidget {
 }
 
 class Selection extends StatefulWidget {
-  String course = "";
+  String course = "MCA";
+  String enrolmentNo = "";
   Selection({
     Key? key,
+    required this.enrolmentNo,
     required this.course,
   }) : super(key: key);
   _SelectionState createState() => _SelectionState();
@@ -98,6 +92,7 @@ class Selection extends StatefulWidget {
 
 class _SelectionState extends State<Selection> {
   String selectedValue = 'select';
+  List<String> subjects = <String>[];
   bool flag = false;
   final DatabaseConnectivity dc =
       DatabaseConnectivity("10.0.2.2", 5432, "postgres", "postgres", "admin");
@@ -110,7 +105,7 @@ class _SelectionState extends State<Selection> {
   getSubj(String course, String sem) async {
     print('Before-Inside getSubjects');
     await dc.connect();
-    List<String> subjects = await dc.getSubjects(course, sem);
+    subjects = await dc.getSubjects(course, sem);
     print('After-Inside getSubjects');
     setState(() {
       flag = true;
@@ -123,231 +118,239 @@ class _SelectionState extends State<Selection> {
     //var semList = ['Sem 1', 'Sem 3', 'Sem 5'];
     //var flag = false;
 
-    return Column(
-      children: [
-        if (!flag) ...[
-          Container(
-            child: Column(
-              children: [
-                Container(
-                  height: 38,
-                  width: double.infinity,
-                  margin:
-                      EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
-                  padding: EdgeInsets.all(5),
-                  child: Text(
-                    'Exam Form',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          if (!flag) ...[
+            Container(
+              child: Column(
+                children: [
+                  Container(
+                    height: 38,
+                    width: double.infinity,
+                    margin: EdgeInsets.only(
+                        left: 20, top: 20, right: 20, bottom: 0),
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      'Exam Form',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
                     ),
+                    color: Colors.grey[600],
                   ),
-                  color: Colors.grey[600],
-                ),
-                Container(
-                  color: Colors.white,
-                  height: MediaQuery.of(context).size.height / 3,
-                  width: double.infinity,
-                  margin:
-                      EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
-                  padding: EdgeInsets.all(10),
-                  child: Column(children: [
-                    Container(
-                      width: double.infinity,
-                      margin: EdgeInsets.only(
-                          left: 20, top: 20, right: 20, bottom: 0),
-                      padding: EdgeInsets.all(5),
-                      child: Text('Honours',
+                  Container(
+                    color: Colors.white,
+                    height: MediaQuery.of(context).size.height / 3,
+                    width: double.infinity,
+                    margin: EdgeInsets.only(
+                        left: 20, top: 20, right: 20, bottom: 20),
+                    padding: EdgeInsets.all(10),
+                    child: Column(children: [
+                      Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.only(
+                            left: 20, top: 20, right: 20, bottom: 0),
+                        padding: EdgeInsets.all(5),
+                        child: Text('Honours',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontStyle: FontStyle.normal,
+                            )),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 30,
+                        margin: EdgeInsets.only(
+                            left: 20, top: 0, right: 20, bottom: 0),
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          border: Border.all(
+                              color: Colors.grey,
+                              style: BorderStyle.solid,
+                              width: 0.80),
+                        ),
+                        child: const Text(
+                          // widget.course
+                          "MCA",
                           style: TextStyle(
                             fontSize: 20,
                             fontStyle: FontStyle.normal,
-                          )),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 30,
-                      margin: EdgeInsets.only(
-                          left: 20, top: 0, right: 20, bottom: 0),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        border: Border.all(
-                            color: Colors.grey,
-                            style: BorderStyle.solid,
-                            width: 0.80),
-                      ),
-                      child: Text(
-                        widget.course,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontStyle: FontStyle.normal,
+                          ),
                         ),
                       ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      margin: EdgeInsets.only(
-                          left: 20, top: 20, right: 20, bottom: 0),
-                      padding: EdgeInsets.all(5),
-                      child: Text('Semester',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontStyle: FontStyle.normal,
-                          )),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 30,
-                      margin: EdgeInsets.only(
-                          left: 20, top: 0, right: 20, bottom: 0),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        border: Border.all(
-                            color: Colors.grey,
-                            style: BorderStyle.solid,
-                            width: 0.80),
+                      Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.only(
+                            left: 20, top: 20, right: 20, bottom: 0),
+                        padding: EdgeInsets.all(5),
+                        child: Text('Semester',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontStyle: FontStyle.normal,
+                            )),
                       ),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                          value: selectedValue,
-                          isExpanded: true,
-                          items: ['select', 'Sem 1', 'Sem 3', 'Sem 5']
-                              .map((String it) {
-                            return DropdownMenuItem(
-                              value: it,
-                              child: Text(it),
-                            );
-                          }).toList(),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              selectedValue = newValue!;
-                              getSubj(widget.course, selectedValue);
-                              print('Inside if');
-                            });
-                          },
+                      Container(
+                        width: double.infinity,
+                        height: 30,
+                        margin: EdgeInsets.only(
+                            left: 20, top: 0, right: 20, bottom: 0),
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          border: Border.all(
+                              color: Colors.grey,
+                              style: BorderStyle.solid,
+                              width: 0.80),
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton(
+                            value: selectedValue,
+                            isExpanded: true,
+                            items: ['select', 'Sem 1', 'Sem 3', 'Sem 5']
+                                .map((String it) {
+                              return DropdownMenuItem(
+                                value: it,
+                                child: Text(it),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedValue = newValue!;
+                                getSubj(widget.course, selectedValue);
+                                print('Inside if');
+                              });
+                            },
+                          ),
                         ),
                       ),
-                    ),
-                  ]),
-                ),
-              ],
-            ),
-          ),
-        ] else ...[
-          Container(
-            child: Column(
-              children: [
-                Container(
-                  height: 38,
-                  width: double.infinity,
-                  margin:
-                      EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
-                  padding: EdgeInsets.all(5),
-                  child: Text(
-                    'Exam Form',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                    ]),
                   ),
-                  color: Colors.grey[600],
-                ),
-                Container(
-                  color: Colors.white,
-                  height: MediaQuery.of(context).size.height / 3,
-                  width: double.infinity,
-                  margin:
-                      EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
-                  padding: EdgeInsets.all(10),
-                  child: Column(children: [
-                    Container(
-                      width: double.infinity,
-                      margin: EdgeInsets.only(
-                          left: 20, top: 20, right: 20, bottom: 0),
-                      padding: EdgeInsets.all(5),
-                      child: Text('Honours',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontStyle: FontStyle.normal,
-                          )),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 30,
-                      margin: EdgeInsets.only(
-                          left: 20, top: 0, right: 20, bottom: 0),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        border: Border.all(
-                            color: Colors.grey,
-                            style: BorderStyle.solid,
-                            width: 0.80),
-                      ),
-                      child: Text(
-                        widget.course,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontStyle: FontStyle.normal,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      margin: EdgeInsets.only(
-                          left: 20, top: 20, right: 20, bottom: 0),
-                      padding: EdgeInsets.all(5),
-                      child: Text('Semester',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontStyle: FontStyle.normal,
-                          )),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 30,
-                      margin: EdgeInsets.only(
-                          left: 20, top: 0, right: 20, bottom: 0),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        border: Border.all(
-                            color: Colors.grey,
-                            style: BorderStyle.solid,
-                            width: 0.80),
-                      ),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                          value: selectedValue,
-                          isExpanded: true,
-                          items: ['select', 'Sem 1', 'Sem 3', 'Sem 5']
-                              .map((String it) {
-                            return DropdownMenuItem(
-                              value: it,
-                              child: Text(it),
-                            );
-                          }).toList(),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              selectedValue = newValue!;
-                              getSubj(widget.course, selectedValue);
-                              print('Inside else');
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                  ]),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          ExamForm(),
-        ]
-      ],
+          ] else ...[
+            Container(
+              child: Column(
+                children: [
+                  Container(
+                    height: 38,
+                    width: double.infinity,
+                    margin: EdgeInsets.only(
+                        left: 20, top: 20, right: 20, bottom: 0),
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      'Exam Form',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    color: Colors.grey[600],
+                  ),
+                  Container(
+                    color: Colors.white,
+                    height: MediaQuery.of(context).size.height / 3,
+                    width: double.infinity,
+                    margin: EdgeInsets.only(
+                        left: 20, top: 20, right: 20, bottom: 20),
+                    padding: EdgeInsets.all(10),
+                    child: Column(children: [
+                      Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.only(
+                            left: 20, top: 20, right: 20, bottom: 0),
+                        padding: EdgeInsets.all(5),
+                        child: Text('Honours',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontStyle: FontStyle.normal,
+                            )),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 30,
+                        margin: EdgeInsets.only(
+                            left: 20, top: 0, right: 20, bottom: 0),
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          border: Border.all(
+                              color: Colors.grey,
+                              style: BorderStyle.solid,
+                              width: 0.80),
+                        ),
+                        child: const Text(
+                          // widget.course,
+                          "MCA",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontStyle: FontStyle.normal,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.only(
+                            left: 20, top: 20, right: 20, bottom: 0),
+                        padding: EdgeInsets.all(5),
+                        child: Text('Semester',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontStyle: FontStyle.normal,
+                            )),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 30,
+                        margin: EdgeInsets.only(
+                            left: 20, top: 0, right: 20, bottom: 0),
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          border: Border.all(
+                              color: Colors.grey,
+                              style: BorderStyle.solid,
+                              width: 0.80),
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton(
+                            value: selectedValue,
+                            isExpanded: true,
+                            items: ['select', 'Sem 1', 'Sem 3', 'Sem 5']
+                                .map((String it) {
+                              return DropdownMenuItem(
+                                value: it,
+                                child: Text(it),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedValue = newValue!;
+                                getSubj(widget.course, selectedValue);
+                                print('Inside else');
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ],
+              ),
+            ),
+            ExamForm(
+                enrolmentNo: widget.enrolmentNo,
+                subjects: subjects,
+                course: widget.course,
+                semester: selectedValue),
+          ]
+        ],
+      ),
     );
   }
 }
