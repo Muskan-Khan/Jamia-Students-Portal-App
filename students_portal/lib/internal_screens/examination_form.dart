@@ -22,7 +22,10 @@ class ExamForm extends StatefulWidget {
 }
 
 class ExamFormState extends State<ExamForm> {
-  bool value = false;
+  bool _valueCheck1 = false;
+  bool _valueCheck2 = true;
+  List<bool> valueCheck=[];
+  int i = 0;
   Widget build(BuildContext context) {
     return Container(
         child: Column(
@@ -54,91 +57,25 @@ class ExamFormState extends State<ExamForm> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
-                Container(
-                  decoration:
-                      BoxDecoration(border: Border.all(color: Colors.grey)),
-                  margin: EdgeInsets.all(20),
-                  child: DataTable(showBottomBorder: true, columns: [
-                    DataColumn(
-                        label: Text('Subject',
-                            style: TextStyle(fontWeight: FontWeight.bold))),
-                    DataColumn(label: Text(' '))
-                  ], rows: [
-                    DataRow(cells: [
-                      DataCell(Container(
-                          width: 250, child: Text('Programming in C'))),
-                      DataCell(Container(
-                        width: 80,
-                        child: Container(
-                            child: Checkbox(
-                                value: value,
-                                onChanged: (value) {
-                                  setState(() {
-                                    value = value;
-                                  });
-                                })),
+                for (var subject in widget.subjects) ...{
+                  bool val=valueCheck[i];
+                  Container(
+                      decoration:
+                          BoxDecoration(border: Border.all(color: Colors.grey)),
+                      margin: EdgeInsets.all(0),
+                      child: CheckboxListTile(
+                        title: Text(subject),
+                        value: val,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            valueCheck[i] = value!;
+                          });
+                        },
+                        // onTap: () {
+                        //   setState(() {});
+                        // },
                       ))
-                    ]),
-                    DataRow(cells: [
-                      DataCell(Container(width: 250, child: Text('DBMS'))),
-                      DataCell(Container(
-                        width: 80,
-                        child: Container(
-                            child: Checkbox(
-                                value: value,
-                                onChanged: (value) {
-                                  setState(() {
-                                    value = value;
-                                  });
-                                })),
-                      ))
-                    ]),
-                    DataRow(cells: [
-                      DataCell(
-                          Container(width: 250, child: Text('Algorithms'))),
-                      DataCell(Container(
-                        width: 80,
-                        child: Container(
-                            child: Checkbox(
-                                value: value,
-                                onChanged: (value) {
-                                  setState(() {
-                                    value = value;
-                                  });
-                                })),
-                      ))
-                    ]),
-                    DataRow(cells: [
-                      DataCell(Container(width: 250, child: Text('DSA'))),
-                      DataCell(Container(
-                        width: 80,
-                        child: Container(
-                            child: Checkbox(
-                                value: value,
-                                onChanged: (value) {
-                                  setState(() {
-                                    value = value;
-                                  });
-                                })),
-                      ))
-                    ]),
-                    DataRow(cells: [
-                      DataCell(
-                          Container(width: 250, child: Text('Discrete Maths'))),
-                      DataCell(Container(
-                        width: 80,
-                        child: Container(
-                            child: Checkbox(
-                                value: value,
-                                onChanged: (value) {
-                                  setState(() {
-                                    value = value;
-                                  });
-                                })),
-                      ))
-                    ])
-                  ]),
-                )
+                }
               ],
             )),
       ],
