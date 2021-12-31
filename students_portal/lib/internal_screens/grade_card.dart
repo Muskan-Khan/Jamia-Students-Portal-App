@@ -1,30 +1,19 @@
-// Sem/Session
-// Exam Type
-// Honours
-// Combination
-//-------------- Result--------
 import 'package:flutter/material.dart';
 import 'package:students_portal/Components/blue_border.dart';
 import 'package:students_portal/Components/blue_border_content.dart';
-import 'package:students_portal/Components/students_data.dart';
 import 'package:students_portal/Components/students_grade.dart';
-import 'package:students_portal/Database/db_connections.dart';
 import 'package:students_portal/internal_screens/grade_card_element.dart';
-
 import 'header.dart';
 
 class GradeCard extends StatefulWidget {
   final String enrolmentNo;
   final String name;
-  // final DatabaseConnectivity conn;
   final List<GradeData> gdreturned;
   const GradeCard({
     Key? key,
     required this.enrolmentNo,
     required this.name,
-    // required this.conn,
     required this.gdreturned,
-    // required this.studentData
   }) : super(key: key);
 
   @override
@@ -96,9 +85,6 @@ class _GradeCardState extends State<GradeCard> {
                 Container(
                   margin: const EdgeInsets.all(30),
                   color: Colors.white,
-                  //decoration: BoxDecoration(
-                  //border: Border.all(color: //Colors.pink),
-                  //),
                   child: Column(
                     children: [
                       for (var gdr in widget.gdreturned)
@@ -119,6 +105,5 @@ class _GradeCardState extends State<GradeCard> {
         ),
       ),
     );
-    ;
   }
 }

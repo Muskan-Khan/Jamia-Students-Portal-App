@@ -255,8 +255,11 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   final userEmail = TextEditingController();
   final userPassword = TextEditingController();
 
-  DatabaseConnectivity con =
-      DatabaseConnectivity("10.0.2.2", 5432, "postgres", "postgres", "admin");
+  DatabaseConnectivity con = DatabaseConnectivity(
+      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+
+  String warningText = " ";
+  double warningTextSize = 0;
   processInput() async {
     await con.connect();
     List<List<dynamic>> allColumns = await con.getAllColumns();
@@ -267,8 +270,6 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       for (final row in allColumns) {
         String id = row[1];
         String password = row[2];
-        print(id);
-        print(password);
         if (userEmail.text == id && userPassword.text == password) {
           enrolmentNo = row[0];
           studentsName = row[3];
@@ -278,18 +279,12 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       return false;
     }
 
-    print("Calling Validation");
     final x = isValidUser(userEmail, userPassword);
 
     userEmail.clear();
     userPassword.clear();
-    // print(x);
-    // + (con).toString()
-    //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
-      print("Login Successful! ");
       await con.connect();
-      print("Name is: " + studentsName);
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -301,11 +296,9 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
         ),
       );
     } else {
-      print("Invalid Credentials");
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const InvalidCredentials()),
-      );
+      warningText = "Invalid Credentials";
+      warningTextSize = 20.0;
+      setState(() {});
     }
     // await con.connection.close();
   }
@@ -321,11 +314,6 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   void initState() {
     super.initState();
   }
-
-  // clearFormFields() {
-  //   userEmail.clear();
-  //   userPassword.clear();
-  // }
 
   @override
   void dispose() {
@@ -347,6 +335,16 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  warningText,
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                      fontSize: warningTextSize),
+                ),
+              ),
               const Text(
                 "Email Id",
                 textAlign: TextAlign.left,
@@ -415,7 +413,9 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
   final userPassword = TextEditingController();
 
   DatabaseConnectivity con = DatabaseConnectivity(
-      "10.0.2.2", 5432, "StudentsPortal", "postgres", "admin");
+      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+  String warningText = " ";
+  double warningTextSize = 0;
   processEnrolmentInput() async {
     await con.connect();
     List<List<dynamic>> allColumns = await con.getAllColumns();
@@ -426,8 +426,6 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
       for (final row in allColumns) {
         String id = row[0];
         String password = row[2];
-        print(id);
-        print(password);
         if (userEnrolment.text == id && userPassword.text == password) {
           enrolmentNo = row[0];
           studentsName = row[3];
@@ -444,8 +442,6 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
     // print(x);
 //x true signifies a valid user as it is a future it must be assigned before it can be used
     if (x) {
-      print("Login Successful");
-
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -457,11 +453,9 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
         ),
       );
     } else {
-      print("Invalid Credentials");
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const InvalidCredentials()),
-      );
+      warningText = "Invalid Credentials";
+      warningTextSize = 20.0;
+      setState(() {});
     }
     // await con.connection.close();
   }
@@ -498,6 +492,15 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    warningText,
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                        fontSize: warningTextSize),
+                  )),
               const Text(
                 "Enrolment No.",
                 textAlign: TextAlign.left,

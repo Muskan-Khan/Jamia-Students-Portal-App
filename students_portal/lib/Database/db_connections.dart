@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 import 'package:students_portal/Components/students_data.dart';
-import 'package:students_portal/Components/students_data.dart';
 import 'package:students_portal/Components/students_grade.dart';
 
 class DatabaseConnectivity {
@@ -28,13 +27,11 @@ class DatabaseConnectivity {
   }
 
   Future connect() async {
-    print("in connect");
     try {
       connection = PostgreSQLConnection(hostname, port, database,
           username: username, password: password);
       await connection.open();
     } catch (error) {
-      //Trial
       AlertDialog(
         title: Text(error.toString()),
       );
@@ -42,11 +39,9 @@ class DatabaseConnectivity {
   }
 
   getGradeData(String enrolmentNo) async {
-    // print("Called get Grade Data");
     List<List<dynamic>> results = await connection.query(
         'SELECT enrolment_no,semester,session,exam_type,honours,cardurl FROM gradecard where enrolment_no = @enNo',
         substitutionValues: {"enNo": enrolmentNo});
-    // print("Called get Grade Data Select statement");
     int i = 0;
 
     GradeData f = GradeData();
@@ -60,19 +55,15 @@ class DatabaseConnectivity {
       g.examType = row[3];
       g.honours = row[4];
       g.cardURL = row[5];
-      // print("In for loop of Grade Data Select statement: " + g.semester);
       gds[i] = g;
       i++;
     }
-    // for (final r in gds) {
-    //   print(r.semester);
-    // }
     return gds;
   }
 
   getAllColumns() {
     return connection.query(
-        "SELECT btrim(enrolment_no),btrim(email),btrim(password),btrim(name) FROM studentscredentials");
+        "SELECT btrim(enrolment_no),btrim(email),btrim(password),btrim(name) FROM Student");
   }
 
   getResults() {
@@ -102,16 +93,11 @@ class DatabaseConnectivity {
       sd.userDateYearOfAdmission = row[15];
       sd.userStateOfDomicile = row[16];
       sd.userAHostler = row[17];
-      // if (row[0] == enrolmentNo) break;
     }
-    // print(sd);
-    // print(sd.userEmail);
-    // print(sd.userStudentName);
-    // print("Call Successfully Ended");
-    // return sd;
   }
 
   getCourse(String enrolmentNo) async {
+    print("Called getCourse");
     String course = "";
     List<List<dynamic>> results = await connection.query(
         'SELECT btrim(course_id)FROM Enrolled_Courses where enrolment_no = @enNo',
@@ -168,14 +154,12 @@ class DatabaseConnectivity {
       });
     } catch (exc) {
       exc.toString();
-      print(exc);
     }
     return newUserRegistration;
   }
 
   Future<bool> isAValidUser(TextEditingController userEmail,
       TextEditingController userPassword) async {
-    // print("Called isAValidUser");
     List<List<dynamic>> results = await getResults();
     for (final row in results) {
       String id = row[0];

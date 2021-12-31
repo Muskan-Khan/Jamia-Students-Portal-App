@@ -50,7 +50,7 @@ class StudentDataScreen extends StatelessWidget {
                       onTap: () {},
                       child: const Padding(
                           padding: EdgeInsets.all(5),
-                          child: Text('View',
+                          child: Text('Student Data',
                               style: TextStyle(
                                   color: Colors.white, fontSize: 20)))),
                 ],

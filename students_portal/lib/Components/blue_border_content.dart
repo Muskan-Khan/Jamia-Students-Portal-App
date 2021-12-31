@@ -4,7 +4,7 @@ class BlueBorderContent extends StatelessWidget {
   final String homeIcon;
   final String studentIcon;
   final String studentName;
-  BlueBorderContent(
+  const BlueBorderContent(
       {Key? key,
       required this.studentName,
       required this.homeIcon,
