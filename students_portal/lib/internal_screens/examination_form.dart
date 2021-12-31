@@ -58,14 +58,15 @@ class ExamFormState extends State<ExamForm> {
                       fontWeight: FontWeight.bold),
                 ),
                 for (var subject in widget.subjects) ...{
-                  bool val=valueCheck[i];
+                  // bool val=valueCheck[i];
                   Container(
                       decoration:
                           BoxDecoration(border: Border.all(color: Colors.grey)),
                       margin: EdgeInsets.all(0),
                       child: CheckboxListTile(
                         title: Text(subject),
-                        value: val,
+                        value:false, 
+                        // val,
                         onChanged: (bool? value) {
                           setState(() {
                             valueCheck[i] = value!;
