@@ -26,6 +26,7 @@ class ExamFormState extends State<ExamForm> {
   bool _valueCheck2 = true;
   List<bool> valueCheck=[];
   int i = 0;
+  @override
   Widget build(BuildContext context) {
     return Container(
         child: Column(
@@ -33,9 +34,9 @@ class ExamFormState extends State<ExamForm> {
         Container(
           height: 38,
           width: double.infinity,
-          margin: EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
+          margin:const EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
           padding: EdgeInsets.all(5),
-          child: Text(
+          child:const Text(
             'Paper List of MCA 6-sem REGULAR Paper',
             style: TextStyle(
               color: Colors.white,
@@ -46,11 +47,11 @@ class ExamFormState extends State<ExamForm> {
           color: Colors.grey[600],
         ),
         Container(
-            margin: EdgeInsets.only(left: 20, right: 20),
+            margin:const EdgeInsets.only(left: 20, right: 20),
             color: Colors.white,
             child: Column(
               children: [
-                Text(
+                const Text(
                   'Follow the userguidline. You first have to click only those papers which you are studying',
                   style: TextStyle(
                       color: Colors.red,
