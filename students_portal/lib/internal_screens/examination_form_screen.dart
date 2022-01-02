@@ -94,8 +94,8 @@ class _SelectionState extends State<Selection> {
   String selectedValue = 'select';
   List<String> subjects = <String>[];
   bool flag = false;
-  final DatabaseConnectivity dc =
-      DatabaseConnectivity("10.0.2.2", 5432, "postgres", "postgres", "admin");
+  final DatabaseConnectivity dc = DatabaseConnectivity(
+      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
 
   @override
   void initState() {
@@ -105,11 +105,12 @@ class _SelectionState extends State<Selection> {
   getSubj(String course, String sem) async {
     print('Before-Inside getSubjects');
     await dc.connect();
+    print(course);
+    print(sem);
     subjects = await dc.getSubjects(course, sem);
     print('After-Inside getSubjects');
     setState(() {
       flag = true;
-      print('flag');
     });
   }
 
@@ -210,7 +211,7 @@ class _SelectionState extends State<Selection> {
                           child: DropdownButton(
                             value: selectedValue,
                             isExpanded: true,
-                            items: ['select', 'Sem 1', 'Sem 3', 'Sem 5']
+                            items: ['select', 'sem 1', 'sem 3', 'sem 5']
                                 .map((String it) {
                               return DropdownMenuItem(
                                 value: it,
@@ -220,7 +221,7 @@ class _SelectionState extends State<Selection> {
                             onChanged: (String? newValue) {
                               setState(() {
                                 selectedValue = newValue!;
-                                getSubj(widget.course, selectedValue);
+                                getSubj("MCA", selectedValue);
                                 print('Inside if');
                               });
                             },
@@ -321,7 +322,7 @@ class _SelectionState extends State<Selection> {
                           child: DropdownButton(
                             value: selectedValue,
                             isExpanded: true,
-                            items: ['select', 'Sem 1', 'Sem 3', 'Sem 5']
+                            items: ['select', 'sem 1', 'sem 3', 'sem 5']
                                 .map((String it) {
                               return DropdownMenuItem(
                                 value: it,

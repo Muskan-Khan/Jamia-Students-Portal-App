@@ -24,7 +24,7 @@ class ExamForm extends StatefulWidget {
 class ExamFormState extends State<ExamForm> {
   bool _valueCheck1 = false;
   bool _valueCheck2 = true;
-  List<bool> valueCheck=[];
+  List<bool> valueCheck = [];
   int i = 0;
   @override
   Widget build(BuildContext context) {
@@ -34,9 +34,10 @@ class ExamFormState extends State<ExamForm> {
         Container(
           height: 38,
           width: double.infinity,
-          margin:const EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
+          margin:
+              const EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
           padding: EdgeInsets.all(5),
-          child:const Text(
+          child: const Text(
             'Paper List of MCA 6-sem REGULAR Paper',
             style: TextStyle(
               color: Colors.white,
@@ -47,7 +48,7 @@ class ExamFormState extends State<ExamForm> {
           color: Colors.grey[600],
         ),
         Container(
-            margin:const EdgeInsets.only(left: 20, right: 20),
+            margin: const EdgeInsets.only(left: 20, right: 20),
             color: Colors.white,
             child: Column(
               children: [
@@ -66,7 +67,7 @@ class ExamFormState extends State<ExamForm> {
                       margin: EdgeInsets.all(0),
                       child: CheckboxListTile(
                         title: Text(subject),
-                        value:false, 
+                        value: false,
                         // val,
                         onChanged: (bool? value) {
                           setState(() {

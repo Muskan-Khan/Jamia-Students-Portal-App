@@ -109,6 +109,7 @@ class DatabaseConnectivity {
   }
 
   getSubjects(String course, String sem) async {
+    print("Called getSubjects");
     List<String> subjectCodesList = <String>[];
     int i = 0;
     List<List<dynamic>> results = await connection.query(
@@ -116,6 +117,8 @@ class DatabaseConnectivity {
         substitutionValues: {"course": course, "sem": sem});
     for (final row in results) {
       subjectCodesList.add(row[0]);
+      print("Hello");
+      print(i++);
     }
     return subjectCodesList;
   }
