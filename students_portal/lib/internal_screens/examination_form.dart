@@ -22,11 +22,8 @@ class ExamForm extends StatefulWidget {
 }
 
 class ExamFormState extends State<ExamForm> {
-  bool _valueCheck1 = false;
-  bool _valueCheck2 = true;
-  List<bool> valueCheck = [];
-  int i = 0;
-  @override
+  bool _valueCheck = false;
+
   Widget build(BuildContext context) {
     return Container(
         child: Column(
@@ -67,11 +64,15 @@ class ExamFormState extends State<ExamForm> {
                       margin: EdgeInsets.all(0),
                       child: CheckboxListTile(
                         title: Text(subject),
+// <<<<<<< HEAD
+//                         value: false,
+// =======
                         value: false,
                         // val,
+// >>>>>>> 17b652c05aa4ae7c7769b6f62963d1834b380211
                         onChanged: (bool? value) {
                           setState(() {
-                            valueCheck[i] = value!;
+                            _valueCheck = value!;
                           });
                         },
                         // onTap: () {
