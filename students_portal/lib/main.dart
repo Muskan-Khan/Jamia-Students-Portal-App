@@ -17,15 +17,19 @@ void main() {
     home: Scaffold(
         backgroundColor: Colors.grey[200],
         body: const Center(
-          child:
-              // LoggedInCandidateDashboard(enrolment: "Alpha")
-              LoginField(),
-          // RegistrationForm(),
-          //     ExamFormScreen(
-          //   course: '',
-          //   enrolmentNo: '',
-          // ),
-        )),
+            child: ExamForm(
+                enrolmentNo: '19MCA1',
+                subjects: ['DBMS', 'Algorithm', 'Machine Learning'],
+                course: 'MCA',
+                semester: 'Sem-3')
+            // LoggedInCandidateDashboard(enrolment: "Alpha")
+            //LoginField(),
+            // RegistrationForm(),
+            //     ExamFormScreen(
+            //   course: '',
+            //   enrolmentNo: '',
+            // ),
+            )),
     debugShowCheckedModeBanner: false,
   ));
 }

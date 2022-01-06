@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:students_portal/Components/blue_border_content.dart';
-import 'package:students_portal/Components/students_data.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Database/db_connections.dart';
 import 'registration.dart';
 import 'package:students_portal/Components/blue_border.dart';
 import 'dashboard.dart';
-import 'invalid_credentials.dart';
 
 class LoginField extends StatelessWidget {
   const LoginField({Key? key}) : super(key: key);
@@ -16,7 +14,7 @@ class LoginField extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         const CustomHeader(),
-        BlueBanner(
+        const BlueBanner(
           studentDataHeading: BlueBorderContent(
             homeIcon: "assets/images/transparent.png",
             studentIcon: "assets/images/transparent.png",
