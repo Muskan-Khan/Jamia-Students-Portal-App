@@ -1,10 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:students_portal/internal_screens/header.dart';
-import 'package:students_portal/Components/blue_border.dart';
+
+List<String> appliedSubject = [];
 
 class ExamForm extends StatefulWidget {
   final String enrolmentNo;
@@ -18,22 +14,22 @@ class ExamForm extends StatefulWidget {
     required this.course,
     required this.semester,
   }) : super(key: key);
+  @override
   ExamFormState createState() => ExamFormState();
 }
 
 class ExamFormState extends State<ExamForm> {
-  bool _valueCheck = false;
-
+  @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(
+    appliedSubject = widget.subjects;
+    return Column(
       children: [
         Container(
           height: 38,
           width: double.infinity,
           margin:
               const EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           child: const Text(
             'Paper List of MCA 6-sem REGULAR Paper',
             style: TextStyle(
@@ -48,35 +44,69 @@ class ExamFormState extends State<ExamForm> {
             margin: const EdgeInsets.only(left: 20, right: 20),
             color: Colors.white,
             child: Column(
-              children: [
-                const Text(
+              children: const [
+                Text(
                   'Follow the userguidline. You first have to click only those papers which you are studying',
                   style: TextStyle(
                       color: Colors.red,
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
-                for (var subject in widget.subjects) ...{
-                  Container(
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.grey)),
-                      margin: EdgeInsets.all(0),
-                      child: CheckboxListTile(
-                        title: Text(subject),
-                        value: _valueCheck,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            _valueCheck = value!;
-                          });
-                        },
-                        // onTap: () {
-                        //   setState(() {});
-                        // },
-                      ))
-                }
+                CheckBoxes(),
               ],
             )),
       ],
-    ));
+    );
+  }
+}
+
+class CheckBoxes extends StatefulWidget {
+  const CheckBoxes({Key? key}) : super(key: key);
+
+  @override
+  _CheckBoxesState createState() => _CheckBoxesState();
+}
+
+class _CheckBoxesState extends State<CheckBoxes> {
+  Map<String, bool?> checkValues = {for (var k in appliedSubject) '$k': false};
+
+  var optedSubjects = [];
+  getItems() {
+    checkValues.forEach((key, value) {
+      if (value == true) {
+        optedSubjects.add(key);
+      }
+    });
+    // Printing all selected items on Terminal screen.
+    print(optedSubjects);
+    // Here you will get all your selected Checkbox items.
+
+    // Clear array after use.
+    optedSubjects.clear();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Column(
+          children: checkValues.keys.map(
+            (String key) {
+              return CheckboxListTile(
+                title: Text(key),
+                value: checkValues[key],
+                checkColor: Colors.white,
+                onChanged: (bool? value) {
+                  setState(() {
+                    checkValues[key] = value;
+                  });
+                },
+              );
+            },
+          ).toList(),
+        ),
+        ElevatedButton(onPressed: getItems, child: const Text("Submit"))
+      ],
+    );
   }
 }

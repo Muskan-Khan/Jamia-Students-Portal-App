@@ -21,15 +21,7 @@ void main() {
                 enrolmentNo: '19MCA1',
                 subjects: ['DBMS', 'Algorithm', 'Machine Learning'],
                 course: 'MCA',
-                semester: 'Sem-3')
-            // LoggedInCandidateDashboard(enrolment: "Alpha")
-            //LoginField(),
-            // RegistrationForm(),
-            //     ExamFormScreen(
-            //   course: '',
-            //   enrolmentNo: '',
-            // ),
-            )),
+                semester: 'Sem-3'))),
     debugShowCheckedModeBanner: false,
   ));
 }
