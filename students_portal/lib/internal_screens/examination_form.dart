@@ -45,7 +45,7 @@ class ExamFormState extends State<ExamForm> {
             margin: const EdgeInsets.only(left: 20, right: 20),
             color: Colors.white,
             child: Column(
-              children: const [
+              children: [
                 Text(
                   'Follow the userguidline. You first have to click only those papers which you are studying',
                   style: TextStyle(
@@ -69,7 +69,7 @@ class CheckBoxes extends StatefulWidget {
   //final List<String> subjects;
   final String course;
   final String semester;
-  CheckBoxes({
+  const CheckBoxes({
     Key? key,
     required this.enrolmentNo,
     required this.course,
@@ -96,8 +96,8 @@ class _CheckBoxesState extends State<CheckBoxes> {
     print(optedSubjects);
     // Here you will get all your selected Checkbox items.
 
-    DatabaseConnectivity con = DatabaseConnectivity(
-        "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+    DatabaseConnectivity con =
+        DatabaseConnectivity("10.0.2.2", 5432, "postgres", "postgres", "admin");
     await con.connect();
     await con.insertOptedSubjects(
         widget.enrolmentNo, widget.course, widget.semester, optedSubjects);

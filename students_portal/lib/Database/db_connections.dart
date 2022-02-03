@@ -29,7 +29,7 @@ class DatabaseConnectivity {
   Future connect() async {
     try {
       connection = PostgreSQLConnection(hostname, port, database,
-          username: username, password: password,useSSL: true);
+          username: username, password: password, useSSL: true);
       print("Opening connection");
       await connection.open();
     } catch (error) {
@@ -127,30 +127,29 @@ class DatabaseConnectivity {
   }
 
   // ignore: avoid_types_as_parameter_names
-  Future<PostgreSQLResult?> insertOptedSubjects(String enrolmentNo,String course, String semester,List optedSubjects ) async {
-    Future<PostgreSQLResult?> optedSubjectsResult;
-    optedSubjects.forEach((element){
-    try{
-      await connection! 
-        .transaction((PostgreSQLExecutionContext connection) async{
-            optedSubjectsResult=await connection.query(
-              'INSERT into selectedSubjects (enrolment_no, subject_code, course, semester)'
-              'values(@enrolment_no, @subject_code, @course, @semester)',
-              substitutionValues:{
-                'enrolment_no':enrolmentNo,
-                'subject_code':element,
-                'course':course,
-                'semester':semester,
-              },
-              timeoutInSeconds: 30,
-            );
-      });
-    }catch (exc){
-      exc.toString();
-    }
+  Future<PostgreSQLResult?> insertOptedSubjects(String enrolmentNo,
+      String course, String semester, List optedSubjects) async {
+    //Future<PostgreSQLResult?> optedSubjectsResult;
+    optedSubjects.forEach((element) async {
+      try {
+        await connection!
+            .transaction((PostgreSQLExecutionContext connection) async {
+          await connection.query(
+            'INSERT into selectedSubjects (enrolment_no, subject_code, course, semester)'
+            'values(@enrolment_no, @subject_code, @course, @semester)',
+            substitutionValues: {
+              'enrolment_no': enrolmentNo,
+              'subject_code': element,
+              'course': course,
+              'semester': semester,
+            },
+            timeoutInSeconds: 30,
+          );
+        });
+      } catch (exc) {
+        exc.toString();
+      }
     });
-    
-    return optedSubjectsResult;
   }
 
 // StudentData studentData
