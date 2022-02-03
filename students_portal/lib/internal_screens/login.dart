@@ -5,6 +5,7 @@ import 'package:students_portal/Database/db_connections.dart';
 import 'registration.dart';
 import 'package:students_portal/Components/blue_border.dart';
 import 'dashboard.dart';
+import '../Components/db_password.dart' as globals;
 
 class LoginField extends StatelessWidget {
   const LoginField({Key? key}) : super(key: key);
@@ -254,7 +255,11 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   final userPassword = TextEditingController();
 
   DatabaseConnectivity con = DatabaseConnectivity(
-      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+      "jmiportal.postgres.database.azure.com",
+      5432,
+      "postgres",
+      "jmi_admin",
+      globals.db_password);
 
   String warningText = " ";
   double warningTextSize = 0;
@@ -411,7 +416,11 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
   final userPassword = TextEditingController();
 
   DatabaseConnectivity con = DatabaseConnectivity(
-      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+      "jmiportal.postgres.database.azure.com",
+      5432,
+      "studentsportal",
+      "jmi_admin",
+      "T!meCritical");
   String warningText = " ";
   double warningTextSize = 0;
   processEnrolmentInput() async {

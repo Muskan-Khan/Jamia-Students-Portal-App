@@ -7,6 +7,7 @@ import 'package:students_portal/Database/db_connections.dart';
 import 'package:students_portal/internal_screens/header.dart';
 import 'package:students_portal/Components/blue_border.dart';
 import 'package:students_portal/internal_screens/examination_form.dart';
+import '../Components/db_password.dart' as globals;
 
 class ExamFormScreen extends StatelessWidget {
   final String enrolmentNo;
@@ -95,7 +96,11 @@ class _SelectionState extends State<Selection> {
   List<String> subjects = <String>[];
   bool flag = false;
   final DatabaseConnectivity dc = DatabaseConnectivity(
-      "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+      "jmiportal.postgres.database.azure.com",
+      5432,
+      "studentsportal",
+      "jmi_admin",
+      globals.db_password);
 
   @override
   void initState() {

@@ -4,6 +4,7 @@ import 'package:students_portal/Database/db_connections.dart';
 import 'header.dart';
 import 'package:students_portal/Components/blue_border.dart';
 import 'package:students_portal/Components/students_data.dart';
+import '../Components/db_password.dart' as globals;
 
 class RegistrationForm extends StatefulWidget {
   RegistrationForm({Key? key}) : super(key: key);
@@ -93,7 +94,11 @@ class _RegistrationFormState extends State<RegistrationForm> {
     sd.userAHostler = userAHostler.text;
 
     DatabaseConnectivity con = DatabaseConnectivity(
-        "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+        "jmiportal.postgres.database.azure.com",
+        5432,
+        "studentsportal",
+        "jmi_admin",
+        globals.db_password);
     await con.connect();
     await con.insertUserData(sd);
     print("Hello");
