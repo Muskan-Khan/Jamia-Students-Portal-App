@@ -257,7 +257,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   DatabaseConnectivity con = DatabaseConnectivity(
       "jmiportal.postgres.database.azure.com",
       5432,
-      "postgres",
+      "studentsportal",
       "jmi_admin",
       globals.db_password);
 
