@@ -123,6 +123,33 @@ class DatabaseConnectivity {
     return subjectCodesList;
   }
 
+  // ignore: avoid_types_as_parameter_names
+  Future<PostgreSQLResult?> insertOptedSubjects(String enrolmentNo,String course, String semester,List optedSubjects ) async {
+    Future<PostgreSQLResult?> optedSubjectsResult;
+    optedSubjects.forEach((element){
+    try{
+      await connection! 
+        .transaction((PostgreSQLExecutionContext connection) async{
+            optedSubjectsResult=await connection.query(
+              'INSERT into selectedSubjects (enrolment_no, subject_code, course, semester)'
+              'values(@enrolment_no, @subject_code, @course, @semester)',
+              substitutionValues:{
+                'enrolment_no':enrolmentNo,
+                'subject_code':element,
+                'course':course,
+                'semester':semester,
+              },
+              timeoutInSeconds: 30,
+            );
+      });
+    }catch (exc){
+      exc.toString();
+    }
+    });
+    
+    return optedSubjectsResult;
+  }
+
 // StudentData studentData
   Future<PostgreSQLResult?> insertUserData(StudentData studentData) async {
     try {

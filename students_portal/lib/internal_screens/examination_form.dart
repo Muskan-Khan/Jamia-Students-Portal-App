@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:students_portal/Database/db_connections.dart';
 
 List<String> appliedSubject = [];
 
@@ -52,7 +53,10 @@ class ExamFormState extends State<ExamForm> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
-                CheckBoxes(),
+                CheckBoxes(
+                    enrolmentNo: widget.enrolmentNo,
+                    course: widget.course,
+                    semester: widget.semester),
               ],
             )),
       ],
@@ -61,7 +65,18 @@ class ExamFormState extends State<ExamForm> {
 }
 
 class CheckBoxes extends StatefulWidget {
-  const CheckBoxes({Key? key}) : super(key: key);
+  final String enrolmentNo;
+  //final List<String> subjects;
+  final String course;
+  final String semester;
+  CheckBoxes({
+    Key? key,
+    required this.enrolmentNo,
+    required this.course,
+    required this.semester,
+  }) : super(key: key);
+
+  //const CheckBoxes({Key? key}) : super(key: key);
 
   @override
   _CheckBoxesState createState() => _CheckBoxesState();
@@ -71,7 +86,7 @@ class _CheckBoxesState extends State<CheckBoxes> {
   Map<String, bool?> checkValues = {for (var k in appliedSubject) '$k': false};
 
   var optedSubjects = [];
-  getItems() {
+  getItems() async {
     checkValues.forEach((key, value) {
       if (value == true) {
         optedSubjects.add(key);
@@ -80,6 +95,12 @@ class _CheckBoxesState extends State<CheckBoxes> {
     // Printing all selected items on Terminal screen.
     print(optedSubjects);
     // Here you will get all your selected Checkbox items.
+
+    DatabaseConnectivity con = DatabaseConnectivity(
+        "10.0.2.2", 5432, "StudentsPortal", "postgres", "Latitude21");
+    await con.connect();
+    await con.insertOptedSubjects(
+        widget.enrolmentNo, widget.course, widget.semester, optedSubjects);
 
     // Clear array after use.
     optedSubjects.clear();
