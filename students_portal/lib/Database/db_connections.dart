@@ -29,12 +29,15 @@ class DatabaseConnectivity {
   Future connect() async {
     try {
       connection = PostgreSQLConnection(hostname, port, database,
-          username: username, password: password);
+          username: username, password: password,useSSL: true);
+      print("Opening connection");
       await connection.open();
     } catch (error) {
-      AlertDialog(
-        title: Text(error.toString()),
-      );
+      // AlertDialog(
+      // title: Text(
+      print(error.toString());
+      // ),
+      // );
     }
   }
 
@@ -183,7 +186,7 @@ class DatabaseConnectivity {
         );
       });
     } catch (exc) {
-      exc.toString();
+      print(exc.toString());
     }
     return newUserRegistration;
   }

@@ -9,19 +9,26 @@ import 'internal_screens/login.dart';
 import 'internal_screens/student_data.dart';
 import 'package:students_portal/internal_screens/examination_form_screen.dart';
 //import 'package:students/internal_screens/examination_form.dart';
+import '../Components/db_password.dart' as globals;
 
-DatabaseConnectivity dcs =
-    DatabaseConnectivity("10.0.2.2", 5432, "postgres", "postgres", "admin");
+DatabaseConnectivity dcs = DatabaseConnectivity(
+    "jmiportal.postgres.database.azure.com",
+    5432,
+    "studentsportal",
+    "jmi_admin",
+    globals.db_password);
 void main() {
   runApp(MaterialApp(
     home: Scaffold(
         backgroundColor: Colors.grey[200],
         body: const Center(
-            child: ExamForm(
-                enrolmentNo: '19MCA1',
-                subjects: ['DBMS', 'Algorithm', 'Machine Learning'],
-                course: 'MCA',
-                semester: 'Sem-3'))),
+            child:
+                // ExamForm(
+                //     enrolmentNo: '19MCA1',
+                //     subjects: ['DBMS', 'Algorithm', 'Machine Learning'],
+                //     course: 'MCA',
+                //     semester: 'Sem-3')
+                LoginField())),
     debugShowCheckedModeBanner: false,
   ));
 }
