@@ -420,7 +420,7 @@ class _LoginWithEnrolmentState extends State<LoginWithEnrolment> {
       5432,
       "studentsportal",
       "jmi_admin",
-      "T!meCritical");
+      globals.db_password);
   String warningText = " ";
   double warningTextSize = 0;
   processEnrolmentInput() async {

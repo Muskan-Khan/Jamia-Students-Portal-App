@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:students_portal/Database/db_connections.dart';
+import '../Components/db_password.dart' as globals;
 
 List<String> appliedSubject = [];
 
@@ -23,43 +24,45 @@ class ExamFormState extends State<ExamForm> {
   @override
   Widget build(BuildContext context) {
     appliedSubject = widget.subjects;
-    return Column(
-      children: [
-        Container(
-          height: 38,
-          width: double.infinity,
-          margin:
-              const EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
-          padding: const EdgeInsets.all(5),
-          child: const Text(
-            'Paper List of MCA 6-sem REGULAR Paper',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            height: 38,
+            width: double.infinity,
+            margin:
+                const EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
+            padding: const EdgeInsets.all(5),
+            child: const Text(
+              'Paper List of MCA 6-sem REGULAR Paper',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
             ),
+            color: Colors.grey[600],
           ),
-          color: Colors.grey[600],
-        ),
-        Container(
-            margin: const EdgeInsets.only(left: 20, right: 20),
-            color: Colors.white,
-            child: Column(
-              children: [
-                Text(
-                  'Follow the userguidline. You first have to click only those papers which you are studying',
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                ),
-                CheckBoxes(
-                    enrolmentNo: widget.enrolmentNo,
-                    course: widget.course,
-                    semester: widget.semester),
-              ],
-            )),
-      ],
+          Container(
+              margin: const EdgeInsets.only(left: 20, right: 20),
+              color: Colors.white,
+              child: Column(
+                children: [
+                  Text(
+                    'Follow the userguidline. You first have to click only those papers which you are studying',
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  CheckBoxes(
+                      enrolmentNo: widget.enrolmentNo,
+                      course: widget.course,
+                      semester: widget.semester),
+                ],
+              )),
+        ],
+      ),
     );
   }
 }
@@ -86,6 +89,12 @@ class _CheckBoxesState extends State<CheckBoxes> {
   Map<String, bool?> checkValues = {for (var k in appliedSubject) '$k': false};
 
   var optedSubjects = [];
+  @override
+  void initState() {
+    super.initState();
+    print(appliedSubject[0]);
+  }
+
   getItems() async {
     checkValues.forEach((key, value) {
       if (value == true) {
@@ -96,8 +105,12 @@ class _CheckBoxesState extends State<CheckBoxes> {
     print(optedSubjects);
     // Here you will get all your selected Checkbox items.
 
-    DatabaseConnectivity con =
-        DatabaseConnectivity("10.0.2.2", 5432, "postgres", "postgres", "admin");
+    DatabaseConnectivity con = DatabaseConnectivity(
+        "jmiportal.postgres.database.azure.com",
+        5432,
+        "studentsportal",
+        "jmi_admin",
+        globals.db_password);
     await con.connect();
     await con.insertOptedSubjects(
         widget.enrolmentNo, widget.course, widget.semester, optedSubjects);

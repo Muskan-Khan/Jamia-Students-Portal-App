@@ -29,7 +29,7 @@ class DatabaseConnectivity {
   Future connect() async {
     try {
       connection = PostgreSQLConnection(hostname, port, database,
-          username: username, password: password, useSSL: true);
+          username: username, password: password, useSSL: false);
       print("Opening connection");
       await connection.open();
     } catch (error) {
